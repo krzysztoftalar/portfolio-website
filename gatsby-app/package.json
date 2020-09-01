@@ -1,0 +1,48 @@
+{
+    "name": "gatsby-starter-hello-world",
+    "private": true,
+    "description": "A simplified bare-bones starter for Gatsby",
+    "version": "0.1.0",
+    "license": "0BSD",
+    "scripts": {
+        "start": "npm run develop",
+        "build": "gatsby build",
+        "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1",
+        "develop": "gatsby develop",
+        "serve": "gatsby serve",
+        "clean": "gatsby clean",
+        "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json}\"",
+        "eslint": "eslint --ignore-path .gitignore . --ext ts --ext tsx --ext js --ext jsx",
+        "eslint:fix": "eslint --fix \"**/*.{js,jsx,ts,tsx,json}\"",
+        "lint:css": "stylelint \"**/*.{js,jsx,ts,tsx}\""
+    },
+    "dependencies": {
+        "@types/styled-components": "^5.1.2",
+        "babel-plugin-styled-components": "^1.11.1",
+        "framer-motion": "^2.6.5",
+        "gatsby": "^2.24.50",
+        "gatsby-plugin-styled-components": "^3.3.10",
+        "gatsby-plugin-typescript": "^2.4.18",
+        "mobx": "^5.15.6",
+        "mobx-react": "^6.3.0",
+        "react": "^16.12.0",
+        "react-dom": "^16.12.0",
+        "styled-components": "^5.1.1",
+        "styled-normalize": "^8.0.7"
+    },
+    "devDependencies": {
+        "@babel/plugin-proposal-decorators": "^7.10.5",
+        "@typescript-eslint/eslint-plugin": "^3.10.1",
+        "@typescript-eslint/parser": "^3.10.1",
+        "eslint": "^7.7.0",
+        "eslint-config-prettier": "^6.11.0",
+        "eslint-plugin-prettier": "^3.1.4",
+        "eslint-plugin-react": "^7.20.6",
+        "prettier": "2.1.0",
+        "stylelint": "^13.6.1",
+        "stylelint-config-recommended": "^3.0.0",
+        "stylelint-config-styled-components": "^0.1.1",
+        "stylelint-processor-styled-components": "^1.10.0",
+        "typescript": "^4.0.2"
+    }
+}
