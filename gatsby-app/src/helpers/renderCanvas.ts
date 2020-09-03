@@ -3,9 +3,9 @@ import { black, white } from '../styles/variables';
 
 export const renderCanvas = (
     canvasRef: MutableRefObject<any>,
-    size: { width: number; height: number },
+    windowSize: { width: number; height: number },
     theme: string | null
-) => {
+): void => {
     const render = useCallback(() => {
         const renderingElement = canvasRef.current;
 
@@ -21,7 +21,12 @@ export const renderCanvas = (
             if (renderingCtx) {
                 renderingCtx.globalCompositeOperation = 'source-over';
                 renderingCtx.fillStyle = theme === 'dark' ? black : white;
-                renderingCtx.fillRect(0, 0, size.width, size.height);
+                renderingCtx.fillRect(
+                    0,
+                    0,
+                    windowSize.width,
+                    windowSize.height
+                );
 
                 renderingElement.addEventListener(
                     'mouseover',

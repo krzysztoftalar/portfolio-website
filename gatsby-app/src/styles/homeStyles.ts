@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
+import { media } from './responsive';
 
-// Banner
+// Banner section
 export const Banner = styled.div`
     position: relative;
     grid-column: 1 / -1;
@@ -42,9 +43,13 @@ export const Headline = styled(motion.span)`
     font-size: 37rem;
     font-weight: 900;
     line-height: 0.76;
+
+    @media only screen and ${media.L} {
+        font-size: 30rem;
+    }
 `;
 
-// Content
+// Content section
 export const HomeContentSection = styled.div`
     grid-column: 1 / -1;
     grid-row: 2 / 3;

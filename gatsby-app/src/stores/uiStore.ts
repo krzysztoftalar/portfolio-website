@@ -27,6 +27,8 @@ export default class UIStore {
 
     cursorStyles: string[] = cursorStyles;
     cursor: string | boolean = false;
+    open = false;
+    elementPosition: { elX: number; elY: number } = { elX: 0, elY: 0 };
 
     setTheme = (theme: string): void => {
         this.theme = theme;
@@ -39,6 +41,15 @@ export default class UIStore {
             this.cursor = false;
         }
     };
+
+    toggleOpen = (): void => {
+        this.open = !this.open;
+    };
+
+    setElementPosition = (x: number, y: number): void => {
+        this.elementPosition.elX = x;
+        this.elementPosition.elY = y;
+    };
 }
 
 decorate(UIStore, {
@@ -46,4 +57,8 @@ decorate(UIStore, {
     setTheme: action,
     cursor: observable,
     setCursor: action,
+    open: observable,
+    toggleOpen: action,
+    elementPosition: observable,
+    setElementPosition: action,
 });

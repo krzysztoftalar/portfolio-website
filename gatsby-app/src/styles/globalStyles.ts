@@ -1,7 +1,7 @@
 import styled, { createGlobalStyle, css } from 'styled-components';
 import normalize from 'styled-normalize';
 // Imports from src
-import { red } from './variables';
+import { primaryColor } from './variables';
 
 export const GlobalStyle = createGlobalStyle`
     ${normalize}
@@ -33,12 +33,6 @@ export const LayoutContainer = styled.div`
         repeat(8, [col-start] minmax(min-content, 14.62rem) [col-end])
         [center-end side-right-start] minmax(6rem, 1fr) [side-right-end];
     grid-template-rows: 100vh 100vh;
-`;
-
-export const Container = styled.div`
-    position: relative;
-    width: 100%;
-    height: 100%;
 `;
 
 export const Flex = styled.div<{
@@ -76,12 +70,12 @@ export const Flex = styled.div<{
         `}
 `;
 
-export const Cursor = styled.div`
+export const Cursor = styled.div<{ elX: string; elY: string }>`
     display: flex;
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 999;
+    z-index: 10000;
     align-items: center;
     justify-content: center;
     width: 3.2rem;
@@ -91,7 +85,7 @@ export const Cursor = styled.div`
     transition-property: width, height, border;
     will-change: width, height, transform, border;
     border-radius: 100%;
-    background: ${red};
+    background: ${primaryColor};
     pointer-events: none;
 
     &::after {
@@ -102,18 +96,40 @@ export const Cursor = styled.div`
         background: ${(props) => props.theme.background};
     }
 
-    &.hovered {
+    &.hovered,
+    &.pointer,
+    &.locked {
         width: 5.6rem;
         height: 5.6rem;
-        border: 5px solid ${red};
-        background: transparent;
+        background: transparent !important;
 
         &::after {
             background: none;
         }
     }
 
+    &.hovered {
+        border: 5px solid ${primaryColor};
+    }
+
     &.pointer {
         border: 5px solid ${(props) => props.theme.text};
+    }
+
+    &.locked {
+        border: 5px solid ${primaryColor};
+        top: ${(props) => props.elY} !important;
+        left: ${(props) => props.elX} !important;
+        transition: all 0.1s ease-in-out;
+        transition-property: left, top;
+        will-change: left, top;
+
+        &--txtColor {
+            border: 5px solid ${(props) => props.theme.text};
+        }
+    }
+
+    &.nav-open {
+        background: ${(props) => props.theme.text};
     }
 `;

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 // Imports from src
-import { red } from './variables';
+import { primaryColor } from './variables';
 
 export const HeaderNav = styled(motion.div)`
     position: sticky;
@@ -28,25 +28,43 @@ export const Logo = styled.div`
         height: 1.6rem;
         margin: 0 0.3rem;
         border-radius: 100%;
-        background-color: ${red};
+        background-color: ${primaryColor};
     }
 `;
 
 export const Menu = styled.div`
-    margin-right: -3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: -2.75rem;
+
+    p {
+        transition: opacity 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        opacity: 0;
+        color: ${(props) => props.theme.text};
+        font-size: 2.5rem;
+        font-weight: 700;
+    }
 
     button {
+        order: 1;
+        width: 9rem;
+        height: 8rem;
         padding: 2rem;
         border: none;
         background: none;
         outline: none;
 
         span {
-            display: block;
+            display: inline-block;
             width: 3.5rem;
             height: 0.6rem;
+            margin: 0.4rem 0;
             background: ${(props) => props.theme.text};
-            margin: 1rem;
+        }
+
+        &:hover + p {
+            opacity: 1;
         }
     }
 `;

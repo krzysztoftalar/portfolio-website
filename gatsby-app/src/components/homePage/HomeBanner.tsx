@@ -14,7 +14,7 @@ import { renderCanvas } from '../../helpers/renderCanvas';
 
 const bannerTitleVariants = {
     initial: {
-        y: 800,
+        y: '80rem',
         x: '-2.5rem',
     },
     animate: {
@@ -27,7 +27,7 @@ const bannerTitleVariants = {
 
 const headlineVariants = {
     initial: {
-        y: 800,
+        y: '80rem',
     },
     animate: {
         y: 0,
