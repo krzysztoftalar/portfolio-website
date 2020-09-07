@@ -33,14 +33,7 @@ const HomeBanner = (): JSX.Element => {
     return (
         <Banner>
             <Video>
-                <video
-                    src={data.video.publicURL}
-                    height="100%"
-                    width="100%"
-                    autoPlay
-                    muted
-                    loop
-                >
+                <video src={data.video.publicURL} autoPlay muted loop>
                     Your browser is not supported!
                 </video>
             </Video>
