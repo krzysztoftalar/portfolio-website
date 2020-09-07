@@ -1,5 +1,6 @@
 import React, { useRef } from 'react';
 import { observer } from 'mobx-react';
+import { graphql, useStaticQuery } from 'gatsby';
 // Imports from src
 import {
     Banner,
@@ -12,33 +13,15 @@ import { useStore } from '../../hooks/useStore';
 import useWindowSize from '../../hooks/useWindowSize';
 import { renderCanvas } from '../../helpers/renderCanvas';
 
-const bannerTitleVariants = {
-    initial: {
-        y: '80rem',
-        x: '-2.5rem',
-    },
-    animate: {
-        y: 0,
-        transition: {
-            staggerChildren: 0.2,
-        },
-    },
-};
-
-const headlineVariants = {
-    initial: {
-        y: '80rem',
-    },
-    animate: {
-        y: 0,
-        transition: {
-            duration: 1,
-            ease: [0.6, 0.05, -0.01, 0.9],
-        },
-    },
-};
-
 const HomeBanner = (): JSX.Element => {
+    const data = useStaticQuery(graphql`
+        query {
+            video: file(relativePath: { eq: "banner.mp4" }) {
+                publicURL
+            }
+        }
+    `);
+
     const store = useStore();
     const { theme, setCursor } = store.uiStore;
 
@@ -51,7 +34,7 @@ const HomeBanner = (): JSX.Element => {
         <Banner>
             <Video>
                 <video
-                    src={require('../../assets/video/banner.mp4')}
+                    src={data.video.publicURL}
                     height="100%"
                     width="100%"
                     autoPlay
@@ -70,16 +53,41 @@ const HomeBanner = (): JSX.Element => {
                 ref={canvasRef}
             />
 
-            <BannerTitle
-                initial="initial"
-                animate="animate"
-                variants={bannerTitleVariants}
-            >
-                <Headline variants={headlineVariants}>Dig</Headline>
-                <Headline variants={headlineVariants}>Deep</Headline>
+            <BannerTitle initial="initial" animate="animate">
+                <Headline variants={firstHeadlineVariants}>Dig</Headline>
+                <Headline variants={secondHeadlineVariants}>Deep</Headline>
             </BannerTitle>
         </Banner>
     );
 };
 
 export default observer(HomeBanner);
+
+const firstHeadlineVariants = {
+    initial: {
+        x: '-2.5rem',
+        y: '80rem',
+    },
+    animate: {
+        y: 0,
+        transition: {
+            duration: 1,
+            ease: [0.6, 0.05, -0.01, 0.9],
+        },
+    },
+};
+
+const secondHeadlineVariants = {
+    initial: {
+        x: '-2.5rem',
+        y: '80rem',
+    },
+    animate: {
+        y: 0,
+        transition: {
+            duration: 1,
+            delay: 0.2,
+            ease: [0.6, 0.05, -0.01, 0.9],
+        },
+    },
+};

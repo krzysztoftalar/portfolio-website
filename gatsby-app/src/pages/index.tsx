@@ -4,12 +4,14 @@ import { observer } from 'mobx-react';
 import Layout from '../components/Layout';
 import HomeBanner from '../components/homePage/HomeBanner';
 import HomeContent from '../components/homePage/HomeContent';
+import HomeFeatured from '../components/homePage/HomeFeatured';
 
 const IndexPage = (): JSX.Element => {
     return (
         <Layout>
             <HomeBanner />
             <HomeContent />
+            <HomeFeatured />
         </Layout>
     );
 };

@@ -1,5 +1,6 @@
 import React, { useRef, useState } from 'react';
-import { Link } from 'gatsby';
+import { graphql, Link, useStaticQuery } from 'gatsby';
+import Image, { FluidObject } from 'gatsby-image';
 import { observer } from 'mobx-react';
 import { AnimatePresence, motion } from 'framer-motion';
 // Imports from src
@@ -15,45 +16,55 @@ import {
     NavImages,
     NavList,
 } from '../styles/navigationStyles';
-import svg from '../assets/svg/sprite.svg';
-import { navRoutes } from '../data/projects';
+import { navRoutes } from '../projects';
 import { useStore } from '../hooks/useStore';
 import { useElementPosition } from '../hooks/useElementPosition';
-import useTimeOut from '../hooks/useTimeout';
-import { socials } from '../data/socials';
+import SVG from './ui/SVG';
+import SocialLinks from './SocialLinks';
+
+export type ImageSharpFluid = FluidObject | FluidObject[];
+
+interface ImageSharp {
+    node: {
+        fluid: ImageSharpFluid;
+    };
+}
 
 const Navigation = (): JSX.Element => {
+    const { allImageSharp } = useStaticQuery(graphql`
+        query {
+            allImageSharp {
+                edges {
+                    node {
+                        fluid(maxWidth: 2000, quality: 85) {
+                            ...GatsbyImageSharpFluid
+                        }
+                    }
+                }
+            }
+        }
+    `);
+
     const [project, setProject] = useState({
         show: false,
-        img: 'instagram-1.png',
         key: 0,
     });
+    const [isAnimationEnd, setIsAnimationEnd] = useState(false);
+
+    const images: ImageSharp[] = allImageSharp.edges;
+    const { fluid } = images[project.key].node;
 
     const store = useStore();
     const { toggleOpen, open, setCursor, setElementPosition } = store.uiStore;
 
-    // Set delay for isMounted prop, otherwise hamburger position is zero
-    const [isMounted, setIsMounted] = useState(open);
-    useTimeOut(() => setIsMounted(open), open ? 800 : 0);
-
     // Cursor locked on hamburger btn hover
     const menuRef = useRef<HTMLButtonElement>(null);
-    const menuPosition = useElementPosition(menuRef, isMounted);
+    const menuPosition = useElementPosition(menuRef, isAnimationEnd);
     const onMenuHover = () => {
-        setCursor('locked');
-        setElementPosition(menuPosition.x, menuPosition.y);
-    };
-
-    // Cursor locked on links hover
-    const githubRef = useRef<HTMLAnchorElement>(null);
-    const githubPosition = useElementPosition(githubRef, isMounted);
-
-    const linkedinRef = useRef<HTMLAnchorElement>(null);
-    const linkedinPosition = useElementPosition(linkedinRef, isMounted);
-
-    const onLinkHover = (x: number, y: number) => {
-        setCursor('locked');
-        setElementPosition(x, y);
+        if (isAnimationEnd) {
+            setCursor('locked');
+            setElementPosition(menuPosition.x, 70);
+        }
     };
 
     return (
@@ -65,6 +76,8 @@ const Navigation = (): JSX.Element => {
                         animate={open ? 'animate' : 'initial'}
                         exit="exit"
                         variants={navVariants}
+                        onAnimationStart={() => setIsAnimationEnd(false)}
+                        onAnimationComplete={() => setIsAnimationEnd(true)}
                     >
                         <NavHeader>
                             <Flex justifyBetween noHeight>
@@ -89,14 +102,12 @@ const Navigation = (): JSX.Element => {
                                         onHoverStart={() =>
                                             setProject({
                                                 show: true,
-                                                img: route.img,
                                                 key: route.id,
                                             })
                                         }
                                         onHoverEnd={() =>
                                             setProject({
                                                 show: false,
-                                                img: route.img,
                                                 key: route.id,
                                             })
                                         }
@@ -112,11 +123,7 @@ const Navigation = (): JSX.Element => {
                                                 className="link"
                                             >
                                                 <span className="arrow">
-                                                    <svg>
-                                                        <use
-                                                            xlinkHref={`${svg}#icon-arrow-right`}
-                                                        />
-                                                    </svg>
+                                                    <SVG icon="arrow-right" />
                                                 </span>
 
                                                 <h2>{route.title}</h2>
@@ -138,25 +145,30 @@ const Navigation = (): JSX.Element => {
                                 className="reveal"
                             />
 
-                            <div className="img">
-                                <AnimatePresence
-                                    initial={false}
-                                    exitBeforeEnter
+                            <AnimatePresence initial={false} exitBeforeEnter>
+                                <motion.div
+                                    className="img"
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: 1 }}
+                                    transition={{
+                                        duration: 0.2,
+                                        ease: 'easeInOut',
+                                    }}
+                                    exit={{ opacity: 0 }}
+                                    key={project.key}
                                 >
-                                    <motion.img
-                                        key={project.key}
-                                        src={require(`../assets/images/${project.img}`)}
-                                        initial={{ opacity: 0 }}
-                                        animate={{ opacity: 1 }}
-                                        transition={{
-                                            duration: 0.2,
-                                            ease: 'easeInOut',
-                                        }}
-                                        exit={{ opacity: 0 }}
+                                    <Image
+                                        fluid={fluid}
                                         alt="Project"
+                                        className="img-fluid"
                                     />
-                                </AnimatePresence>
-                            </div>
+                                    {/*<img*/}
+                                    {/*    src={require(`../assets/images/${project.img}`)}*/}
+                                    {/*    alt=""*/}
+                                    {/*    className="img-fluid"*/}
+                                    {/*/>*/}
+                                </motion.div>
+                            </AnimatePresence>
                         </NavImages>
 
                         <NavFooter>
@@ -175,43 +187,7 @@ const Navigation = (): JSX.Element => {
                             </FooterCopyrights>
 
                             <FooterSocial>
-                                <a
-                                    onMouseEnter={() =>
-                                        onLinkHover(
-                                            linkedinPosition.x,
-                                            linkedinPosition.y
-                                        )
-                                    }
-                                    onMouseLeave={() => setCursor()}
-                                    href="https://www.linkedin.com/in/ktalar"
-                                    ref={linkedinRef}
-                                    target="_blank"
-                                    rel="noreferrer"
-                                >
-                                    <svg>
-                                        <use
-                                            xlinkHref={`${svg}#icon-linkedin`}
-                                        />
-                                    </svg>
-                                </a>
-
-                                <a
-                                    onMouseEnter={() =>
-                                        onLinkHover(
-                                            githubPosition.x,
-                                            githubPosition.y
-                                        )
-                                    }
-                                    onMouseLeave={() => setCursor()}
-                                    href="https://github.com/krzysztoftalar"
-                                    ref={githubRef}
-                                    target="_blank"
-                                    rel="noreferrer"
-                                >
-                                    <svg>
-                                        <use xlinkHref={`${svg}#icon-github`} />
-                                    </svg>
-                                </a>
+                                <SocialLinks isAnimationEnd={isAnimationEnd} />
                             </FooterSocial>
                         </NavFooter>
                     </Nav>

@@ -1,4 +1,4 @@
-import React, { RefObject, useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { observer } from 'mobx-react';
 import { Link } from 'gatsby';
 // Imports from src
@@ -6,24 +6,8 @@ import { HeaderNav, Logo, Menu } from '../styles/headerStyles';
 import { useStore } from '../hooks/useStore';
 import { Flex } from '../styles/globalStyles';
 import { useElementPosition } from '../hooks/useElementPosition';
-
-const headerVariants = {
-    hidden: {
-        y: -150,
-        transition: {
-            duration: 1,
-            ease: [0.6, 0.05, -0.01, 0.9],
-            delay: 0.5,
-        },
-    },
-    visible: {
-        y: 0,
-        transition: {
-            duration: 1,
-            ease: [0.6, 0.05, -0.01, 0.9],
-        },
-    },
-};
+import useTimeOut from '../hooks/useTimeout';
+import { useMotionValue, useTransform } from 'framer-motion';
 
 const Header = (): JSX.Element => {
     const store = useStore();
@@ -45,6 +29,7 @@ const Header = (): JSX.Element => {
 
     const [prevY, setPrevY] = useState(0);
     const [shouldShow, setShouldShow] = useState(true);
+    const [isAnimationEnd, setIsAnimationEnd] = useState(false);
 
     // Move header up on scroll
     useEffect(() => {
@@ -57,7 +42,7 @@ const Header = (): JSX.Element => {
             }
 
             // Scroll on top
-            if (currentY === 0) {
+            if (currentY > -40) {
                 setShouldShow(true);
             }
 
@@ -70,11 +55,13 @@ const Header = (): JSX.Element => {
     }, [prevY]);
 
     // Cursor locked on hamburger btn hover
-    const menu = useRef<HTMLButtonElement>(null);
-    const position = useElementPosition(menu);
+    const menuRef = useRef<HTMLButtonElement>(null);
+    const position = useElementPosition(menuRef, isAnimationEnd);
     const onMenuHover = () => {
-        setCursor('locked');
-        setElementPosition(position.x, position.y + 150);
+        if (isAnimationEnd) {
+            setCursor('locked');
+            setElementPosition(position.x, position.y);
+        }
     };
 
     return (
@@ -82,6 +69,8 @@ const Header = (): JSX.Element => {
             initial="hidden"
             animate={shouldShow ? 'visible' : 'hidden'}
             variants={headerVariants}
+            onAnimationStart={() => setIsAnimationEnd(false)}
+            onAnimationComplete={() => setIsAnimationEnd(true)}
         >
             <Flex
                 justifyBetween
@@ -100,9 +89,9 @@ const Header = (): JSX.Element => {
 
                 <Menu>
                     <button
-                        onMouseEnter={onMenuHover}
+                        onMouseOver={onMenuHover}
                         onClick={() => toggleOpen()}
-                        ref={menu}
+                        ref={menuRef}
                     >
                         <span />
                         <span />
@@ -112,6 +101,24 @@ const Header = (): JSX.Element => {
             </Flex>
         </HeaderNav>
     );
+};
+
+const headerVariants = {
+    hidden: {
+        y: -150,
+        transition: {
+            duration: 1,
+            ease: [0.666, 0, 0.237, 1],
+            delay: 0.5,
+        },
+    },
+    visible: {
+        y: 0,
+        transition: {
+            duration: 1,
+            ease: [0.666, 0, 0.237, 1],
+        },
+    },
 };
 
 export default observer(Header);

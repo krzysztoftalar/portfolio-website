@@ -1,10 +1,10 @@
-import { RefObject, useEffect, useState } from 'react';
+import { RefObject, useCallback, useEffect, useState } from 'react';
 
 export const useElementPosition = (
     elementRef: RefObject<HTMLElement>,
-    isMounted?: boolean
-): { x: number; y: number } => {
-    const getElementPosition = () => {
+    isAnimating?: boolean
+) => {
+    const getElementPosition = useCallback(() => {
         const element = elementRef.current as HTMLElement;
 
         return {
@@ -19,15 +19,24 @@ export const useElementPosition = (
                   element.offsetHeight / 2
                 : 0,
         };
-    };
+    }, [elementRef]);
 
     const [elementPosition, setElementPosition] = useState(
         getElementPosition()
     );
 
-    useEffect(() => {
+    const updateElementPosition = useCallback(() => {
         setElementPosition(getElementPosition());
-    }, [elementRef, isMounted]);
+    }, [getElementPosition]);
+
+    useEffect(() => {
+        window.addEventListener('resize', updateElementPosition);
+
+        updateElementPosition();
+
+        return () =>
+            window.removeEventListener('resize', updateElementPosition);
+    }, [elementRef, updateElementPosition, isAnimating]);
 
     return elementPosition;
 };

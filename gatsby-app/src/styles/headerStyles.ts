@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import { motion } from 'framer-motion';
 // Imports from src
+import { motion } from 'framer-motion';
 import { primaryColor } from './variables';
 
 export const HeaderNav = styled(motion.div)`

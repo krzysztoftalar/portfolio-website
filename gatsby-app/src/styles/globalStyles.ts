@@ -21,7 +21,7 @@ export const GlobalStyle = createGlobalStyle`
         overflow-x: hidden;
         overscroll-behavior: none;
         background: ${(props) => props.theme.background};
-        font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        font-family: 'Montserrat', sans-serif;
     }    
 `;
 
@@ -32,7 +32,7 @@ export const LayoutContainer = styled.div`
         [side-left-start] minmax(6rem, 1fr) [side-left-end center-start]
         repeat(8, [col-start] minmax(min-content, 14.62rem) [col-end])
         [center-end side-right-start] minmax(6rem, 1fr) [side-right-end];
-    grid-template-rows: 100vh 100vh;
+    grid-template-rows: 100vh min-content;
 `;
 
 export const Flex = styled.div<{

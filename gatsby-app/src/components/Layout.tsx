@@ -4,7 +4,7 @@ import { ThemeProvider } from 'styled-components';
 // Imports from src
 import Header from './Header';
 import Navigation from './Navigation';
-import CustomCursor from './CustomCursor';
+import CustomCursor from './ui/CustomCursor';
 import { GlobalStyle, LayoutContainer } from '../styles/globalStyles';
 import { getTheme } from '../styles/themes';
 

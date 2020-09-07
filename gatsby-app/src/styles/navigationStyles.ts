@@ -160,10 +160,11 @@ export const NavImages = styled.div`
         align-items: center;
         z-index: -1;
         height: 100%;
+        width: 100%;
 
-        img {
+        .img-fluid {
+            display: inline-block;
             width: 100%;
-            object-fit: cover;
         }
     }
 `;
