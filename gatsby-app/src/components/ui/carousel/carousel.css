@@ -1,16 +1,20 @@
 
 .slick-slider {
-    padding-bottom: 2rem;
+    cursor: grab !important;
+}
+
+.slick-dots {
+    bottom: -5rem !important;
 }
 
 .slick-dots li button:before,
 .slick-dots li.slick-active button:before {
-    font-size: 12px !important;
+    font-size: 1.5rem !important;
     opacity: 0.5 !important;
 }
 
 .slick-dots li button:before {
-    color: #5a67d8 !important;
+    color: rgb(234, 41, 30) !important;
 }
 
 .slick-dots li.slick-active button:before {
