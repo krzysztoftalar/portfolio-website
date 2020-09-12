@@ -14,9 +14,7 @@ export const useElementPosition = (
                   element.offsetWidth / 2
                 : 0,
             y: elementRef.current
-                ? element.getBoundingClientRect().top +
-                  document.documentElement.scrollTop +
-                  element.offsetHeight / 2
+                ? element.getBoundingClientRect().top + element.offsetHeight / 2
                 : 0,
         };
     }, [elementRef]);

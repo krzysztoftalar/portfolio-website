@@ -2,7 +2,8 @@ import React, { useEffect } from 'react';
 import { useAnimation } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 // Imports from src
-import { Content, HomeContentSection } from '../../styles/homeStyles';
+import { Content, HomeContentSection } from '../../styles/pages/homeStyles';
+import { sectionVariants } from '../../styles/base/globalVariants';
 
 const HomeContent = (): JSX.Element => {
     const animation = useAnimation();
@@ -22,7 +23,7 @@ const HomeContent = (): JSX.Element => {
             ref={contentRef}
             initial="initial"
             animate={animation}
-            variants={contentVariants}
+            variants={sectionVariants}
         >
             <Content>
                 Hi, I&apos;m Krzysztof Talar. <br />
@@ -33,18 +34,3 @@ const HomeContent = (): JSX.Element => {
 };
 
 export default HomeContent;
-
-const contentVariants = {
-    initial: {
-        y: '7rem',
-        opacity: 0,
-    },
-    animate: {
-        y: 0,
-        opacity: 1,
-        transition: {
-            duration: 0.8,
-            ease: [0.6, 0.05, -0.01, 0.9],
-        },
-    },
-};

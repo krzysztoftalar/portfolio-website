@@ -2,7 +2,7 @@ import { observable, reaction, decorate, action } from 'mobx';
 // Imports from src
 import RootStore from './rootStore';
 
-const cursorStyles = ['pointer', 'hovered', 'locked'];
+const CURSOR_STYLES = ['pointer', 'hovered', 'locked', 'nav-open'];
 
 export default class UIStore {
     rootStore: RootStore;
@@ -20,12 +20,8 @@ export default class UIStore {
         );
     }
 
-    theme: string | null =
-        window.localStorage.getItem('theme') === null
-            ? 'dark'
-            : window.localStorage.getItem('theme');
-
-    cursorStyles: string[] = cursorStyles;
+    theme: string | null = 'dark';
+    cursorStyles: string[] = CURSOR_STYLES;
     cursor: string | boolean = false;
     open = false;
     elementPosition: { elX: number; elY: number } = { elX: 0, elY: 0 };

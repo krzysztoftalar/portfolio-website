@@ -10,38 +10,35 @@ import {
     FeaturedImage,
     FeaturedSectionTitle,
     HomeFeaturedSection,
-    HomeContentSection,
-} from '../../styles/homeStyles';
-import { ImageSharpFluid } from '../Navigation';
-import { Flex } from '../../styles/globalStyles';
+} from '../../styles/pages/homeStyles';
+import { Flex } from '../../styles/base/globalStyles';
 import SVG from '../ui/SVG';
 import { useStore } from '../../hooks/useStore';
+import { sectionVariants } from '../../styles/base/globalVariants';
+import { IProject } from '../../models/project';
 
 interface Project {
-    node: {
-        frontmatter: {
-            title: string;
-            subtitle: string;
-            year: string;
-            cover: {
-                childImageSharp: {
-                    fluid: ImageSharpFluid;
-                };
-            };
-        };
-    };
+    node: IProject;
 }
 
 const HomeFeatured = (): JSX.Element => {
     const { allMdx } = useStaticQuery(graphql`
         query {
-            allMdx(filter: { frontmatter: { featured: { eq: true } } }) {
+            allMdx(
+                filter: {
+                    frontmatter: {
+                        category: { eq: "projects" }
+                        featured: { eq: true }
+                    }
+                }
+            ) {
                 edges {
                     node {
+                        slug
                         frontmatter {
                             title
                             subtitle
-                            year
+                            year(formatString: "YYYY")
                             cover {
                                 childImageSharp {
                                     fluid(maxWidth: 2000, quality: 85) {
@@ -62,7 +59,7 @@ const HomeFeatured = (): JSX.Element => {
     const animation = useAnimation();
     const [featuredRef, inView] = useInView({
         triggerOnce: true,
-        rootMargin: '-300px',
+        rootMargin: '-200px',
     });
 
     useEffect(() => {
@@ -97,7 +94,7 @@ const HomeFeatured = (): JSX.Element => {
                 </Flex>
             </FeaturedSectionTitle>
 
-            <Link to="/">
+            <Link to={project.node.slug}>
                 <motion.div
                     onMouseEnter={() => setCursor('hovered')}
                     onMouseLeave={() => setCursor()}
@@ -113,8 +110,8 @@ const HomeFeatured = (): JSX.Element => {
                     </FeaturedImage>
 
                     <FeaturedProjectTitle>
-                        <span className="featured-title">
-                            {title} <br /> {subtitle}
+                        <h2 className="featured-title">
+                            {title}E <br /> {subtitle}
                             <motion.span
                                 className="arrow"
                                 animate={{ x: hovered ? 40 : 0 }}
@@ -125,7 +122,7 @@ const HomeFeatured = (): JSX.Element => {
                             >
                                 <SVG icon="arrow-right" />
                             </motion.span>
-                        </span>
+                        </h2>
                     </FeaturedProjectTitle>
                 </motion.div>
             </Link>
@@ -144,18 +141,3 @@ const HomeFeatured = (): JSX.Element => {
 };
 
 export default HomeFeatured;
-
-const sectionVariants = {
-    initial: {
-        y: '7rem',
-        opacity: 0,
-    },
-    animate: {
-        y: 0,
-        opacity: 1,
-        transition: {
-            duration: 0.8,
-            ease: [0.6, 0.05, -0.01, 0.9],
-        },
-    },
-};
