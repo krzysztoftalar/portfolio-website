@@ -2,15 +2,16 @@ import styled from 'styled-components';
 import { motion } from 'framer-motion';
 // Imports from src
 import { primaryColor } from '../base/variables';
+import { respondTo } from '../base/responsive';
 
 // Container
 export const Nav = styled(motion.div)`
     display: grid;
     position: fixed;
     grid-template-columns:
-        [side-left-start] minmax(6rem, 1fr) [side-left-end center-start]
+        [side-left-start] minmax(3rem, 1fr) [side-left-end center-start]
         repeat(8, [col-start] minmax(min-content, 14.62rem) [col-end])
-        [center-end side-right-start] minmax(6rem, 1fr) [side-right-end];
+        [center-end side-right-start] minmax(3rem, 1fr) [side-right-end];
     grid-template-rows: min-content 1fr min-content;
     grid-row-gap: 5rem;
     top: 0;
@@ -18,14 +19,23 @@ export const Nav = styled(motion.div)`
     z-index: 1000;
     width: 100%;
     height: 100%;
-    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: auto;
     background: ${primaryColor};
+
+    @media ${respondTo.M} {
+        grid-template-columns:
+            [side-left-start] 3rem [side-left-end center-start]
+            repeat(8, [col-start] 1fr [col-end])
+            [center-end side-right-start] 3rem [side-right-end];
+    }
 `;
 
 // Header
 export const NavHeader = styled.div`
     position: relative;
     grid-column: center-start / center-end;
+    grid-row: 1 / 2;
     margin-top: 7rem;
     height: 0;
 
@@ -33,6 +43,14 @@ export const NavHeader = styled.div`
         color: ${(props) => props.theme.background};
         font-size: 2.5rem;
         font-weight: 700;
+    }
+
+    @media ${respondTo.S} {
+        margin-top: 4rem;
+
+        h2 {
+            font-size: 2rem;
+        }
     }
 `;
 
@@ -82,14 +100,31 @@ export const CloseNav = styled.div`
         transition: opacity 0.2s cubic-bezier(0.4, 0, 0.2, 1);
         opacity: 0;
         color: ${(props) => props.theme.background};
-        font-size: 2.5rem;
+        font-size: 2.2rem;
         font-weight: 700;
+    }
+
+    @media ${respondTo.S} {
+        margin-right: -3.4rem;
+
+        button {
+            &::before,
+            &::after {
+                width: 2.7rem;
+                height: 0.4rem;
+            }
+        }
+
+        span {
+            font-size: 1.6rem;
+        }
     }
 `;
 
 // Projects list
 export const NavList = styled.div`
     grid-column: center-start / center-end;
+    grid-row: 2 / 3;
 
     ul {
         padding: 0;
@@ -99,9 +134,6 @@ export const NavList = styled.div`
             height: 9rem;
             overflow: hidden;
             list-style: none;
-            font-size: 3rem;
-            font-weight: 900;
-            line-height: 9rem;
             text-transform: uppercase;
 
             .link {
@@ -128,8 +160,20 @@ export const NavList = styled.div`
             h2 {
                 display: block;
                 font-size: 5rem;
-                font-weight: 800;
+                font-weight: 900;
                 text-transform: uppercase;
+            }
+        }
+    }
+
+    @media ${respondTo.S} {
+        ul {
+            li {
+                height: 5rem;
+
+                h2 {
+                    font-size: 2.5rem;
+                }
             }
         }
     }
@@ -148,15 +192,17 @@ export const NavImages = styled.div`
     .reveal {
         position: absolute;
         top: 0;
-        bottom: 0;
         left: 0;
         width: 100%;
+        height: 100%;
         background: ${primaryColor};
     }
 
     .img {
         position: absolute;
         display: flex;
+        top: 0;
+        left: 0;
         align-items: center;
         z-index: -1;
         height: 100%;
@@ -168,5 +214,3 @@ export const NavImages = styled.div`
         }
     }
 `;
-
-

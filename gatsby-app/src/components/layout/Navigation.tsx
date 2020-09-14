@@ -23,6 +23,7 @@ import {
     NavFooterWrapper,
 } from '../../styles/layout/footerStyles';
 import { IProject } from '../../models/project';
+import { Helmet } from 'react-helmet';
 
 interface Project {
     node: IProject;
@@ -210,6 +211,10 @@ const Navigation = (): JSX.Element => {
                                 <SocialLinks isAnimationEnd={isAnimationEnd} />
                             </FooterSocial>
                         </NavFooterWrapper>
+
+                        <Helmet>
+                            <body className="overflow-hidden" />
+                        </Helmet>
                     </Nav>
                 )}
             </AnimatePresence>

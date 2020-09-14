@@ -65,15 +65,35 @@ export const Cursor = styled.div<{ elX: string; elY: string }>`
     &.nav-open {
         background: ${(props) => props.theme.text};
     }
+
+    @media only screen and (hover: none) {
+        display: none;
+    }
 `;
 
 export const Drag = styled(motion.div)`
-    position: fixed;
+    position: absolute;
     z-index: 10000;
+    display: none;
+    justify-content: center;
+    align-items: center;
     top: 0;
     left: 0;
-    width: 4rem;
-    height: 4rem;
+    width: 5.6rem;
+    height: 5.6rem;
     border-radius: 100%;
-    background: ${primaryColor};
+    background: none;
+    border: 5px solid ${primaryColor};
+    will-change: transform;
+
+    span {
+        transform: rotate(25deg);
+        color: ${primaryColor};
+        font-size: 1.6rem;
+        font-weight: 700;
+    }
+
+    @media (hover: none) and (pointer: coarse) {
+        display: flex;
+    }
 `;

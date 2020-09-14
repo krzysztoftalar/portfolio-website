@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { graphql, Link, useStaticQuery } from 'gatsby';
 import Image from 'gatsby-image';
-import { useInView } from 'react-intersection-observer';
-import { useAnimation, motion } from 'framer-motion';
+import { motion } from 'framer-motion';
 // Imports from src
 import {
     FeaturedButton,
@@ -16,6 +15,7 @@ import SVG from '../ui/SVG';
 import { useStore } from '../../hooks/useStore';
 import { sectionVariants } from '../../styles/base/globalVariants';
 import { IProject } from '../../models/project';
+import { useSectionAnimation } from '../../hooks/useSectionAnimation';
 
 interface Project {
     node: IProject;
@@ -56,17 +56,7 @@ const HomeFeatured = (): JSX.Element => {
     const project: Project = allMdx.edges[0];
     const { title, subtitle, year, cover } = project.node.frontmatter;
 
-    const animation = useAnimation();
-    const [featuredRef, inView] = useInView({
-        triggerOnce: true,
-        rootMargin: '-200px',
-    });
-
-    useEffect(() => {
-        if (inView) {
-            animation.start('animate');
-        }
-    }, [animation, inView]);
+    const { ref, animation } = useSectionAnimation();
 
     const store = useStore();
     const { toggleOpen, setCursor } = store.uiStore;
@@ -74,7 +64,7 @@ const HomeFeatured = (): JSX.Element => {
 
     return (
         <HomeFeaturedSection
-            ref={featuredRef}
+            ref={ref}
             initial="initial"
             animate={animation}
             variants={sectionVariants}
@@ -111,7 +101,7 @@ const HomeFeatured = (): JSX.Element => {
 
                     <FeaturedProjectTitle>
                         <h2 className="featured-title">
-                            {title}E <br /> {subtitle}
+                            {title} <br /> {subtitle}
                             <motion.span
                                 className="arrow"
                                 animate={{ x: hovered ? 40 : 0 }}

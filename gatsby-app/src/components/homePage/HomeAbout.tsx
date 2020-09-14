@@ -1,12 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { graphql, useStaticQuery } from 'gatsby';
-import { useAnimation } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
 // Imports from src
 import { About, HomeAboutSection, Skills } from '../../styles/pages/homeStyles';
 import Accordion from '../ui/Accordion';
 import { useStore } from '../../hooks/useStore';
 import { sectionVariants } from '../../styles/base/globalVariants';
+import { useSectionAnimation } from '../../hooks/useSectionAnimation';
 
 interface Skill {
     node: {
@@ -38,26 +37,16 @@ const HomeAbout = (): JSX.Element => {
 
     const skills: Skill[] = allMdx.edges;
 
-    const [expanded, setExpanded] = useState(0);
-
     const store = useStore();
     const { setCursor } = store.uiStore;
 
-    const animation = useAnimation();
-    const [aboutRef, inView] = useInView({
-        triggerOnce: true,
-        rootMargin: '-200px',
-    });
+    const [expanded, setExpanded] = useState(0);
 
-    useEffect(() => {
-        if (inView) {
-            animation.start('animate');
-        }
-    }, [animation, inView]);
+    const { ref, animation } = useSectionAnimation();
 
     return (
         <HomeAboutSection
-            ref={aboutRef}
+            ref={ref}
             initial="initial"
             animate={animation}
             variants={sectionVariants}

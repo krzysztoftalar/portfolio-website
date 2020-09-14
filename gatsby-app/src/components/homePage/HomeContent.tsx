@@ -1,26 +1,15 @@
-import React, { useEffect } from 'react';
-import { useAnimation } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
+import React from 'react';
 // Imports from src
 import { Content, HomeContentSection } from '../../styles/pages/homeStyles';
 import { sectionVariants } from '../../styles/base/globalVariants';
+import { useSectionAnimation } from '../../hooks/useSectionAnimation';
 
 const HomeContent = (): JSX.Element => {
-    const animation = useAnimation();
-    const [contentRef, inView] = useInView({
-        triggerOnce: true,
-        rootMargin: '-300px',
-    });
-
-    useEffect(() => {
-        if (inView) {
-            animation.start('animate');
-        }
-    }, [animation, inView]);
+    const { ref, animation } = useSectionAnimation();
 
     return (
         <HomeContentSection
-            ref={contentRef}
+            ref={ref}
             initial="initial"
             animate={animation}
             variants={sectionVariants}

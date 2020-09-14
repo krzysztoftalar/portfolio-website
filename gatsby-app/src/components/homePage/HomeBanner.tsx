@@ -1,11 +1,11 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { observer } from 'mobx-react';
 import { graphql, useStaticQuery } from 'gatsby';
 // Imports from src
 import {
     Banner,
     BannerTitle,
-    Canvas,
+    CanvasWrapper,
     Headline,
     Video,
 } from '../../styles/pages/homeStyles';
@@ -14,15 +14,12 @@ import useWindowSize from '../../hooks/useWindowSize';
 import { renderCanvas } from '../../helpers/renderCanvas';
 import {
     PanInfo,
-    useMotionValue,
     useSpring,
     useTransform,
     useViewportScroll,
 } from 'framer-motion';
+import Canvas from '../ui/Canvas';
 import DragCursor from '../ui/DragCursor';
-import { ThemeProvider } from 'styled-components';
-import { black, white } from '../../styles/base/variables';
-import usePrevState from '../../hooks/usePrevState';
 
 const HomeBanner = (): JSX.Element => {
     const data = useStaticQuery(graphql`
@@ -32,23 +29,6 @@ const HomeBanner = (): JSX.Element => {
             }
         }
     `);
-
-    const store = useStore();
-    const { theme, setCursor } = store.uiStore;
-
-    const windowSize = useWindowSize();
-    const canvasRef = useRef<any>(null);
-
-    const [drag, setDrag] = useState<{ x: number; y: number }>({ x: 0, y: 0 });
-
-    const onDrag = (
-        event: MouseEvent | TouchEvent | PointerEvent,
-        info: PanInfo
-    ) => {
-        setDrag({ x: info.point.x, y: info.point.y });
-    };
-
-    renderCanvas(canvasRef, windowSize, theme);
 
     // Move video up on scroll
     const { scrollYProgress } = useViewportScroll();
@@ -67,15 +47,16 @@ const HomeBanner = (): JSX.Element => {
                 </video>
             </Video>
 
-            <Canvas
-                onMouseEnter={() => setCursor('hovered')}
-                onMouseLeave={() => setCursor()}
-                height={windowSize.height}
-                width={windowSize.width}
-                ref={canvasRef}
-            />
+            {/*<CanvasWrapper*/}
+            {/*    onMouseEnter={() => setCursor('hovered')}*/}
+            {/*    onMouseLeave={() => setCursor()}*/}
+            {/*    height={windowSize.height}*/}
+            {/*    width={windowSize.width}*/}
+            {/*    ref={canvasRef}*/}
+            {/*/>*/}
 
-            <DragCursor onDrag={onDrag} />
+            <Canvas />
+
             <BannerTitle initial="initial" animate="animate">
                 <Headline variants={firstHeadlineVariants}>Dig</Headline>
                 <Headline variants={secondHeadlineVariants}>Deep</Headline>

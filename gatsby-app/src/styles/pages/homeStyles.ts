@@ -24,13 +24,14 @@ export const Video = styled(motion.div)`
     }
 `;
 
-export const Canvas = styled.canvas`
+export const CanvasWrapper = styled.canvas`
     display: block;
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
+    touch-action: none;
 `;
 
 export const BannerTitle = styled(motion.h1)`
@@ -101,7 +102,7 @@ export const Content = styled(motion.h2)`
     text-align: center;
 
     @media ${respondTo.S} {
-        font-size: 2.2rem;
+        font-size: 2.1rem;
     }
 `;
 
@@ -109,7 +110,7 @@ export const Content = styled(motion.h2)`
 export const HomeFeaturedSection = styled(motion.div)`
     position: relative;
     display: grid;
-    grid-template-rows: repeat(2, min-content) 50rem;
+    grid-template-rows: repeat(2, min-content) 46rem;
     grid-column: center-start / center-end;
     grid-row: 3 / 4;
 
@@ -123,7 +124,7 @@ export const HomeFeaturedSection = styled(motion.div)`
     }
 
     @media ${respondTo.S} {
-        grid-template-rows: repeat(2, min-content) 32rem;
+        grid-template-rows: repeat(2, min-content) 33rem;
     }
 `;
 
@@ -152,7 +153,7 @@ export const FeaturedSectionTitle = styled.div`
         }
 
         h4 {
-            font-size: 1.2rem;
+            font-size: 1.4rem;
         }
     }
 `;
@@ -224,7 +225,7 @@ export const FeaturedProjectTitle = styled.div`
     }
 `;
 
-export const FeaturedButton = styled.div`
+export const FeaturedButton = styled(motion.div)`
     align-self: center;
     justify-self: end;
     width: 27rem;
@@ -239,10 +240,10 @@ export const FeaturedButton = styled.div`
         font-size: 2rem;
         font-weight: 600;
         letter-spacing: 1px;
+        text-align: left;
 
         span {
             display: block;
-            margin-right: 10rem;
         }
 
         &:before,
@@ -273,16 +274,13 @@ export const FeaturedButton = styled.div`
 
     @media ${respondTo.S} {
         justify-self: start;
-        width: 22rem;
+        width: 21rem;
         padding-left: 3rem;
-        padding-top: 6rem;
+        padding-top: 10rem;
 
         button {
             padding: 1.3rem;
-
-            span {
-                margin-right: 6rem;
-            }
+            font-size: 1.7rem;
 
             &:before,
             &:after {
@@ -307,7 +305,15 @@ export const HomeAboutSection = styled(motion.div)`
     justify-content: space-between;
     grid-column: center-start / center-end;
     grid-row: 4 / 5;
-    margin-bottom: 27rem;
+    margin-bottom: 26rem;
+
+    @media ${respondTo.M} {
+        flex-direction: column;
+    }
+
+    @media ${respondTo.S} {
+        margin-bottom: 19rem;
+    }
 `;
 
 export const About = styled.div`
@@ -331,6 +337,24 @@ export const About = styled.div`
         font-weight: 500;
         line-height: 1.5;
     }
+
+    @media ${respondTo.M} {
+        padding-left: 0;
+        flex: 0 0 auto;
+    }
+
+    @media ${respondTo.S} {
+        h2 {
+            font-size: 2.1rem;
+            line-height: 1.25;
+        }
+    }
+
+    @media ${respondTo.XS} {
+        h2 {
+            margin-bottom: 3.5rem;
+        }
+    }
 `;
 
 export const Skills = styled.div`
@@ -343,5 +367,15 @@ export const Skills = styled.div`
         margin-bottom: 3rem;
         font-size: 2.2rem;
         letter-spacing: 1px;
+    }
+
+    @media ${respondTo.M} {
+        padding-top: 8rem;
+    }
+
+    @media ${respondTo.S} {
+        h3 {
+            font-size: 2rem;
+        }
     }
 `;
