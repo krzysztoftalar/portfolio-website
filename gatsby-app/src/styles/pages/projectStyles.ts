@@ -1,29 +1,40 @@
 import styled, { css } from 'styled-components';
 import { motion } from 'framer-motion';
 // Imports from src
-import { greyLightColor, primaryColor } from '../base/variables';
+import { primaryColor } from '../base/variables';
+import { respondTo } from '../base/responsive';
 
 // Slider section
 export const ProjectSliderSection = styled(motion.div)`
     position: relative;
     grid-column: 1 / -1;
-    grid-row: 1 / 3;
+    grid-row: 2 / 3;
     max-width: 117rem;
     width: 100%;
-    height: auto;
     margin: 17rem auto 0;
-    border: 1px solid ${greyLightColor};
     cursor: grab !important;
+
+    @media ${respondTo.S} {
+        margin: 12rem auto 0;
+    }
 `;
 
 // About section
 export const ProjectAboutSection = styled(motion.div)`
     grid-column: center-start / center-end;
     grid-row: 3 / 4;
-    padding: 17rem 0 22rem 10rem;
+    padding: 17rem 0 19rem 10rem;
+
+    @media ${respondTo.M} {
+        padding: 17rem 0 22rem 0;
+    }
+
+    @media ${respondTo.S} {
+        padding: 11rem 0 9rem 0;
+    }
 `;
 
-export const About = styled(motion.div)`
+export const About = styled.div`
     display: grid;
     grid-template-columns: min-content;
     grid-template-rows: repeat(3, min-content);
@@ -42,6 +53,24 @@ export const About = styled(motion.div)`
         font-size: 1.5rem;
         font-weight: 500;
         line-height: 1.5;
+    }
+
+    @media ${respondTo.S} {
+        grid-template-columns: 80%;
+
+        .project-title {
+            font-size: 5rem;
+        }
+    }
+
+    @media ${respondTo.XS} {
+        grid-template-columns: 100%;
+    }
+
+    @media ${respondTo.XXXS} {
+        .project-title {
+            font-size: 4rem;
+        }
     }
 `;
 
@@ -89,40 +118,64 @@ export const ProjectLink = styled.a`
 export const ProjectNavSection = styled.div`
     display: grid;
     grid-template-columns:
-        [side-left-start] minmax(6rem, 1fr) [side-left-end center-start]
+        [side-left-start] minmax(3rem, 1fr) [side-left-end center-start]
         repeat(8, [col-start] minmax(min-content, 14.62rem) [col-end])
-        [center-end side-right-start] minmax(6rem, 1fr) [side-right-end];
+        [center-end side-right-start] minmax(3rem, 1fr) [side-right-end];
     grid-column: 1 / -1;
+    grid-row: 4 / 5;
     padding: 7rem 0 7rem;
     background-color: ${primaryColor};
+
+    @media ${respondTo.L} {
+        grid-row-gap: 7rem;
+    }
+    a {
+        display: block;
+    }
 `;
 
-export const PrevProject = styled.div<{ prev: boolean }>`
+const projectWrapper = css`
     position: relative;
-    display: flex;
-    align-items: center;
+
+    .project-link {
+        display: flex;
+        align-items: center;
+
+        &:link,
+        &:visited {
+            color: ${(props) => props.theme.background};
+            text-decoration: none;
+        }
+    }
+
+    @media ${respondTo.L} {
+        grid-column: center-start / center-end;
+        padding: 0;
+    }
+`;
+
+export const PrevProject = styled(motion.div)<{ prev: boolean }>`
+    ${projectWrapper}
     grid-column: center-start / col-end 4;
     padding-right: 1rem;
 
-    ${(props) =>
-        props.prev
-            ? css`
-                  justify-content: flex-end;
-              `
-            : css`
-                  justify-content: flex-start;
-              `}
+    .project-link {
+        ${(props) =>
+            props.prev &&
+            css`
+                justify-content: flex-end;
+            `}
+    }
 `;
 
-export const NextProject = styled.div`
-    position: relative;
-    display: flex;
-    align-items: center;
+export const NextProject = styled(motion.div)`
+    ${projectWrapper}
+
     grid-column: col-start 5 / center-end;
     padding-left: 1rem;
 `;
 
-export const ProjectNavItem = styled(motion.div)<{ prev?: boolean }>`
+export const ProjectTitle = styled(motion.div)<{ prev?: boolean }>`
     position: absolute;
     z-index: 1;
     transform: translateY(-50%);
@@ -153,17 +206,11 @@ export const ProjectNavItem = styled(motion.div)<{ prev?: boolean }>`
                   }
               `}
 
-    a:link,
-    a:visited {
-        color: ${(props) => props.theme.background};
-        text-decoration: none;
-    }
-
     .project-title {
         display: grid;
         margin: 0;
         font-size: 5rem;
-        font-weight: 800;
+        font-weight: 900;
         text-transform: uppercase;
         line-height: 0.9;
 
@@ -175,15 +222,25 @@ export const ProjectNavItem = styled(motion.div)<{ prev?: boolean }>`
             fill: ${(props) => props.theme.background};
         }
     }
+
+    @media ${respondTo.S} {
+        .project-title {
+            font-size: 2.5rem;
+
+            svg {
+                width: 4rem;
+                height: 4rem;
+                margin-top: 0.1rem;
+            }
+        }
+    }
 `;
 
 export const ProjectImage = styled(motion.div)`
-    width: 80%;
-    //height: 30rem;
+    width: 85%;
 
     .img-fluid {
         display: inline-block;
         width: 100%;
-        height: 100%;
     }
 `;

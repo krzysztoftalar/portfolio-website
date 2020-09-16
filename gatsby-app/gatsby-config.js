@@ -1,7 +1,28 @@
 module.exports = {
+    siteMetadata: {
+        title: `Front-end & Back-end Developer`,
+        description: ``,
+        author: `Krzysztof Talar`,
+        url: 'https://viphon.com',
+        keywords: [
+            `front-end`,
+            `back-end`,
+            `web developer`,
+            `C# developer`,
+            `React developer`,
+            `portfolio`,
+        ],
+    },
     plugins: [
         `gatsby-plugin-sharp`,
         `gatsby-transformer-sharp`,
+        {
+            resolve: `gatsby-source-filesystem`,
+            options: {
+                name: `images`,
+                path: `${__dirname}/src/assets/images`,
+            },
+        },
         {
             resolve: `gatsby-source-filesystem`,
             options: {

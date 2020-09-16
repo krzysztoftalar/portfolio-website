@@ -45,7 +45,7 @@ const Navigation = (): JSX.Element => {
                             subtitle
                             cover {
                                 childImageSharp {
-                                    fluid(maxWidth: 2000, quality: 85) {
+                                    fluid(maxWidth: 1400, quality: 85) {
                                         ...GatsbyImageSharpFluid
                                     }
                                 }
@@ -227,10 +227,6 @@ export default observer(Navigation);
 const navVariants = {
     initial: {
         x: '-100%',
-        transition: {
-            duration: 0.8,
-            ease: [0.6, 0.05, -0.01, 0.9],
-        },
     },
     animate: {
         x: 0,
@@ -255,10 +251,6 @@ const linkItemVariants = {
         y: '-20px',
         x: '-70px',
         opacity: 0,
-        transition: {
-            duration: 0.8,
-            ease: [0.6, 0.05, -0.01, 0.9],
-        },
     },
     animate: {
         y: 0,

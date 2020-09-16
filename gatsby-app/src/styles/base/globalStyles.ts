@@ -2,10 +2,6 @@ import styled, { createGlobalStyle, css } from 'styled-components';
 import normalize from 'styled-normalize';
 import { respondTo } from './responsive';
 
-export const overflowHidden = css`
-    overflow-y: hidden;
-`;
-
 export const GlobalStyle = createGlobalStyle`
     ${normalize}
     
@@ -29,14 +25,13 @@ export const GlobalStyle = createGlobalStyle`
     }    
 `;
 
-// 1170px / 8 = 146.2px -> 146.2px = 14.62rem
+// 1170px / 8 = 146.2px = 14.62rem
 export const LayoutContainer = styled.div`
     display: grid;
     grid-template-columns:
         [side-left-start] minmax(3rem, 1fr) [side-left-end center-start]
         repeat(8, [col-start] minmax(min-content, 14.62rem) [col-end])
         [center-end side-right-start] minmax(3rem, 1fr) [side-right-end];
-    grid-template-rows: 100vh;
 
     @media ${respondTo.M} {
         grid-template-columns:

@@ -2,7 +2,7 @@ import React from 'react';
 import Helmet from 'react-helmet';
 import Slider from 'react-slick';
 // Imports from src
-import './carousel.css';
+import '../../styles/components/carousel.css';
 
 const settings = {
     autoplay: true,

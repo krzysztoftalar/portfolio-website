@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
 import { observer } from 'mobx-react';
-import isTouchDevice from 'is-touch-device';
+import { isMobile, isBrowser } from 'react-device-detect';
 // Imports from src
 import { useStore } from '../../hooks/useStore';
 import useWindowSize from '../../hooks/useWindowSize';
@@ -32,6 +32,7 @@ const Canvas = () => {
     const last = { x: 0, y: 0 };
     const current = { x: 0, y: 0 };
 
+    // Render canvas
     const canvasRef = useCallback(
         (node) => {
             if (node !== null) {
@@ -51,6 +52,7 @@ const Canvas = () => {
         [theme]
     );
 
+    // Draw lines
     const drawPoints = useCallback(() => {
         if (drawingCtx && isDrawing) {
             drawingCtx.lineJoin = 'round';
@@ -85,6 +87,7 @@ const Canvas = () => {
         }
     }, [current, last, isDrawing]);
 
+    // Get position from mouse and drag events
     const getPointerPos = (e: any) => {
         let clientX = e.clientX;
         let clientY = e.clientY;
@@ -100,6 +103,7 @@ const Canvas = () => {
         };
     };
 
+    // Browser mouse events
     const handleMouseStart = (e: React.MouseEvent) => {
         e.preventDefault();
 
@@ -108,7 +112,7 @@ const Canvas = () => {
         last.x = x;
         last.y = y;
     };
-    console.log(true);
+
     const handleMouseMove = (e: React.MouseEvent) => {
         e.preventDefault();
 
@@ -116,7 +120,7 @@ const Canvas = () => {
 
         isDrawing = true;
 
-        if (isDrawing && !isTouchDevice()) {
+        if (isDrawing && isBrowser) {
             if (last.x === 0 && last.y === 0) {
                 last.x = x;
                 last.y = y;
@@ -129,6 +133,7 @@ const Canvas = () => {
         }
     };
 
+    // Mobile drag events
     const handleDragStart = (e: MouseEvent | TouchEvent | PointerEvent) => {
         e.preventDefault();
 
@@ -145,7 +150,7 @@ const Canvas = () => {
 
         isDrawing = true;
 
-        if (isDrawing && isTouchDevice()) {
+        if (isDrawing && isMobile) {
             current.x = x;
             current.y = y;
 

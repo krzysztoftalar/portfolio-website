@@ -1,19 +1,16 @@
 import React, { useEffect } from 'react';
+import { PageProps } from 'gatsby';
 import { observer } from 'mobx-react';
 import { ThemeProvider } from 'styled-components';
 // Imports from src
-import Header from './Header';
-import Navigation from './Navigation';
-import CustomCursor from '../ui/CustomCursor';
-import { GlobalStyle, LayoutContainer } from '../../styles/base/globalStyles';
+import { GlobalStyle } from '../../styles/base/globalStyles';
 import { getTheme } from '../../styles/base/themes';
 import { useStore } from '../../hooks/useStore';
-import { PageProps } from 'gatsby';
 import '../../styles/base/base.css';
 
 const Layout = (props: PageProps): JSX.Element => {
     const store = useStore();
-    const { setTheme } = store.uiStore;
+    const { setTheme, setCursor } = store.uiStore;
 
     useEffect(() => {
         const theme = window.localStorage.getItem('theme');
@@ -24,19 +21,14 @@ const Layout = (props: PageProps): JSX.Element => {
     }, []);
 
     useEffect(() => {
-        // setCursor();
+        setCursor();
     }, [props.location.pathname]);
 
     return (
         <ThemeProvider theme={getTheme()}>
             <GlobalStyle />
-            <CustomCursor />
 
-            <Navigation />
-            <LayoutContainer>
-                <Header />
-                {props.children}
-            </LayoutContainer>
+            {props.children}
         </ThemeProvider>
     );
 };

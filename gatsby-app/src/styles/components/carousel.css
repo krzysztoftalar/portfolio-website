@@ -1,5 +1,6 @@
 
 .slick-slider {
+    border: 1px solid rgb(205, 207, 208);
     cursor: grab !important;
 }
 
@@ -11,12 +12,20 @@
 .slick-dots li.slick-active button:before {
     font-size: 1.5rem !important;
     opacity: 0.5 !important;
+
 }
 
 .slick-dots li button:before {
-    color: rgb(234, 41, 30) !important;
+    color: rgb(88, 81, 219) !important;
 }
 
 .slick-dots li.slick-active button:before {
     opacity: 1 !important;
+}
+
+@media only screen and (max-width: 50em) {
+    .slick-dots li button:before,
+    .slick-dots li.slick-active button:before {
+        font-size: 1.1rem !important;
+    }
 }

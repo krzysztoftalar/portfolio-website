@@ -60,6 +60,7 @@ export const Menu = styled.div`
         color: ${(props) => props.theme.text};
         font-size: 2.2rem;
         font-weight: 700;
+        //pointer-events: none;
     }
 
     button {

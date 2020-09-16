@@ -1,8 +1,6 @@
-import React, { useEffect } from 'react';
-import { MDXRenderer } from 'gatsby-plugin-mdx';
-import { useAnimation } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
+import React from 'react';
 import { observer } from 'mobx-react';
+import { MDXRenderer } from 'gatsby-plugin-mdx';
 // Imports from src
 import {
     About,
@@ -14,6 +12,7 @@ import SVG from '../ui/SVG';
 import { useStore } from '../../hooks/useStore';
 import { sectionVariants } from '../../styles/base/globalVariants';
 import { IProject } from '../../models/project';
+import { useSectionAnimation } from '../../hooks/useSectionAnimation';
 
 interface IProps {
     project: IProject;
@@ -25,21 +24,11 @@ const ProjectAbout: React.FC<IProps> = ({ project }): JSX.Element => {
     const store = useStore();
     const { setCursor } = store.uiStore;
 
-    const animation = useAnimation();
-    const [aboutRef, inView] = useInView({
-        triggerOnce: true,
-        rootMargin: '-300px',
-    });
-
-    useEffect(() => {
-        if (inView) {
-            animation.start('animate');
-        }
-    }, [animation, inView]);
+    const { ref, animation } = useSectionAnimation();
 
     return (
         <ProjectAboutSection
-            ref={aboutRef}
+            ref={ref}
             initial="initial"
             animate={animation}
             variants={sectionVariants}

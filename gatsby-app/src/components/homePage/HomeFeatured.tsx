@@ -41,7 +41,7 @@ const HomeFeatured = (): JSX.Element => {
                             year(formatString: "YYYY")
                             cover {
                                 childImageSharp {
-                                    fluid(maxWidth: 2000, quality: 85) {
+                                    fluid(maxWidth: 1400, quality: 85) {
                                         ...GatsbyImageSharpFluid
                                     }
                                 }

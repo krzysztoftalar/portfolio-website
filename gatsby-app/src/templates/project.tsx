@@ -5,6 +5,8 @@ import ProjectSlider from '../components/projectPage/ProjectSlider';
 import ProjectAbout from '../components/projectPage/ProjectAbout';
 import ProjectNav from '../components/projectPage/ProjectNav';
 import { IProject } from '../models/project';
+import PageLayout from '../components/layout/PageLayout';
+import SEO from '../components/ui/SEO';
 
 interface IProps {
     data: {
@@ -25,14 +27,17 @@ const Project: React.FC<IProps> = ({
     const { previousProject, nextProject } = pageContext;
 
     return (
-        <>
+        <PageLayout>
+            <SEO
+                title={`${project.frontmatter.title} ${project.frontmatter.subtitle}`}
+            />
             <ProjectSlider images={project.frontmatter.images} />
             <ProjectAbout project={project} />
             <ProjectNav
                 previousProject={previousProject}
                 nextProject={nextProject}
             />
-        </>
+        </PageLayout>
     );
 };
 
@@ -49,7 +54,7 @@ export const query = graphql`
                 liveLink
                 images {
                     childImageSharp {
-                        fluid(maxWidth: 2000, quality: 85) {
+                        fluid(maxWidth: 1400, quality: 85) {
                             ...GatsbyImageSharpFluid
                         }
                     }

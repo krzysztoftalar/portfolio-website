@@ -1,25 +1,15 @@
-import React, { useRef, useState } from 'react';
+import React from 'react';
 import { observer } from 'mobx-react';
 import { graphql, useStaticQuery } from 'gatsby';
+import { useSpring, useTransform, useViewportScroll } from 'framer-motion';
 // Imports from src
 import {
-    Banner,
+    HomeBannerSection,
     BannerTitle,
-    CanvasWrapper,
     Headline,
     Video,
 } from '../../styles/pages/homeStyles';
-import { useStore } from '../../hooks/useStore';
-import useWindowSize from '../../hooks/useWindowSize';
-import { renderCanvas } from '../../helpers/renderCanvas';
-import {
-    PanInfo,
-    useSpring,
-    useTransform,
-    useViewportScroll,
-} from 'framer-motion';
 import Canvas from '../ui/Canvas';
-import DragCursor from '../ui/DragCursor';
 
 const HomeBanner = (): JSX.Element => {
     const data = useStaticQuery(graphql`
@@ -40,20 +30,12 @@ const HomeBanner = (): JSX.Element => {
     });
 
     return (
-        <Banner>
+        <HomeBannerSection>
             <Video style={{ y }}>
                 <video src={data.video.publicURL} autoPlay muted loop>
                     Your browser is not supported!
                 </video>
             </Video>
-
-            {/*<CanvasWrapper*/}
-            {/*    onMouseEnter={() => setCursor('hovered')}*/}
-            {/*    onMouseLeave={() => setCursor()}*/}
-            {/*    height={windowSize.height}*/}
-            {/*    width={windowSize.width}*/}
-            {/*    ref={canvasRef}*/}
-            {/*/>*/}
 
             <Canvas />
 
@@ -61,7 +43,7 @@ const HomeBanner = (): JSX.Element => {
                 <Headline variants={firstHeadlineVariants}>Dig</Headline>
                 <Headline variants={secondHeadlineVariants}>Deep</Headline>
             </BannerTitle>
-        </Banner>
+        </HomeBannerSection>
     );
 };
 

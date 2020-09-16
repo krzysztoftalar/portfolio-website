@@ -5,10 +5,11 @@ import { respondTo } from '../base/responsive';
 import { greyLightColor, primaryColor } from '../base/variables';
 
 // Banner section
-export const Banner = styled.div`
+export const HomeBannerSection = styled.div`
     position: relative;
     grid-column: 1 / -1;
     grid-row: 1 / 2;
+    height: 100vh;
     background: ${(props) => props.theme.background};
 `;
 
