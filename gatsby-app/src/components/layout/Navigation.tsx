@@ -24,6 +24,7 @@ import {
 } from '../../styles/layout/footerStyles';
 import { IProject } from '../../models/project';
 import { Helmet } from 'react-helmet';
+import { Cursor } from '../../models/cursor';
 
 interface Project {
     node: IProject;
@@ -45,7 +46,7 @@ const Navigation = (): JSX.Element => {
                             subtitle
                             cover {
                                 childImageSharp {
-                                    fluid(maxWidth: 1400, quality: 85) {
+                                    fluid(maxWidth: 1400, quality: 100) {
                                         ...GatsbyImageSharpFluid
                                     }
                                 }
@@ -74,7 +75,7 @@ const Navigation = (): JSX.Element => {
     const menuPosition = useElementPosition(menuRef, isAnimationEnd);
     const onMenuHover = () => {
         if (isAnimationEnd) {
-            setCursor('locked');
+            setCursor(Cursor.Locked);
             setElementPosition(menuPosition.x, menuPosition.y);
         }
     };
@@ -131,7 +132,7 @@ const Navigation = (): JSX.Element => {
                                                 })
                                             }
                                             onMouseEnter={() =>
-                                                setCursor('pointer')
+                                                setCursor(Cursor.Pointer)
                                             }
                                             onMouseLeave={() => setCursor()}
                                             variants={linkItemVariants}
@@ -196,7 +197,9 @@ const Navigation = (): JSX.Element => {
                             <FooterEmail navOpen={open}>
                                 <a
                                     href="mailto:krzysztofTalar@protonmail.com"
-                                    onMouseEnter={() => setCursor('pointer')}
+                                    onMouseEnter={() =>
+                                        setCursor(Cursor.Pointer)
+                                    }
                                     onMouseLeave={() => setCursor()}
                                 >
                                     krzysztofTalar@protonmail.com

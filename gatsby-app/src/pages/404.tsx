@@ -36,7 +36,7 @@ const NotFound = (): JSX.Element => {
 
             <div className="content">
                 <h1>404</h1>
-                <h2>Uh, Ohh</h2>
+                <h2>Uh, No</h2>
                 <h3>
                     Sorry we can&apos;t find what you are looking for, because
                     it&apos;s so dark in here.

@@ -6,6 +6,7 @@ import Accordion from '../ui/Accordion';
 import { useStore } from '../../hooks/useStore';
 import { sectionVariants } from '../../styles/base/globalVariants';
 import { useSectionAnimation } from '../../hooks/useSectionAnimation';
+import { Cursor } from '../../models/cursor';
 
 interface Skill {
     node: {
@@ -70,7 +71,7 @@ const HomeAbout = (): JSX.Element => {
                 <h3>Skills</h3>
 
                 <div
-                    onMouseEnter={() => setCursor('hovered')}
+                    onMouseEnter={() => setCursor(Cursor.Hovered)}
                     onMouseLeave={() => setCursor()}
                 >
                     {skills.map((item, index) => (

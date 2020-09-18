@@ -27,7 +27,7 @@ export const AccordionIcon = styled.div`
 
 export const AccordionContent = styled(motion.div)`
     overflow: hidden;
-    padding-left: 4.4rem;
+    padding-left: 3.9rem;
     margin-bottom: 2rem;
     color: ${primaryColor};
 

@@ -1,18 +1,14 @@
-import React from 'react';
-import { observer } from 'mobx-react';
-import { MDXRenderer } from 'gatsby-plugin-mdx';
+import React from "react";
+import { observer } from "mobx-react";
+import { MDXRenderer } from "gatsby-plugin-mdx";
 // Imports from src
-import {
-    About,
-    ProjectAboutSection,
-    ProjectLink,
-    ProjectLinks,
-} from '../../styles/pages/projectStyles';
-import SVG from '../ui/SVG';
-import { useStore } from '../../hooks/useStore';
-import { sectionVariants } from '../../styles/base/globalVariants';
-import { IProject } from '../../models/project';
-import { useSectionAnimation } from '../../hooks/useSectionAnimation';
+import { About, ProjectAboutSection, ProjectLink, ProjectLinks } from "../../styles/pages/projectStyles";
+import SVG from "../ui/SVG";
+import { useStore } from "../../hooks/useStore";
+import { sectionVariants } from "../../styles/base/globalVariants";
+import { IProject } from "../../models/project";
+import { useSectionAnimation } from "../../hooks/useSectionAnimation";
+import { Cursor } from "../../models/cursor";
 
 interface IProps {
     project: IProject;
@@ -40,14 +36,16 @@ const ProjectAbout: React.FC<IProps> = ({ project }): JSX.Element => {
 
                 <MDXRenderer>{project.body}</MDXRenderer>
 
-                <ProjectLinks
-                    onMouseEnter={() => setCursor('hovered')}
-                    onMouseLeave={() => setCursor()}
-                >
+                <ProjectLinks>
                     <ProjectLink
                         href={repoLink}
+                        disabled={repoLink === ''}
                         target="_blank"
                         rel="noreferrer noopener"
+                        onMouseEnter={() =>
+                            repoLink !== '' && setCursor(Cursor.Hovered)
+                        }
+                        onMouseLeave={() => setCursor()}
                     >
                         <SVG icon="embed" />
                         Source Code
@@ -55,9 +53,13 @@ const ProjectAbout: React.FC<IProps> = ({ project }): JSX.Element => {
 
                     <ProjectLink
                         href={liveLink}
+                        disabled={liveLink === ''}
                         target="_blank"
                         rel="noreferrer noopener"
-                        download
+                        onMouseEnter={() =>
+                            liveLink !== '' && setCursor(Cursor.Hovered)
+                        }
+                        onMouseLeave={() => setCursor()}
                     >
                         <SVG icon="link" />
                         Live

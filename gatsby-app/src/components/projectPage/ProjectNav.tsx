@@ -7,13 +7,14 @@ import {
     NextProject,
     PrevProject,
     ProjectImage,
-    ProjectTitle,
     ProjectNavSection,
+    ProjectTitle,
 } from '../../styles/pages/projectStyles';
 import SVG from '../ui/SVG';
 import { useStore } from '../../hooks/useStore';
 import useWindowSize from '../../hooks/useWindowSize';
 import { useSectionAnimation } from '../../hooks/useSectionAnimation';
+import { Cursor } from '../../models/cursor';
 
 interface IProps {
     previousProject: IProject;
@@ -38,7 +39,7 @@ const ProjectNav: React.FC<IProps> = ({
 
     return (
         <ProjectNavSection
-            onMouseEnter={() => setCursor('nav-open')}
+            onMouseEnter={() => setCursor(Cursor.NavOpen)}
             onMouseLeave={() => setCursor()}
         >
             <PrevProject
@@ -63,8 +64,8 @@ const ProjectNav: React.FC<IProps> = ({
                                 key: previousProject.slug,
                             })
                         }
-                        onMouseEnter={() => setCursor('pointer')}
-                        onMouseLeave={() => setCursor('nav-open')}
+                        onMouseEnter={() => setCursor(Cursor.Pointer)}
+                        onMouseLeave={() => setCursor(Cursor.NavOpen)}
                     >
                         <h3 className="project-title">
                             {previousProject.frontmatter.title} <br />
@@ -92,8 +93,8 @@ const ProjectNav: React.FC<IProps> = ({
                         <img
                             className="img-fluid"
                             src={
-                                nextProject.frontmatter.cover.childImageSharp
-                                    .fluid.originalImg
+                                previousProject.frontmatter.cover
+                                    .childImageSharp.fluid.originalImg
                             }
                             alt=""
                         />
@@ -121,8 +122,8 @@ const ProjectNav: React.FC<IProps> = ({
                                 key: nextProject.slug,
                             })
                         }
-                        onMouseEnter={() => setCursor('pointer')}
-                        onMouseLeave={() => setCursor('nav-open')}
+                        onMouseEnter={() => setCursor(Cursor.Pointer)}
+                        onMouseLeave={() => setCursor(Cursor.NavOpen)}
                     >
                         <h3 className="project-title">
                             {nextProject.frontmatter.title} <br />

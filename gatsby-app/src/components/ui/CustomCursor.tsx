@@ -2,7 +2,8 @@ import React from 'react';
 // Imports from src
 import { useStore } from '../../hooks/useStore';
 import { useMousePosition } from '../../hooks/useMousePosition';
-import { Cursor } from '../../styles/components/cursorStyles';
+import { CursorWrapper } from '../../styles/components/cursorStyles';
+import { Cursor } from '../../models/cursor';
 
 const CustomCursor = (): JSX.Element => {
     const store = useStore();
@@ -13,10 +14,10 @@ const CustomCursor = (): JSX.Element => {
 
     return (
         <>
-            <Cursor
+            <CursorWrapper
                 className={`${cursor ? cursor : ''}  
-                ${open ? 'nav-open' : ''}
-                ${open && cursor === 'locked' ? 'locked--txtColor' : ''}`}
+                ${open ? Cursor.NavOpen : ''}
+                ${open && cursor === Cursor.Locked ? 'locked--txtColor' : ''}`}
                 style={{ left: `${x}px`, top: `${y}px` }}
                 elX={`${elX}px`}
                 elY={`${elY}px`}

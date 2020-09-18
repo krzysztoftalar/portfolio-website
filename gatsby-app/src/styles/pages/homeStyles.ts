@@ -37,50 +37,84 @@ export const CanvasWrapper = styled.canvas`
 
 export const BannerTitle = styled(motion.h1)`
     position: absolute;
-    bottom: -11.7rem;
+    bottom: -12.2rem;
     left: 0;
     color: ${(props) => props.theme.text};
     text-transform: uppercase;
     pointer-events: none;
 
     @media ${respondTo.L} {
-        bottom: -8.7rem;
+        bottom: -9.6rem;
     }
 
     @media ${respondTo.S} {
-        bottom: -5.4rem;
+        bottom: -7.9rem;
+    }
+
+    @media ${respondTo.XXS} {
+        bottom: -6.2rem;
     }
 `;
 
 export const Headline = styled(motion.span)`
     display: block;
-    font-size: 35rem;
+    font-size: 20rem;
     font-weight: 900;
-    line-height: 0.76;
-    letter-spacing: -1rem;
-    text-indent: -2.5rem;
+    line-height: 0.77;
+    letter-spacing: -0.6rem;
 
-    &:not(:last-child) {
-        margin-bottom: 0.5rem;
+    &:nth-child(1) {
+        text-indent: -1.2rem;
+    }
+
+    &:nth-child(2) {
+        text-indent: -0.7rem;
+    }
+
+    &:nth-child(3) {
+        text-indent: -0.3rem;
+    }
+
+    &:nth-child(4) {
+        text-indent: -0.2rem;
     }
 
     @media ${respondTo.L} {
-        font-size: 25rem;
-        text-indent: -2rem;
-    }
+        font-size: 15rem;
 
-    @media ${respondTo.S} {
-        font-size: 14rem;
-        letter-spacing: -0.5rem;
-        text-indent: -1rem;
+        &:nth-child(1) {
+            text-indent: -0.9rem;
+        }
 
-        &:not(:last-child) {
-            margin-bottom: 0.2rem;
+        &:nth-child(2) {
+            text-indent: -0.5rem;
+        }
+
+        &:nth-child(3) {
+            text-indent: -0.2rem;
         }
     }
 
-    @media ${respondTo.XXXS} {
+    @media ${respondTo.S} {
+        letter-spacing: -0.3rem;
+
         font-size: 12rem;
+
+        &:nth-child(1) {
+            text-indent: -0.7rem;
+        }
+    }
+
+    @media ${respondTo.XXS} {
+        font-size: 9rem;
+
+        &:nth-child(1) {
+            text-indent: -0.5rem;
+        }
+
+        &:nth-child(2) {
+            text-indent: -0.4rem;
+        }
     }
 `;
 
@@ -88,10 +122,18 @@ export const Headline = styled(motion.span)`
 export const HomeContentSection = styled(motion.div)`
     grid-column: center-start / center-end;
     grid-row: 2 / 3;
-    padding: 25rem 0 15rem;
+    padding: 28rem 0 15rem;
+
+    @media ${respondTo.L} {
+        padding: 25rem 0 15rem;
+    }
 
     @media ${respondTo.S} {
-        padding: 12rem 0 6rem;
+        padding: 14rem 0 6rem;
+    }
+
+    @media ${respondTo.XXS} {
+        padding: 13rem 0 6rem;
     }
 `;
 

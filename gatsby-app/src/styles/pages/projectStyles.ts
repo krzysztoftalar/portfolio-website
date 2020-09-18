@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 import { motion } from 'framer-motion';
 // Imports from src
-import { primaryColor } from '../base/variables';
+import { greyLightColor, primaryColor } from '../base/variables';
 import { respondTo } from '../base/responsive';
 
 // Slider section
@@ -36,7 +36,7 @@ export const ProjectAboutSection = styled(motion.div)`
 
 export const About = styled.div`
     display: grid;
-    grid-template-columns: min-content;
+    grid-template-columns: minmax(min-content, 60rem);
     grid-template-rows: repeat(3, min-content);
     color: ${(props) => props.theme.text};
 
@@ -78,7 +78,7 @@ export const ProjectLinks = styled.div`
     width: fit-content;
 `;
 
-export const ProjectLink = styled.a`
+export const ProjectLink = styled.a<{ disabled: boolean }>`
     &:link,
     &:visited {
         display: flex;
@@ -112,6 +112,20 @@ export const ProjectLink = styled.a`
         transition: fill 0.2s ease-in-out;
         fill: ${primaryColor};
     }
+
+    ${(props) =>
+        props.disabled &&
+        css`
+            &:link,
+            &:visited {
+                color: ${(props) => props.theme.disabledText};
+                pointer-events: none;
+            }
+
+            svg {
+                fill: ${(props) => props.theme.disabledText};
+            }
+        `}
 `;
 
 // Nav section

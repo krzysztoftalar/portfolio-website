@@ -8,6 +8,7 @@ import {
     FooterSocial,
     FooterWrapper,
 } from '../../styles/layout/footerStyles';
+import { Cursor } from '../../models/cursor';
 
 const Footer = (): JSX.Element => {
     const store = useStore();
@@ -15,9 +16,9 @@ const Footer = (): JSX.Element => {
 
     const onEmailHover = () => {
         if (open) {
-            setCursor('pointer');
+            setCursor(Cursor.Pointer);
         } else {
-            setCursor('hovered');
+            setCursor(Cursor.Hovered);
         }
     };
 

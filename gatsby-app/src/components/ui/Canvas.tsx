@@ -1,12 +1,14 @@
 import React, { useCallback } from 'react';
 import { observer } from 'mobx-react';
-import { isMobile, isBrowser } from 'react-device-detect';
+import { MotionValue } from 'framer-motion';
+import { isBrowser, isMobile } from 'react-device-detect';
 // Imports from src
 import { useStore } from '../../hooks/useStore';
 import useWindowSize from '../../hooks/useWindowSize';
 import { CanvasWrapper } from '../../styles/pages/homeStyles';
 import { black, white } from '../../styles/base/variables';
 import { Drag } from '../../styles/components/cursorStyles';
+import { Cursor } from '../../models/cursor';
 
 const midPointBtw = (
     p1: { x: number; y: number },
@@ -18,7 +20,11 @@ const midPointBtw = (
     };
 };
 
-const Canvas = () => {
+interface Props {
+    top: MotionValue<any>;
+}
+
+const Canvas: React.FC<Props> = ({ top }) => {
     const store = useStore();
     const { theme, setCursor } = store.uiStore;
     const { width, height } = useWindowSize();
@@ -85,7 +91,7 @@ const Canvas = () => {
             last.x = current.x;
             last.y = current.y;
         }
-    }, [current, last, isDrawing]);
+    }, [current, last]);
 
     // Get position from mouse and drag events
     const getPointerPos = (e: any) => {
@@ -103,59 +109,48 @@ const Canvas = () => {
         };
     };
 
-    // Browser mouse events
-    const handleMouseStart = (e: React.MouseEvent) => {
-        e.preventDefault();
-
-        const { x, y } = getPointerPos(e);
-
-        last.x = x;
-        last.y = y;
-    };
-
-    const handleMouseMove = (e: React.MouseEvent) => {
+    // Set current position and draw points
+    const setPointerPos = (e: any, device: boolean) => {
         e.preventDefault();
 
         const { x, y } = getPointerPos(e);
 
         isDrawing = true;
 
-        if (isDrawing && isBrowser) {
-            if (last.x === 0 && last.y === 0) {
-                last.x = x;
-                last.y = y;
+        if (isDrawing && device) {
+            current.x = x;
+            current.y = y;
+
+            // Update cursor position while scrolling
+            if (top.get() !== 0) {
+                current.y = current.y - 2 * top.get();
             }
 
-            current.x = x;
-            current.y = y;
-
             drawPoints();
         }
     };
 
-    // Mobile drag events
-    const handleDragStart = (e: MouseEvent | TouchEvent | PointerEvent) => {
+    // Handle mouse and drag over
+    const handleStart = (e: any) => {
         e.preventDefault();
 
         const { x, y } = getPointerPos(e);
 
         last.x = x;
         last.y = y;
+
+        // Update cursor position while scrolling
+        if (top.get() !== 0) {
+            last.y = last.y - 2 * top.get();
+        }
     };
 
-    const handleDragMove = (e: MouseEvent | TouchEvent | PointerEvent) => {
-        e.preventDefault();
+    const handleMouseMove = (e: any) => {
+        setPointerPos(e, isBrowser);
+    };
 
-        const { x, y } = getPointerPos(e);
-
-        isDrawing = true;
-
-        if (isDrawing && isMobile) {
-            current.x = x;
-            current.y = y;
-
-            drawPoints();
-        }
+    const handleDragMove = (e: any) => {
+        setPointerPos(e, isMobile);
     };
 
     return (
@@ -164,15 +159,15 @@ const Canvas = () => {
                 ref={canvasRef}
                 height={height}
                 width={width}
-                onMouseOver={handleMouseStart}
+                onMouseOver={handleStart}
                 onMouseMove={handleMouseMove}
-                onMouseEnter={() => setCursor('hovered')}
+                onMouseEnter={() => setCursor(Cursor.Hovered)}
                 onMouseLeave={() => setCursor()}
             />
             <Drag
                 drag
                 onDrag={handleDragMove}
-                onDragStart={handleDragStart}
+                onDragStart={handleStart}
                 dragConstraints={{
                     top: 0,
                     left: 0,

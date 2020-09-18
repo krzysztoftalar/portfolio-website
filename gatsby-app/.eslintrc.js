@@ -27,6 +27,7 @@ module.exports = {
     },
     rules: {
         'react/prop-types': 'off',
+        '@typescript-eslint/no-non-null-assertion': 'off',
         '@typescript-eslint/explicit-function-return-type': 'off',
         'no-param-reassign': 'off',
         'import/prefer-default-export': 'off',

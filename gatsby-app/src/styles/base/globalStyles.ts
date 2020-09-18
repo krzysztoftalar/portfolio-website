@@ -1,5 +1,6 @@
 import styled, { createGlobalStyle, css } from 'styled-components';
 import normalize from 'styled-normalize';
+// Imports from src
 import { respondTo } from './responsive';
 
 export const GlobalStyle = createGlobalStyle`

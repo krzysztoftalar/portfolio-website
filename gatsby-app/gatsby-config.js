@@ -5,12 +5,13 @@ module.exports = {
         author: `Krzysztof Talar`,
         url: 'https://viphon.com',
         keywords: [
-            `front-end`,
-            `back-end`,
-            `web developer`,
-            `C# developer`,
+            `Web developer`,
+            `Front-end developer`,
             `React developer`,
-            `portfolio`,
+            `Back-end developer`,
+            `C# developer`,
+            `.Net developer`,
+            `Portfolio`,
         ],
     },
     plugins: [

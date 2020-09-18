@@ -3,6 +3,7 @@ import React, { useRef } from 'react';
 import { useElementPosition } from '../../hooks/useElementPosition';
 import { useStore } from '../../hooks/useStore';
 import SVG from './SVG';
+import { Cursor } from '../../models/cursor';
 
 interface IProps {
     isAnimationEnd: boolean;
@@ -23,7 +24,7 @@ const SocialLinks: React.FC<IProps> = ({
 
     const onLinkHover = (x: number, y: number) => {
         if (isAnimationEnd) {
-            setCursor('locked');
+            setCursor(Cursor.Locked);
             setElementPosition(x, y);
         }
     };

@@ -5,8 +5,8 @@ import { motion } from 'framer-motion';
 // Imports from src
 import {
     FeaturedButton,
-    FeaturedProjectTitle,
     FeaturedImage,
+    FeaturedProjectTitle,
     FeaturedSectionTitle,
     HomeFeaturedSection,
 } from '../../styles/pages/homeStyles';
@@ -16,6 +16,7 @@ import { useStore } from '../../hooks/useStore';
 import { sectionVariants } from '../../styles/base/globalVariants';
 import { IProject } from '../../models/project';
 import { useSectionAnimation } from '../../hooks/useSectionAnimation';
+import { Cursor } from '../../models/cursor';
 
 interface Project {
     node: IProject;
@@ -41,7 +42,7 @@ const HomeFeatured = (): JSX.Element => {
                             year(formatString: "YYYY")
                             cover {
                                 childImageSharp {
-                                    fluid(maxWidth: 1400, quality: 85) {
+                                    fluid(maxWidth: 1400, quality: 100) {
                                         ...GatsbyImageSharpFluid
                                     }
                                 }
@@ -86,7 +87,7 @@ const HomeFeatured = (): JSX.Element => {
 
             <Link to={project.node.slug}>
                 <motion.div
-                    onMouseEnter={() => setCursor('hovered')}
+                    onMouseEnter={() => setCursor(Cursor.Hovered)}
                     onMouseLeave={() => setCursor()}
                     onHoverStart={() => setHovered(!hovered)}
                     onHoverEnd={() => setHovered(!hovered)}
@@ -120,7 +121,7 @@ const HomeFeatured = (): JSX.Element => {
             <FeaturedButton>
                 <button
                     onClick={() => toggleOpen()}
-                    onMouseEnter={() => setCursor('pointer')}
+                    onMouseEnter={() => setCursor(Cursor.Pointer)}
                     onMouseLeave={() => setCursor()}
                 >
                     <span>All Projects</span>

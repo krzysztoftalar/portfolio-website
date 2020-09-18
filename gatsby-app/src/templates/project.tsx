@@ -54,7 +54,7 @@ export const query = graphql`
                 liveLink
                 images {
                     childImageSharp {
-                        fluid(maxWidth: 1400, quality: 85) {
+                        fluid(maxWidth: 1400, quality: 100) {
                             ...GatsbyImageSharpFluid
                         }
                     }

@@ -1,9 +1,9 @@
 import styled from 'styled-components';
+import { motion } from 'framer-motion';
 // Imports from src
 import { primaryColor } from '../base/variables';
-import { motion } from 'framer-motion';
 
-export const Cursor = styled.div<{ elX: string; elY: string }>`
+export const CursorWrapper = styled.div<{ elX: string; elY: string }>`
     display: flex;
     position: fixed;
     top: 0;
@@ -62,11 +62,11 @@ export const Cursor = styled.div<{ elX: string; elY: string }>`
         }
     }
 
-    &.nav-open {
+    &.navOpen {
         background: ${(props) => props.theme.text};
     }
 
-    @media only screen and (hover: none) {
+    @media only screen and (hover: none) and (pointer: coarse) {
         display: none;
     }
 `;
@@ -93,7 +93,7 @@ export const Drag = styled(motion.div)`
         font-weight: 700;
     }
 
-    @media (hover: none) and (pointer: coarse) {
+    @media only screen and (hover: none) and (pointer: coarse) {
         display: flex;
     }
 `;

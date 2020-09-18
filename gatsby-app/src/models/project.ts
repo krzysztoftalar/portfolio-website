@@ -1,4 +1,4 @@
-import { IFluidImage } from './image';
+import { IChildImageSharp } from './image';
 
 export interface IProject {
     id: string;
@@ -12,7 +12,7 @@ export interface IProject {
         featured: boolean;
         repoLink: string;
         liveLink: string;
-        cover: IFluidImage;
-        images: IFluidImage[];
+        cover: IChildImageSharp;
+        images: IChildImageSharp[];
     };
 }

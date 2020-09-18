@@ -1,8 +1,7 @@
 import { observable, reaction, decorate, action } from 'mobx';
 // Imports from src
 import RootStore from './rootStore';
-
-const CURSOR_STYLES = ['pointer', 'hovered', 'locked', 'nav-open'];
+import { Cursor } from '../models/cursor';
 
 export default class UIStore {
     rootStore: RootStore;
@@ -20,9 +19,12 @@ export default class UIStore {
         );
     }
 
-    theme: string | null = 'dark';
-    cursorStyles: string[] = CURSOR_STYLES;
-    cursor: string | boolean = false;
+    theme: string | null =
+        typeof window !== 'undefined' &&
+        window.localStorage.getItem('theme') !== null
+            ? window.localStorage.getItem('theme')
+            : 'dark';
+    cursor: Cursor | boolean = false;
     open = false;
     elementPosition: { elX: number; elY: number } = { elX: 0, elY: 0 };
 
@@ -30,8 +32,8 @@ export default class UIStore {
         this.theme = theme;
     };
 
-    setCursor = (cursor?: string): void => {
-        if (cursor && this.cursorStyles.includes(cursor)) {
+    setCursor = (cursor?: Cursor): void => {
+        if (cursor) {
             this.cursor = cursor;
         } else {
             this.cursor = false;

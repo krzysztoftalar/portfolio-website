@@ -127,11 +127,12 @@ export const NavList = styled.div`
     grid-row: 2 / 3;
 
     ul {
+        display: grid;
+        grid-row-gap: 2rem;
         padding: 0;
 
         li {
             width: fit-content;
-            height: 9rem;
             overflow: hidden;
             list-style: none;
             text-transform: uppercase;
@@ -140,7 +141,6 @@ export const NavList = styled.div`
                 position: relative;
                 display: flex;
                 align-items: center;
-                height: 100%;
                 width: calc(100% + 7.8rem);
                 color: ${(props) => props.theme.background};
 
@@ -159,6 +159,7 @@ export const NavList = styled.div`
 
             h2 {
                 display: block;
+                margin: 0;
                 font-size: 5rem;
                 font-weight: 900;
                 text-transform: uppercase;
@@ -168,8 +169,13 @@ export const NavList = styled.div`
 
     @media ${respondTo.S} {
         ul {
+            grid-row-gap: 1rem;
+
             li {
-                height: 5rem;
+                svg {
+                    width: 7rem;
+                    height: 4rem;
+                }
 
                 h2 {
                     font-size: 2.5rem;

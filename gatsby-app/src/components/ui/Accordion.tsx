@@ -8,6 +8,7 @@ import {
 } from '../../styles/components/accordionStyles';
 import { useStore } from '../../hooks/useStore';
 import { black, primaryColor, white } from '../../styles/base/variables';
+import { Cursor } from '../../models/cursor';
 
 interface IProps {
     details: {
@@ -36,7 +37,7 @@ const Accordion: React.FC<IProps> = ({
             onMouseOver={() => {
                 isOpen && setCursor();
             }}
-            onMouseLeave={() => setCursor('hovered')}
+            onMouseLeave={() => setCursor(Cursor.Hovered)}
         >
             <AccordionHeader
                 onClick={() => setExpanded(index)}

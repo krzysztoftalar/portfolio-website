@@ -1,4 +1,4 @@
-// Move in animation for sections
+// Move and fade in animation for sections
 export const sectionVariants = {
     initial: {
         y: '7rem',

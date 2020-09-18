@@ -10,15 +10,7 @@ import '../../styles/base/base.css';
 
 const Layout = (props: PageProps): JSX.Element => {
     const store = useStore();
-    const { setTheme, setCursor } = store.uiStore;
-
-    useEffect(() => {
-        const theme = window.localStorage.getItem('theme');
-
-        if (theme) {
-            setTheme(theme);
-        }
-    }, []);
+    const { setCursor } = store.uiStore;
 
     useEffect(() => {
         setCursor();

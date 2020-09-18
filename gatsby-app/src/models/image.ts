@@ -1,7 +1,11 @@
-import { ImageSharpFluid } from '../helpers/types';
+import { FixedObject, FluidObject } from 'gatsby-image';
 
-export interface IFluidImage {
+export interface IChildImageSharp {
     childImageSharp: {
-        fluid: ImageSharpFluid;
+        fluid: ImageSharpFluid & { originalImg: string };
     };
 }
+
+export type ImageSharpFluid = FluidObject | FluidObject[];
+
+export type ImageSharpFixed = FixedObject | FixedObject[];

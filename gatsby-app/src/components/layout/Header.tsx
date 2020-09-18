@@ -1,11 +1,12 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { observer } from 'mobx-react';
-import { Link } from 'gatsby';
+import React, { useEffect, useRef, useState } from "react";
+import { observer } from "mobx-react";
+import { Link } from "gatsby";
 // Imports from src
-import { HeaderNav, Logo, Menu } from '../../styles/layout/headerStyles';
-import { useStore } from '../../hooks/useStore';
-import { Flex } from '../../styles/base/globalStyles';
-import { useElementPosition } from '../../hooks/useElementPosition';
+import { HeaderNav, Logo, Menu } from "../../styles/layout/headerStyles";
+import { useStore } from "../../hooks/useStore";
+import { Flex } from "../../styles/base/globalStyles";
+import { useElementPosition } from "../../hooks/useElementPosition";
+import { Cursor } from "../../models/cursor";
 
 const Header = (): JSX.Element => {
     const store = useStore();
@@ -57,7 +58,7 @@ const Header = (): JSX.Element => {
     const position = useElementPosition(menuRef, isAnimationEnd);
     const onMenuHover = () => {
         if (isAnimationEnd) {
-            setCursor('locked');
+            setCursor(Cursor.Locked);
             setElementPosition(position.x, position.y);
         }
     };
@@ -73,15 +74,15 @@ const Header = (): JSX.Element => {
             <Flex
                 justifyBetween
                 noHeight
-                onMouseEnter={() => setCursor('hovered')}
+                onMouseEnter={() => setCursor(Cursor.Hovered)}
                 onMouseLeave={() => setCursor()}
             >
                 <Logo>
                     <Link to="/">VIPH</Link>
                     <span
                         onClick={toggleTheme}
-                        onMouseEnter={() => setCursor('pointer')}
-                        onMouseLeave={() => setCursor('hovered')}
+                        onMouseEnter={() => setCursor(Cursor.Pointer)}
+                        onMouseLeave={() => setCursor(Cursor.Hovered)}
                     />
                     <Link to="/">N</Link>
                 </Logo>
