@@ -2,6 +2,7 @@ import React from 'react';
 import { observer } from 'mobx-react';
 import { graphql, useStaticQuery } from 'gatsby';
 import { useSpring, useTransform, useViewportScroll } from 'framer-motion';
+import loadable from '@loadable/component';
 // Imports from src
 import {
     HomeBannerSection,
@@ -9,7 +10,8 @@ import {
     Headline,
     Video,
 } from '../../styles/pages/homeStyles';
-import Canvas from '../ui/Canvas';
+
+const Canvas = loadable(() => import('../ui/Canvas'));
 
 const HomeBanner = (): JSX.Element => {
     const data = useStaticQuery(graphql`

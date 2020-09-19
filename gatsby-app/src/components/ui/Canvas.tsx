@@ -24,6 +24,33 @@ interface Props {
     top: MotionValue;
 }
 
+export const useIsMounted = (): (() => boolean) => {
+    const isMounted = useRef(false);
+
+    useEffect(() => {
+        isMounted.current = true;
+
+        return function cleanup(): void {
+            isMounted.current = false;
+        };
+    }, []);
+
+    return useCallback((): boolean => {
+        return isMounted.current;
+    }, []);
+};
+function useIsMountedRef(): MutableRefObject<boolean> {
+    const isMountedRef = useRef(false);
+
+    useEffect(() => {
+        isMountedRef.current = true;
+
+        return () => (isMountedRef.current = false);
+    }, []);
+
+    return isMountedRef;
+}
+
 const Canvas: React.FC<Props> = ({ top }) => {
     const store = useStore();
     const { theme, setCursor } = store.uiStore;
