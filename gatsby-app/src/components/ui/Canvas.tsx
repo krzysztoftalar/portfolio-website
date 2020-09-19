@@ -21,7 +21,7 @@ const midPointBtw = (
 };
 
 interface Props {
-    top: MotionValue<any>;
+    top: MotionValue;
 }
 
 const Canvas: React.FC<Props> = ({ top }) => {
@@ -110,7 +110,10 @@ const Canvas: React.FC<Props> = ({ top }) => {
     };
 
     // Set current position and draw points
-    const setPointerPos = (e: any, device: boolean) => {
+    const setPointerPos = (
+        e: React.MouseEvent | MouseEvent | TouchEvent | PointerEvent,
+        device: boolean
+    ) => {
         e.preventDefault();
 
         const { x, y } = getPointerPos(e);
@@ -131,7 +134,9 @@ const Canvas: React.FC<Props> = ({ top }) => {
     };
 
     // Handle mouse and drag over
-    const handleStart = (e: any) => {
+    const handleStart = (
+        e: React.MouseEvent | MouseEvent | TouchEvent | PointerEvent
+    ) => {
         e.preventDefault();
 
         const { x, y } = getPointerPos(e);
@@ -145,11 +150,11 @@ const Canvas: React.FC<Props> = ({ top }) => {
         }
     };
 
-    const handleMouseMove = (e: any) => {
+    const handleMouseMove = (e: React.MouseEvent) => {
         setPointerPos(e, isBrowser);
     };
 
-    const handleDragMove = (e: any) => {
+    const handleDragMove = (e: MouseEvent | TouchEvent | PointerEvent) => {
         setPointerPos(e, isMobile);
     };
 

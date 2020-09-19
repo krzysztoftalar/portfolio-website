@@ -1,18 +1,14 @@
-import React, { MutableRefObject, useRef } from 'react';
+import React from 'react';
 import Image from 'gatsby-image';
-import Loadable from '@loadable/component';
 // Imports from src
 import { ProjectSliderSection } from '../../styles/pages/projectStyles';
 import { sectionVariants } from '../../styles/base/globalVariants';
-import { IFluidImage } from '../../models/image';
+import { IChildImageSharp } from '../../models/image';
 import { useSectionAnimation } from '../../hooks/useSectionAnimation';
-import useDimensions from '../../hooks/useDimensions';
 import Carousel from '../ui/Carousel';
 
-// const Carousel = Loadable(() => import('../ui/carousel/Carousel'));
-
 interface IProps {
-    images: IFluidImage[];
+    images: IChildImageSharp[];
 }
 
 const ProjectSlider: React.FC<IProps> = ({ images }: IProps): JSX.Element => {

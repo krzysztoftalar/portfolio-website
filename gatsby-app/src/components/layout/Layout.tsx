@@ -7,6 +7,7 @@ import { GlobalStyle } from '../../styles/base/globalStyles';
 import { getTheme } from '../../styles/base/themes';
 import { useStore } from '../../hooks/useStore';
 import '../../styles/base/base.css';
+import Navigation from './Navigation';
 
 const Layout = (props: PageProps): JSX.Element => {
     const store = useStore();
@@ -19,6 +20,8 @@ const Layout = (props: PageProps): JSX.Element => {
     return (
         <ThemeProvider theme={getTheme()}>
             <GlobalStyle />
+
+            <Navigation />
 
             {props.children}
         </ThemeProvider>
