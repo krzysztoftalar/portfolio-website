@@ -17,8 +17,8 @@ export const Nav = styled(motion.div)`
     top: 0;
     left: 0;
     z-index: 1000;
-    width: 100%;
-    height: 100%;
+    width: 100vw;
+    height: 100vh;
     overflow-x: hidden;
     overflow-y: auto;
     background: ${primaryColor};

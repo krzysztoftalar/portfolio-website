@@ -1,3 +1,5 @@
 .overflow-hidden {
-    overflow-y: hidden;
+    position: fixed;
+    height: 100%;
+    overflow: hidden;
 }
