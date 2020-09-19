@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { MutableRefObject, useCallback, useEffect, useRef } from 'react';
 import { observer } from 'mobx-react';
 import { MotionValue } from 'framer-motion';
 import { isBrowser, isMobile } from 'react-device-detect';
@@ -55,7 +55,7 @@ const Canvas: React.FC<Props> = ({ top }) => {
                 renderingCtx.globalCompositeOperation = 'destination-out';
             }
         },
-        [theme]
+        [theme, width, height]
     );
 
     // Draw lines
