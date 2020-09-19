@@ -7,24 +7,13 @@ import { useStore } from '../../hooks/useStore';
 import { Flex } from '../../styles/base/globalStyles';
 import { useElementPosition } from '../../hooks/useElementPosition';
 import { Cursor } from '../../models/cursor';
+import { useDarkMode } from '../../hooks/useDarkMode';
 
 const Header = (): JSX.Element => {
     const store = useStore();
-    const {
-        setTheme,
-        theme,
-        setCursor,
-        setElementPosition,
-        toggleOpen,
-    } = store.uiStore;
+    const { setCursor, setElementPosition, toggleOpen } = store.uiStore;
 
-    const toggleTheme = () => {
-        if (theme === 'dark') {
-            setTheme('light');
-        } else {
-            setTheme('dark');
-        }
-    };
+    const { toggleTheme } = useDarkMode();
 
     const [prevY, setPrevY] = useState(0);
     const [shouldShow, setShouldShow] = useState(true);
