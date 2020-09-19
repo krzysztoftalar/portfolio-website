@@ -73,7 +73,7 @@ export const CursorWrapper = styled.div<{ elX: string; elY: string }>`
 
 export const Drag = styled(motion.div)`
     position: absolute;
-    z-index: 10000;
+    z-index: 700;
     display: none;
     justify-content: center;
     align-items: center;
