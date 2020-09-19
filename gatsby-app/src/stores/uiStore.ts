@@ -19,11 +19,7 @@ export default class UIStore {
         );
     }
 
-    theme: string | null =
-        typeof window !== 'undefined' &&
-        window.localStorage.getItem('theme') !== null
-            ? window.localStorage.getItem('theme')
-            : 'light';
+    theme: string | null = 'light';
     cursor: Cursor | boolean = false;
     open = false;
     elementPosition: { elX: number; elY: number } = { elX: 0, elY: 0 };

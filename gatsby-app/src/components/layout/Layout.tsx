@@ -11,13 +11,19 @@ import Navigation from './Navigation';
 
 const Layout = (props: PageProps): JSX.Element => {
     const store = useStore();
-    const { setCursor, theme } = store.uiStore;
+    const { setCursor, setTheme } = store.uiStore;
 
     useEffect(() => {
         setCursor();
     }, [props.location.pathname]);
 
-    useEffect(() => {}, [theme]);
+    useEffect(() => {
+        const theme = window.localStorage.getItem('theme');
+
+        if (theme) {
+            setTheme(theme);
+        }
+    }, [setTheme]);
 
     return (
         <ThemeProvider theme={getTheme()}>
