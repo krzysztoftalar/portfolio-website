@@ -3,12 +3,12 @@ import { observer } from 'mobx-react';
 import { MotionValue } from 'framer-motion';
 import { isBrowser, isMobile } from 'react-device-detect';
 // Imports from src
-import { useStore } from '../../hooks/useStore';
-import useWindowSize from '../../hooks/useWindowSize';
-import { CanvasWrapper } from '../../styles/pages/homeStyles';
-import { black, white } from '../../styles/base/variables';
-import { Drag } from '../../styles/components/cursorStyles';
-import { Cursor } from '../../models/cursor';
+import { useStore } from '../../../hooks/useStore';
+import useWindowSize from '../../../hooks/useWindowSize';
+import { CanvasWrapper } from '../../../styles/pages/homeStyles';
+import { black, white } from '../../../styles/base/variables';
+import { Drag } from '../../../styles/components/cursorStyles';
+import { Cursor } from '../../../models/cursor';
 
 const midPointBtw = (
     p1: { x: number; y: number },
@@ -22,33 +22,6 @@ const midPointBtw = (
 
 interface Props {
     top: MotionValue;
-}
-
-export const useIsMounted = (): (() => boolean) => {
-    const isMounted = useRef(false);
-
-    useEffect(() => {
-        isMounted.current = true;
-
-        return function cleanup(): void {
-            isMounted.current = false;
-        };
-    }, []);
-
-    return useCallback((): boolean => {
-        return isMounted.current;
-    }, []);
-};
-function useIsMountedRef(): MutableRefObject<boolean> {
-    const isMountedRef = useRef(false);
-
-    useEffect(() => {
-        isMountedRef.current = true;
-
-        return () => (isMountedRef.current = false);
-    }, []);
-
-    return isMountedRef;
 }
 
 const Canvas: React.FC<Props> = ({ top }) => {

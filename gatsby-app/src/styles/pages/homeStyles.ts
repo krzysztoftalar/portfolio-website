@@ -13,7 +13,7 @@ export const HomeBannerSection = styled.div`
     background: ${(props) => props.theme.background};
 `;
 
-export const Video = styled(motion.div)`
+export const VideoWrapper = styled(motion.div)`
     width: 100%;
     height: 100%;
     font-size: 0;
@@ -35,7 +35,7 @@ export const CanvasWrapper = styled.canvas`
     touch-action: none;
 `;
 
-export const BannerTitle = styled(motion.h1)`
+export const Title = styled(motion.h1)`
     position: absolute;
     bottom: -12.2rem;
     left: 0;
