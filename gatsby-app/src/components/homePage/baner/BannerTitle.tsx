@@ -1,7 +1,8 @@
 import React from 'react';
+// Imports from src
 import { Headline, Title } from '../../../styles/pages/homeStyles';
 
-const BannerTitle = () => {
+const BannerTitle = (): JSX.Element => {
     return (
         <Title initial="initial" animate="animate">
             {headline.map((item) => (

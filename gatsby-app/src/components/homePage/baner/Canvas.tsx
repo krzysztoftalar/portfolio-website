@@ -1,4 +1,4 @@
-import React, { MutableRefObject, useCallback, useEffect, useRef } from 'react';
+import React, { useCallback } from 'react';
 import { observer } from 'mobx-react';
 import { MotionValue } from 'framer-motion';
 import { isBrowser, isMobile } from 'react-device-detect';

@@ -1,7 +1,7 @@
 import React from 'react';
 import { observer } from 'mobx-react';
 // Imports from src
-import HomeBanner from '../components/homePage/Baner/HomeBanner';
+import HomeBanner from '../components/homePage/baner/HomeBanner';
 import HomeContent from '../components/homePage/HomeContent';
 import HomeFeatured from '../components/homePage/HomeFeatured';
 import HomeAbout from '../components/homePage/HomeAbout';

@@ -1,7 +1,8 @@
 import React from 'react';
-import { VideoWrapper } from '../../../styles/pages/homeStyles';
 import { graphql, useStaticQuery } from 'gatsby';
 import { MotionValue } from 'framer-motion';
+// Imports from src
+import { VideoWrapper } from '../../../styles/pages/homeStyles';
 
 interface Props {
     y: MotionValue;

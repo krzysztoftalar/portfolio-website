@@ -5,6 +5,7 @@ import loadable from '@loadable/component';
 // Imports from src
 import { HomeBannerSection } from '../../../styles/pages/homeStyles';
 
+// Lazy imports
 const Video = loadable(() => import('./Video'));
 const Canvas = loadable(() => import('./Canvas'));
 const BannerTitle = loadable(() => import('./BannerTitle'));
