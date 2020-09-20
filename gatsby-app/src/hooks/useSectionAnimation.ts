@@ -1,17 +1,23 @@
 import { useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
-import { useAnimation } from 'framer-motion';
+import { AnimationControls, useAnimation } from 'framer-motion';
 // Imports from src
 import useWindowSize from './useWindowSize';
 
-export const useSectionAnimation = () => {
+export const useSectionAnimation = (
+    margin = '-200px',
+    marginMobile = '-100px'
+): {
+    ref: any;
+    animation: AnimationControls;
+} => {
     const { width } = useWindowSize();
 
     const rootMargin = () => {
         if (width > 800) {
-            return '-200px';
+            return margin;
         } else {
-            return '-100px';
+            return marginMobile;
         }
     };
 

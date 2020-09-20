@@ -35,7 +35,7 @@ const ProjectNav: React.FC<IProps> = ({
 
     const { width } = useWindowSize();
 
-    const { ref, animation } = useSectionAnimation();
+    const { ref, animation } = useSectionAnimation(undefined, '0px');
 
     return (
         <ProjectNavSection

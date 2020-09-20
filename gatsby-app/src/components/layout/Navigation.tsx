@@ -23,8 +23,9 @@ import {
     NavFooterWrapper,
 } from '../../styles/layout/footerStyles';
 import { IProject } from '../../models/project';
-import { Helmet } from 'react-helmet';
 import { Cursor } from '../../models/cursor';
+import useTimeOut from '../../hooks/useTimeout';
+import useBodyClass from '../../hooks/useBodyClass';
 
 interface Project {
     node: IProject;
@@ -79,6 +80,14 @@ const Navigation = (): JSX.Element => {
             setElementPosition(menuPosition.x, menuPosition.y);
         }
     };
+
+    // Add overflow class to body with delay
+    const [overflow, setOverflow] = useState('');
+    useTimeOut(
+        () => setOverflow(open ? 'overflow-hidden' : ''),
+        open ? 900 : 0
+    );
+    useBodyClass(overflow);
 
     return (
         <>
@@ -214,10 +223,6 @@ const Navigation = (): JSX.Element => {
                                 <SocialLinks isAnimationEnd={isAnimationEnd} />
                             </FooterSocial>
                         </NavFooterWrapper>
-
-                        <Helmet>
-                            <body className="overflow-hidden" />
-                        </Helmet>
                     </Nav>
                 )}
             </AnimatePresence>

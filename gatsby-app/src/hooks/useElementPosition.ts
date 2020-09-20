@@ -3,15 +3,13 @@ import { RefObject, useCallback, useEffect, useState } from 'react';
 export const useElementPosition = (
     elementRef: RefObject<HTMLElement>,
     isAnimating?: boolean
-) => {
+): { x: number; y: number } => {
     const getElementPosition = useCallback(() => {
         const element = elementRef.current as HTMLElement;
 
         return {
             x: elementRef.current
-                ? element.getBoundingClientRect().left +
-                  document.documentElement.scrollLeft +
-                  element.offsetWidth / 2
+                ? element.getBoundingClientRect().left + element.offsetWidth / 2
                 : 0,
             y: elementRef.current
                 ? element.getBoundingClientRect().top + element.offsetHeight / 2

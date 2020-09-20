@@ -9,6 +9,7 @@ import {
     FooterWrapper,
 } from '../../styles/layout/footerStyles';
 import { Cursor } from '../../models/cursor';
+import { useViewportScroll } from 'framer-motion';
 
 const Footer = (): JSX.Element => {
     const store = useStore();
@@ -28,13 +29,25 @@ const Footer = (): JSX.Element => {
 
     useEffect(() => {
         const handleScroll = () => {
+            const windowHeight =
+                'innerHeight' in window
+                    ? window.innerHeight
+                    : document.documentElement.offsetHeight;
+            const body = document.body;
+            const html = document.documentElement;
+            const docHeight = Math.max(
+                body.scrollHeight,
+                body.offsetHeight,
+                html.clientHeight,
+                html.scrollHeight,
+                html.offsetHeight
+            );
+            const windowBottom = windowHeight + window.pageYOffset;
+
             const currentY = document.body.getBoundingClientRect().top;
 
             // Scroll on bottom
-            if (
-                window.innerHeight + window.scrollY >=
-                document.body.offsetHeight - 60
-            ) {
+            if (windowBottom >= docHeight - 150) {
                 setShouldShow(true);
             }
 
