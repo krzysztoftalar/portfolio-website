@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 import { motion } from 'framer-motion';
 // Imports from src
-import { greyLightColor, primaryColor } from '../base/variables';
+import { primaryColor } from '../base/variables';
 import { respondTo } from '../base/responsive';
 
 // Slider section
@@ -170,6 +170,7 @@ const projectWrapper = css`
 
 export const PrevProject = styled(motion.div)<{ prev: boolean }>`
     ${projectWrapper}
+
     grid-column: center-start / col-end 4;
     padding-right: 1rem;
 

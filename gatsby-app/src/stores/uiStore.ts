@@ -19,7 +19,7 @@ export default class UIStore {
         );
     }
 
-    theme: string | null = 'light';
+    theme: string | null = null;
     cursor: Cursor | boolean = false;
     open = false;
     elementPosition: { elX: number; elY: number } = { elX: 0, elY: 0 };

@@ -1,14 +1,19 @@
-import React from "react";
-import { observer } from "mobx-react";
-import { MDXRenderer } from "gatsby-plugin-mdx";
+import React from 'react';
+import { observer } from 'mobx-react';
+import { MDXRenderer } from 'gatsby-plugin-mdx';
 // Imports from src
-import { About, ProjectAboutSection, ProjectLink, ProjectLinks } from "../../styles/pages/projectStyles";
-import SVG from "../ui/SVG";
-import { useStore } from "../../hooks/useStore";
-import { sectionVariants } from "../../styles/base/globalVariants";
-import { IProject } from "../../models/project";
-import { useSectionAnimation } from "../../hooks/useSectionAnimation";
-import { Cursor } from "../../models/cursor";
+import {
+    About,
+    ProjectAboutSection,
+    ProjectLink,
+    ProjectLinks,
+} from '../../styles/pages/projectStyles';
+import SVG from '../ui/SVG';
+import { useStore } from '../../hooks/useStore';
+import { sectionVariants } from '../../styles/base/globalVariants';
+import { IProject } from '../../models/project';
+import { useSectionAnimation } from '../../hooks/useSectionAnimation';
+import { Cursor } from '../../models/cursor';
 
 interface IProps {
     project: IProject;

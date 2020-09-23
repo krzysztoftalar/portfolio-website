@@ -9,6 +9,8 @@ import { useElementPosition } from '../../hooks/useElementPosition';
 import { Cursor } from '../../models/cursor';
 import { useDarkMode } from '../../hooks/useDarkMode';
 
+import logo from '../../assets/images/logo.png';
+
 const Header = (): JSX.Element => {
     const store = useStore();
     const { setCursor, setElementPosition, toggleOpen } = store.uiStore;
@@ -67,13 +69,13 @@ const Header = (): JSX.Element => {
                 onMouseLeave={() => setCursor()}
             >
                 <Logo>
-                    <Link to="/">VIPH</Link>
+                    <Link to="/">SIV</Link>
                     <span
                         onClick={toggleTheme}
                         onMouseEnter={() => setCursor(Cursor.Pointer)}
                         onMouseLeave={() => setCursor(Cursor.Hovered)}
                     />
-                    <Link to="/">N</Link>
+                    <Link to="/">NTE</Link>
                 </Logo>
 
                 <Menu>

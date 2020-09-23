@@ -9,7 +9,6 @@ import {
     FooterWrapper,
 } from '../../styles/layout/footerStyles';
 import { Cursor } from '../../models/cursor';
-import { useViewportScroll } from 'framer-motion';
 
 const Footer = (): JSX.Element => {
     const store = useStore();
@@ -83,7 +82,7 @@ const Footer = (): JSX.Element => {
             </FooterEmail>
 
             <FooterCopyrights>
-                <p>&copy; Viphon 2020</p>
+                <p>&copy; Sivonte 2020</p>
             </FooterCopyrights>
 
             <FooterSocial navOpen={open}>
