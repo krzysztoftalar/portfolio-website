@@ -188,12 +188,12 @@ export const NavList = styled.div`
 // Projects images
 export const NavImages = styled.div`
     position: absolute;
+    z-index: -1;
+    grid-column: col-start 3 / -1;
     top: 0;
     bottom: 0;
-    z-index: -1;
     width: 100%;
     height: 100%;
-    grid-column: col-start 3 / -1;
 
     .reveal {
         position: absolute;
@@ -206,11 +206,11 @@ export const NavImages = styled.div`
 
     .img {
         position: absolute;
+        z-index: -1;
         display: flex;
         top: 0;
         left: 0;
         align-items: center;
-        z-index: -1;
         height: 100%;
         width: 100%;
 
@@ -218,5 +218,9 @@ export const NavImages = styled.div`
             display: inline-block;
             width: 100%;
         }
+    }
+
+    @media only screen and (hover: none) and (pointer: coarse) {
+        display: none;
     }
 `;

@@ -9,8 +9,6 @@ import { useElementPosition } from '../../hooks/useElementPosition';
 import { Cursor } from '../../models/cursor';
 import { useDarkMode } from '../../hooks/useDarkMode';
 
-import logo from '../../assets/images/logo.png';
-
 const Header = (): JSX.Element => {
     const store = useStore();
     const { setCursor, setElementPosition, toggleOpen } = store.uiStore;

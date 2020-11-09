@@ -13,7 +13,7 @@ import {
 import { Flex } from '../../styles/base/globalStyles';
 import SVG from '../ui/SVG';
 import { useStore } from '../../hooks/useStore';
-import { sectionVariants } from '../../styles/base/globalVariants';
+import { ease, sectionVariants } from '../../styles/base/globalVariants';
 import { IProject } from '../../models/project';
 import { useSectionAnimation } from '../../hooks/useSectionAnimation';
 import { Cursor } from '../../models/cursor';
@@ -77,7 +77,7 @@ const HomeFeatured = (): JSX.Element => {
                         animate={{ opacity: hovered ? 1 : 0 }}
                         transition={{
                             duration: 0.6,
-                            ease: [0.6, 0.05, -0.01, 0.9],
+                            ease: ease,
                         }}
                     >
                         {year}
@@ -108,7 +108,7 @@ const HomeFeatured = (): JSX.Element => {
                                 animate={{ x: hovered ? 40 : 0 }}
                                 transition={{
                                     duration: 0.6,
-                                    ease: [0.6, 0.05, -0.01, 0.9],
+                                    ease: ease,
                                 }}
                             >
                                 <SVG icon="arrow-right" />

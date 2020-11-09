@@ -26,6 +26,7 @@ import { IProject } from '../../models/project';
 import { Cursor } from '../../models/cursor';
 import useTimeOut from '../../hooks/useTimeout';
 import useBodyClass from '../../hooks/useBodyClass';
+import { ease } from '../../styles/base/globalVariants';
 
 interface Project {
     node: IProject;
@@ -240,7 +241,7 @@ const navVariants = {
         x: 0,
         transition: {
             duration: 0.8,
-            ease: [0.6, 0.05, -0.01, 0.9],
+            ease: ease,
             staggerChildren: 0.07,
             delayChildren: 0.4,
         },
@@ -249,7 +250,7 @@ const navVariants = {
         x: '-100%',
         transition: {
             duration: 0.8,
-            ease: [0.6, 0.05, -0.01, 0.9],
+            ease: ease,
         },
     },
 };
@@ -266,7 +267,7 @@ const linkItemVariants = {
         opacity: 1,
         transition: {
             duration: 0.8,
-            ease: [0.6, 0.05, -0.01, 0.9],
+            ease: ease,
         },
     },
 };
@@ -279,7 +280,7 @@ const arrowVariants = {
         x: '-0.8rem',
         transition: {
             duration: 0.4,
-            ease: [0.6, 0.05, -0.01, 0.9],
+            ease: ease,
         },
     },
 };

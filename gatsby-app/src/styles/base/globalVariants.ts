@@ -1,3 +1,6 @@
+// Main ease function
+export const ease = [0.6, 0.05, -0.01, 0.9];
+
 // Move and fade in animation for sections
 export const sectionVariants = {
     initial: {
@@ -9,7 +12,7 @@ export const sectionVariants = {
         opacity: 1,
         transition: {
             duration: 0.8,
-            ease: [0.6, 0.05, -0.01, 0.9],
+            ease: ease,
         },
     },
 };
