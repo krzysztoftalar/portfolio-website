@@ -16,7 +16,7 @@ const HomeContent = (): JSX.Element => {
         >
             <Content>
                 Hi, I&apos;m Krzysztof Talar. <br />
-                I&apos;m Full-Stack Developer, React and .NET.
+                I&apos;m a Full-Stack Developer, React, Flutter, and .NET.
             </Content>
         </HomeContentSection>
     );
