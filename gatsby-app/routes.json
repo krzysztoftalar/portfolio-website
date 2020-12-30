@@ -2,7 +2,7 @@
     "platformErrorOverrides": [
         {
             "errorType": "NotFound",
-            "serve": "/src/pages/404.tsx"
+            "serve": "/404.html"
         }
     ]
 }
