@@ -1,0 +1,8 @@
+{
+    "platformErrorOverrides": [
+        {
+            "errorType": "NotFound",
+            "serve": "/src/pages/404.tsx"
+        }
+    ]
+}
