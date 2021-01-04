@@ -17,8 +17,8 @@ export const GlobalStyle = createGlobalStyle`
     }
     
     body {
+        width: 100%;
         box-sizing: border-box;
-        overflow-x: hidden;
         overflow-y: auto;
         overscroll-behavior: none;
         background: ${(props) => props.theme.background};
@@ -33,6 +33,7 @@ export const LayoutContainer = styled.div`
         [side-left-start] minmax(3rem, 1fr) [side-left-end center-start]
         repeat(8, [col-start] minmax(min-content, 14.62rem) [col-end])
         [center-end side-right-start] minmax(3rem, 1fr) [side-right-end];
+    overflow-x: hidden;
 
     @media ${respondTo.M} {
         grid-template-columns:
