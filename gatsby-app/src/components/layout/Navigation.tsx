@@ -217,7 +217,7 @@ const Navigation = (): JSX.Element => {
                             </FooterEmail>
 
                             <FooterCopyrights>
-                                <p>&copy; Sivonte 2020</p>
+                                <p>&copy; Sivonte {new Date().getFullYear()}</p>
                             </FooterCopyrights>
 
                             <FooterSocial navOpen={open}>
