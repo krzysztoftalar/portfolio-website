@@ -5,12 +5,16 @@ import { primaryColor } from '../base/variables';
 import { respondTo } from '../base/responsive';
 
 export const HeaderNav = styled(motion.div)`
-    position: sticky;
+    position: fixed;
+    left: 0;
+    right: 0;
     top: 7rem;
     z-index: 100;
-    grid-column: center-start / center-end;
-    grid-row: 1 / 2;
     height: 0;
+    max-width: 117rem;
+    margin: 0 auto;
+    padding-left: 3rem;
+    padding-right: 3rem;
 
     @media ${respondTo.S} {
         top: 4rem;

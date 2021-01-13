@@ -24,11 +24,11 @@ export const FooterWrapper = styled(motion.div)`
     ${footerWrapper}
 
     position: fixed;
-    margin: 0 auto;
-    max-width: 117rem;
-    bottom: 0;
     left: 0;
     right: 0;
+    bottom: 0;
+    max-width: 117rem;
+    margin: 0 auto;
     padding-left: 3rem;
     padding-right: 3rem;
     color: ${primaryColor};
