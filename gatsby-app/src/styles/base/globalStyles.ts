@@ -24,6 +24,11 @@ export const GlobalStyle = createGlobalStyle`
         background: ${(props) => props.theme.background};
         font-family: 'Montserrat', sans-serif;
     }    
+    
+    button {
+       border: none;
+       outline: none;
+    }
 `;
 
 // 1170px / 8 = 146.2px = 14.62rem

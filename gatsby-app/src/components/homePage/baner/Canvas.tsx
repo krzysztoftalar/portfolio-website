@@ -1,7 +1,6 @@
 import React, { useCallback } from 'react';
 import { observer } from 'mobx-react';
 import { MotionValue } from 'framer-motion';
-import { isBrowser, isMobile } from 'react-device-detect';
 // Imports from src
 import { useStore } from '../../../hooks/useStore';
 import useWindowSize from '../../../hooks/useWindowSize';
@@ -34,7 +33,6 @@ const Canvas: React.FC<Props> = ({ top }) => {
     let drawingCtx: any;
     let renderingCtx: any;
 
-    let isDrawing = false;
     const last = { x: 0, y: 0 };
     const current = { x: 0, y: 0 };
 
@@ -60,7 +58,7 @@ const Canvas: React.FC<Props> = ({ top }) => {
 
     // Draw lines
     const drawPoints = useCallback(() => {
-        if (drawingCtx && isDrawing) {
+        if (drawingCtx) {
             drawingCtx.lineJoin = 'round';
             drawingCtx.lineCap = 'round';
             drawingCtx.lineWidth = 120;
@@ -111,26 +109,21 @@ const Canvas: React.FC<Props> = ({ top }) => {
 
     // Set current position and draw points
     const setPointerPos = (
-        e: React.MouseEvent | MouseEvent | TouchEvent | PointerEvent,
-        device: boolean
+        e: React.MouseEvent | MouseEvent | TouchEvent | PointerEvent
     ) => {
         e.preventDefault();
 
         const { x, y } = getPointerPos(e);
 
-        isDrawing = true;
+        current.x = x;
+        current.y = y;
 
-        if (isDrawing && device) {
-            current.x = x;
-            current.y = y;
-
-            // Update cursor position while scrolling
-            if (top.get() !== 0) {
-                current.y = current.y - 2 * top.get();
-            }
-
-            drawPoints();
+        // Update cursor position while scrolling
+        if (top.get() !== 0) {
+            current.y = current.y - 2 * top.get();
         }
+
+        drawPoints();
     };
 
     // Handle mouse and drag over
@@ -150,12 +143,10 @@ const Canvas: React.FC<Props> = ({ top }) => {
         }
     };
 
-    const handleMouseMove = (e: React.MouseEvent) => {
-        setPointerPos(e, isBrowser);
-    };
-
-    const handleDragMove = (e: MouseEvent | TouchEvent | PointerEvent) => {
-        setPointerPos(e, isMobile);
+    const handleMouseAndDragMove = (
+        e: React.MouseEvent | MouseEvent | TouchEvent | PointerEvent
+    ) => {
+        setPointerPos(e);
     };
 
     return (
@@ -165,13 +156,13 @@ const Canvas: React.FC<Props> = ({ top }) => {
                 height={height}
                 width={width}
                 onMouseOver={handleStart}
-                onMouseMove={handleMouseMove}
+                onMouseMove={handleMouseAndDragMove}
                 onMouseEnter={() => setCursor(Cursor.Hovered)}
                 onMouseLeave={() => setCursor()}
             />
             <Drag
                 drag
-                onDrag={handleDragMove}
+                onDrag={handleMouseAndDragMove}
                 onDragStart={handleStart}
                 dragConstraints={{
                     top: 0,

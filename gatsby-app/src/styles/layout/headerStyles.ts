@@ -71,9 +71,7 @@ export const Menu = styled.div`
         width: 9rem;
         height: 8rem;
         padding: 2rem;
-        border: none;
         background: none;
-        outline: none;
 
         span {
             display: inline-block;

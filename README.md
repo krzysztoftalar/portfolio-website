@@ -28,6 +28,12 @@ _I built this website in Gatsby.js.
   <img src="./gatsby-app/src/data/projects/portfolio-website/portfolio-1.png" width="70%" alt="Website">
 </p>
 
+## Features
+
+- Dark and light theme
+- Canvas eraser effect 
+- Custom cursor
+
 ## Built With
 
 | Client                                                                                                           

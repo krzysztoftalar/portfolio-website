@@ -278,7 +278,6 @@ export const FeaturedButton = styled(motion.div)`
         padding: 2rem;
         color: ${(props) => props.theme.background};
         background: ${primaryColor};
-        border: none;
         font-size: 2rem;
         font-weight: 600;
         letter-spacing: 1px;
