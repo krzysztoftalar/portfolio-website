@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 // Imports from src
-import background from '../../assets/images/not-found-bg.jpg';
+import background from '../../assets/images/not_found_bg.jpg';
 import { black, white } from '../base/variables';
 import { respondTo } from '../base/responsive';
 
