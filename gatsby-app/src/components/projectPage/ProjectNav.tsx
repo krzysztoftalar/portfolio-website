@@ -15,7 +15,7 @@ import { useStore } from '../../hooks/useStore';
 import useWindowSize from '../../hooks/useWindowSize';
 import { useSectionAnimation } from '../../hooks/useSectionAnimation';
 import { Cursor } from '../../models/cursor';
-import { ease } from "../../styles/base/globalVariants"
+import { ease } from '../../styles/base/globalVariants';
 
 interface IProps {
     previousProject: IProject;

@@ -14,13 +14,13 @@ export const useSectionAnimation = (
     const { width } = useWindowSize();
 
     const rootMargin = () => {
-        if (width > 800) {
+        if (width > 1200) {
             return margin;
         } else {
             return marginMobile;
         }
     };
-
+    console.log(rootMargin());
     const animation = useAnimation();
     const [ref, inView] = useInView({
         triggerOnce: true,
