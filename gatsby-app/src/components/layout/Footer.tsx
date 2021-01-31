@@ -97,6 +97,7 @@ export default Footer;
 const footerVariants = {
     initial: {
         y: 150,
+        x: 10,
         transition: {
             duration: 0.7,
             ease: [0.666, 0, 0.237, 1],
@@ -105,6 +106,7 @@ const footerVariants = {
     },
     animate: {
         y: 0,
+        x: 10,
         transition: {
             duration: 0.7,
             ease: [0.666, 0, 0.237, 1],

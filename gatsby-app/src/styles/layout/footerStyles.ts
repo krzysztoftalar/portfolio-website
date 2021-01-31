@@ -29,9 +29,13 @@ export const FooterWrapper = styled(motion.div)`
     bottom: 0;
     max-width: 117rem;
     margin: 0 auto;
-    padding-left: 3rem;
+    padding-left: 2rem;
     padding-right: 3rem;
     color: ${primaryColor};
+
+    @media ${respondTo.M} {
+        padding-right: 4rem;
+    }
 `;
 
 export const NavFooterWrapper = styled.div`
@@ -100,7 +104,6 @@ export const FooterCopyrights = styled.div`
 export const FooterSocial = styled.div<{ navOpen: boolean }>`
     display: flex;
     justify-self: end;
-    margin-right: -1rem;
 
     a {
         padding: 1rem;
