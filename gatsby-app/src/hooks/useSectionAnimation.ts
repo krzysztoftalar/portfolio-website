@@ -20,7 +20,7 @@ export const useSectionAnimation = (
             return marginMobile;
         }
     };
-    console.log(rootMargin());
+
     const animation = useAnimation();
     const [ref, inView] = useInView({
         triggerOnce: true,

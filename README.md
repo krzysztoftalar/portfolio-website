@@ -25,7 +25,7 @@ _I built this website in Gatsby.js.
 <br/>
 
 <p align="center">
-  <img src="./gatsby-app/src/data/projects/portfolio-website/portfolio-1.png" width="70%" alt="Website">
+  <img src="./gatsby-app/src/data/projects/portfolio-website/portfolio-1.webp" width="70%" alt="Website">
 </p>
 
 ## Features

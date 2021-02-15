@@ -47,28 +47,26 @@ const ProjectAbout: React.FC<IProps> = ({ project }): JSX.Element => {
                         disabled={repoLink === ''}
                         target="_blank"
                         rel="noreferrer noopener"
-                        onMouseEnter={() =>
-                            repoLink !== '' && setCursor(Cursor.Hovered)
-                        }
+                        onMouseEnter={() => setCursor(Cursor.Hovered)}
                         onMouseLeave={() => setCursor()}
                     >
                         <SVG icon="embed" />
                         Source Code
                     </ProjectLink>
 
-                    <ProjectLink
-                        href={liveLink}
-                        disabled={liveLink === ''}
-                        target="_blank"
-                        rel="noreferrer noopener"
-                        onMouseEnter={() =>
-                            liveLink !== '' && setCursor(Cursor.Hovered)
-                        }
-                        onMouseLeave={() => setCursor()}
-                    >
-                        <SVG icon="link" />
-                        Live
-                    </ProjectLink>
+                    {liveLink && (
+                        <ProjectLink
+                            href={liveLink}
+                            disabled={liveLink === ''}
+                            target="_blank"
+                            rel="noreferrer noopener"
+                            onMouseEnter={() => setCursor(Cursor.Hovered)}
+                            onMouseLeave={() => setCursor()}
+                        >
+                            <SVG icon="link" />
+                            Live
+                        </ProjectLink>
+                    )}
                 </ProjectLinks>
             </About>
         </ProjectAboutSection>

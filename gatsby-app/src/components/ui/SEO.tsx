@@ -17,6 +17,7 @@ interface Props {
     description?: string;
     lang?: string;
     meta?: Meta[];
+    pathname?: string;
 }
 
 const SEO: React.FC<Props> = ({
@@ -24,10 +25,11 @@ const SEO: React.FC<Props> = ({
     description,
     lang,
     meta,
+    pathname,
 }): JSX.Element => {
     const { site } = useStaticQuery(detailsQuery);
 
-    const metaTitle = title ? title : site.siteMetadata.title;
+    const metaTitle = `Sivonte: ${title ? title : site.siteMetadata.title}`;
     const metaDescription = description || site.siteMetadata.description;
     const metaKeywords = site.siteMetadata.keywords;
 
@@ -37,7 +39,7 @@ const SEO: React.FC<Props> = ({
                 lang,
             }}
             title={metaTitle}
-            titleTemplate={`Sivonte: ${metaTitle}`}
+            titleTemplate={metaTitle}
             meta={[
                 {
                     name: 'description',
@@ -57,7 +59,23 @@ const SEO: React.FC<Props> = ({
                 },
                 {
                     property: 'og:url',
-                    content: site.siteMetadata.url,
+                    content: `${site.siteMetadata.url}${pathname}`,
+                },
+                {
+                    property: 'og:site_name',
+                    content: 'Sivonte',
+                },
+                {
+                    property: 'og:see_also',
+                    content: 'https://www.linkedin.com/in/ktalar/',
+                },
+                {
+                    property: 'og:see_also',
+                    content: 'https://github.com/krzysztoftalar',
+                },
+                {
+                    property: 'og:locale',
+                    content: 'en_US',
                 },
                 {
                     property: 'twitter:card',
@@ -93,7 +111,7 @@ export default SEO;
 
 SEO.defaultProps = {
     description: '',
-    lang: 'en',
+    lang: 'en-US',
     meta: [] as Meta[],
 };
 

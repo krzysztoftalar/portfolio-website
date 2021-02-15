@@ -29,6 +29,12 @@ export const GlobalStyle = createGlobalStyle`
        border: none;
        outline: none;
     }
+
+    a:link,
+    a:visited {
+      text-decoration: none;
+      outline: none;
+    }
 `;
 
 // 1170px / 8 = 146.2px = 14.62rem

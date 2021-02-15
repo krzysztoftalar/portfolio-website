@@ -17,11 +17,13 @@ interface IProps {
         previousProject: IProject;
         nextProject: IProject;
     };
+    location: Location;
 }
 
 const Project: React.FC<IProps> = ({
     data,
     pageContext,
+    location,
 }: IProps): JSX.Element => {
     const project = data.mdx;
     const { previousProject, nextProject } = pageContext;
@@ -30,6 +32,8 @@ const Project: React.FC<IProps> = ({
         <PageLayout>
             <SEO
                 title={`${project.frontmatter.title} ${project.frontmatter.subtitle}`}
+                pathname={location.pathname}
+                description={project.frontmatter.metaDescription}
             />
             <ProjectSlider images={project.frontmatter.images} />
             <ProjectAbout project={project} />
@@ -52,6 +56,7 @@ export const query = graphql`
                 subtitle
                 repoLink
                 liveLink
+                metaDescription
                 images {
                     childImageSharp {
                         fluid(maxWidth: 1400, quality: 100) {

@@ -14,5 +14,6 @@ export interface IProject {
         liveLink: string;
         cover: IChildImageSharp;
         images: IChildImageSharp[];
+        metaDescription: string;
     };
 }
