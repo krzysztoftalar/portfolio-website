@@ -4,6 +4,13 @@ import normalize from 'styled-normalize';
 import { respondTo } from './responsive';
 
 export const GlobalStyle = createGlobalStyle`
+    @font-face {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+    
     ${normalize}
     
     * {
@@ -22,8 +29,8 @@ export const GlobalStyle = createGlobalStyle`
         overflow-y: auto;
         overscroll-behavior: none;
         background: ${(props) => props.theme.background};
-        font-family: 'Montserrat', sans-serif;
-    }    
+        font-family: 'Montserrat', sans-serif;  
+    }
     
     button {
        border: none;
