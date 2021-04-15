@@ -61,10 +61,11 @@ module.exports = {
             },
         },
         {
-            resolve: `gatsby-plugin-google-fonts`,
+            resolve: 'gatsby-plugin-web-font-loader',
             options: {
-                fonts: [`montserrat\:500,600,700,800,900`],
-                display: 'swap',
+                google: {
+                    families: ['Montserrat:500,600,700,800,900'],
+                },
             },
         },
     ],
