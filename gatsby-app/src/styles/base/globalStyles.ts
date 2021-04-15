@@ -4,13 +4,6 @@ import normalize from 'styled-normalize';
 import { respondTo } from './responsive';
 
 export const GlobalStyle = createGlobalStyle`
-    @font-face {
-      font-family: 'Montserrat', sans-serif;
-      font-weight: 400;
-      font-style: normal;
-      font-display: swap;
-    }
-    
     ${normalize}
     
     * {
