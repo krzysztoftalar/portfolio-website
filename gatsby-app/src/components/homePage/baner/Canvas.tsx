@@ -1,6 +1,7 @@
 import React, { useCallback } from 'react';
 import { observer } from 'mobx-react';
 import { MotionValue } from 'framer-motion';
+import { isBrowser, isMobile } from 'react-device-detect';
 // Imports from src
 import { useStore } from '../../../hooks/useStore';
 import useWindowSize from '../../../hooks/useWindowSize';
@@ -143,10 +144,16 @@ const Canvas: React.FC<Props> = ({ top }) => {
         }
     };
 
-    const handleMouseAndDragMove = (
-        e: React.MouseEvent | MouseEvent | TouchEvent | PointerEvent
-    ) => {
-        setPointerPos(e);
+    const handleMouseMove = (e: React.MouseEvent) => {
+        if (isBrowser) {
+            setPointerPos(e);
+        }
+    };
+
+    const handleDragMove = (e: MouseEvent | TouchEvent | PointerEvent) => {
+        if (isMobile) {
+            setPointerPos(e);
+        }
     };
 
     return (
@@ -156,13 +163,13 @@ const Canvas: React.FC<Props> = ({ top }) => {
                 height={height}
                 width={width}
                 onMouseOver={handleStart}
-                onMouseMove={handleMouseAndDragMove}
+                onMouseMove={handleMouseMove}
                 onMouseEnter={() => setCursor(Cursor.Hovered)}
                 onMouseLeave={() => setCursor()}
             />
             <Drag
                 drag
-                onDrag={handleMouseAndDragMove}
+                onDrag={handleDragMove}
                 onDragStart={handleStart}
                 dragConstraints={{
                     top: 0,
