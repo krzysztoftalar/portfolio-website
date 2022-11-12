@@ -1,4 +1,4 @@
-import { observable, reaction, decorate, action } from 'mobx';
+import { reaction, makeAutoObservable } from 'mobx';
 // Imports from src
 import RootStore from './rootStore';
 import { Cursor } from '../models/cursor';
@@ -8,6 +8,8 @@ export default class UIStore {
 
     constructor(rootStore: RootStore) {
         this.rootStore = rootStore;
+
+        makeAutoObservable(this);
 
         reaction(
             () => this.theme,
@@ -45,14 +47,3 @@ export default class UIStore {
         this.elementPosition.elY = y;
     };
 }
-
-decorate(UIStore, {
-    theme: observable,
-    setTheme: action,
-    cursor: observable,
-    setCursor: action,
-    open: observable,
-    toggleOpen: action,
-    elementPosition: observable,
-    setElementPosition: action,
-});

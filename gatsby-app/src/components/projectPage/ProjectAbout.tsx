@@ -1,6 +1,6 @@
 import React from 'react';
 import { observer } from 'mobx-react';
-import { MDXRenderer } from 'gatsby-plugin-mdx';
+// import { MDXRenderer } from 'gatsby-plugin-mdx';
 // Imports from src
 import {
     About,
@@ -19,7 +19,7 @@ interface IProps {
     project: IProject;
 }
 
-const ProjectAbout: React.FC<IProps> = ({ project }): JSX.Element => {
+const ProjectAbout: React.FC<IProps> = ({ project, children }): JSX.Element => {
     const { title, subtitle, repoLink, liveLink } = project.frontmatter;
 
     const store = useStore();
@@ -39,7 +39,7 @@ const ProjectAbout: React.FC<IProps> = ({ project }): JSX.Element => {
                     {title} <br /> {subtitle}
                 </h2>
 
-                <MDXRenderer>{project.body}</MDXRenderer>
+                {children}
 
                 <ProjectLinks>
                     <ProjectLink

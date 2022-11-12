@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { graphql, Link, useStaticQuery } from 'gatsby';
-import Image from 'gatsby-image';
+import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 import { motion } from 'framer-motion';
 // Imports from src
 import {
@@ -18,10 +18,6 @@ import { IProject } from '../../models/project';
 import { useSectionAnimation } from '../../hooks/useSectionAnimation';
 import { Cursor } from '../../models/cursor';
 
-interface Project {
-    node: IProject;
-}
-
 const HomeFeatured = (): JSX.Element => {
     const { allMdx } = useStaticQuery(graphql`
         query {
@@ -33,19 +29,17 @@ const HomeFeatured = (): JSX.Element => {
                     }
                 }
             ) {
-                edges {
-                    node {
+                nodes {
+                    fields {
                         slug
-                        frontmatter {
-                            title
-                            subtitle
-                            year(formatString: "YYYY")
-                            cover {
-                                childImageSharp {
-                                    fluid(maxWidth: 1400, quality: 100) {
-                                        ...GatsbyImageSharpFluid
-                                    }
-                                }
+                    }
+                    frontmatter {
+                        title
+                        subtitle
+                        year(formatString: "YYYY")
+                        cover {
+                            childImageSharp {
+                                gatsbyImageData(layout: CONSTRAINED)
                             }
                         }
                     }
@@ -54,8 +48,9 @@ const HomeFeatured = (): JSX.Element => {
         }
     `);
 
-    const project: Project = allMdx.edges[0];
-    const { title, subtitle, year, cover } = project.node.frontmatter;
+    const project: IProject = allMdx.nodes[0];
+    const { title, subtitle, year, cover } = project.frontmatter;
+    const projectCover = getImage(cover);
 
     const { ref, animation } = useSectionAnimation();
 
@@ -85,7 +80,7 @@ const HomeFeatured = (): JSX.Element => {
                 </Flex>
             </FeaturedSectionTitle>
 
-            <Link to={project.node.slug}>
+            <Link to={project.fields.slug}>
                 <motion.div
                     onMouseEnter={() => setCursor(Cursor.Hovered)}
                     onMouseLeave={() => setCursor()}
@@ -93,11 +88,13 @@ const HomeFeatured = (): JSX.Element => {
                     onHoverEnd={() => setHovered(!hovered)}
                 >
                     <FeaturedImage>
-                        <Image
-                            fluid={cover.childImageSharp.fluid}
-                            alt="Project"
-                            className="img-fluid"
-                        />
+                        {projectCover && (
+                            <GatsbyImage
+                                image={projectCover}
+                                alt="Project"
+                                className="img-fluid"
+                            />
+                        )}
                     </FeaturedImage>
 
                     <FeaturedProjectTitle>

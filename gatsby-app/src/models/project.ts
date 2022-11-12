@@ -1,9 +1,12 @@
-import { IChildImageSharp } from './image';
+import { IImage } from './image';
+import { ImageDataLike } from 'gatsby-plugin-image';
 
 export interface IProject {
     id: string;
     body: string;
-    slug: string;
+    fields: {
+        slug: string;
+    };
     frontmatter: {
         category: string;
         title: string;
@@ -12,8 +15,8 @@ export interface IProject {
         featured: boolean;
         repoLink: string;
         liveLink: string;
-        cover: IChildImageSharp;
-        images: IChildImageSharp[];
+        cover: ImageDataLike;
+        images: ImageDataLike[];
         metaDescription: string;
     };
 }

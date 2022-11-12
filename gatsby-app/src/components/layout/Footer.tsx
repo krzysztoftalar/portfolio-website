@@ -73,11 +73,11 @@ const Footer = (): JSX.Element => {
         >
             <FooterEmail navOpen={open}>
                 <a
-                    href="mailto:krzysztofTalar@protonmail.com"
+                    href="mailto:krzysztof.talar@protonmail.com"
                     onMouseEnter={onEmailHover}
                     onMouseLeave={() => setCursor()}
                 >
-                    krzysztofTalar@protonmail.com
+                    krzysztof.talar@protonmail.com
                 </a>
             </FooterEmail>
 

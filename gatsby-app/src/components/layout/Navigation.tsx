@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react';
 import { graphql, Link, useStaticQuery } from 'gatsby';
-import Image from 'gatsby-image';
+import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 import { observer } from 'mobx-react';
 import { AnimatePresence, motion } from 'framer-motion';
 // Imports from src
@@ -28,30 +28,24 @@ import useTimeOut from '../../hooks/useTimeout';
 import useBodyClass from '../../hooks/useBodyClass';
 import { ease } from '../../styles/base/globalVariants';
 
-interface Project {
-    node: IProject;
-}
-
 const Navigation = (): JSX.Element => {
     const { allMdx } = useStaticQuery(graphql`
         query {
             allMdx(
                 filter: { frontmatter: { category: { eq: "projects" } } }
-                sort: { order: ASC, fields: frontmatter___year }
+                sort: { frontmatter: { year: ASC } }
             ) {
-                edges {
-                    node {
-                        id
+                nodes {
+                    id
+                    fields {
                         slug
-                        frontmatter {
-                            title
-                            subtitle
-                            cover {
-                                childImageSharp {
-                                    fluid(maxWidth: 1400, quality: 100) {
-                                        ...GatsbyImageSharpFluid
-                                    }
-                                }
+                    }
+                    frontmatter {
+                        title
+                        subtitle
+                        cover {
+                            childImageSharp {
+                                gatsbyImageData(layout: CONSTRAINED)
                             }
                         }
                     }
@@ -66,8 +60,8 @@ const Navigation = (): JSX.Element => {
     });
     const [isAnimationEnd, setIsAnimationEnd] = useState(false);
 
-    const projects: Project[] = allMdx.edges;
-    const { cover } = projects[project.key].node.frontmatter;
+    const projects: IProject[] = allMdx.nodes;
+    const cover = getImage(projects[project.key].frontmatter.cover);
 
     const store = useStore();
     const { toggleOpen, open, setCursor, setElementPosition } = store.uiStore;
@@ -122,9 +116,8 @@ const Navigation = (): JSX.Element => {
                                 {projects.map((item, index) => {
                                     const {
                                         id,
-                                        slug,
                                         frontmatter: { title, subtitle },
-                                    } = item.node;
+                                    } = item;
 
                                     return (
                                         <motion.li
@@ -148,7 +141,7 @@ const Navigation = (): JSX.Element => {
                                             variants={linkItemVariants}
                                         >
                                             <Link
-                                                to={`/${slug}`}
+                                                to={`${item.fields.slug}`}
                                                 onClick={() => toggleOpen()}
                                             >
                                                 <motion.div
@@ -182,7 +175,7 @@ const Navigation = (): JSX.Element => {
                                 className="reveal"
                             />
 
-                            <AnimatePresence initial={false} exitBeforeEnter>
+                            <AnimatePresence initial={false} mode="wait">
                                 <motion.div
                                     className="img"
                                     initial={{ opacity: 0 }}
@@ -194,11 +187,13 @@ const Navigation = (): JSX.Element => {
                                     exit={{ opacity: 0 }}
                                     key={project.key}
                                 >
-                                    <Image
-                                        fluid={cover.childImageSharp.fluid}
-                                        alt="Project"
-                                        className="img-fluid"
-                                    />
+                                    {cover && (
+                                        <GatsbyImage
+                                            image={cover}
+                                            alt="Project"
+                                            className="img-fluid"
+                                        />
+                                    )}
                                 </motion.div>
                             </AnimatePresence>
                         </NavImages>
@@ -206,13 +201,13 @@ const Navigation = (): JSX.Element => {
                         <NavFooterWrapper>
                             <FooterEmail navOpen={open}>
                                 <a
-                                    href="mailto:krzysztofTalar@protonmail.com"
+                                    href="mailto:krzysztof.talar@protonmail.com"
                                     onMouseEnter={() =>
                                         setCursor(Cursor.Pointer)
                                     }
                                     onMouseLeave={() => setCursor()}
                                 >
-                                    krzysztofTalar@protonmail.com
+                                    krzysztof.talar@protonmail.com
                                 </a>
                             </FooterEmail>
 

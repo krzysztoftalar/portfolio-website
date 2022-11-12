@@ -49,7 +49,7 @@ export default Project;
 
 export const query = graphql`
     query ProjectBySlug($slug: String!) {
-        mdx(slug: { eq: $slug }) {
+        mdx(fields: { slug: { eq: $slug } }) {
             body
             frontmatter {
                 title
@@ -59,9 +59,7 @@ export const query = graphql`
                 metaDescription
                 images {
                     childImageSharp {
-                        fluid(maxWidth: 1400, quality: 100) {
-                            ...GatsbyImageSharpFluid
-                        }
+                        gatsbyImageData(layout: CONSTRAINED)
                     }
                 }
             }

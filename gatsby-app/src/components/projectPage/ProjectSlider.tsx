@@ -1,14 +1,13 @@
 import React from 'react';
-import Image from 'gatsby-image';
+import { GatsbyImage, ImageDataLike, getImage } from 'gatsby-plugin-image';
 // Imports from src
 import { ProjectSliderSection } from '../../styles/pages/projectStyles';
 import { sectionVariants } from '../../styles/base/globalVariants';
-import { IChildImageSharp } from '../../models/image';
 import { useSectionAnimation } from '../../hooks/useSectionAnimation';
 import Carousel from '../ui/Carousel';
 
 interface IProps {
-    images: IChildImageSharp[];
+    images: ImageDataLike[];
 }
 
 const ProjectSlider: React.FC<IProps> = ({ images }: IProps): JSX.Element => {
@@ -22,11 +21,15 @@ const ProjectSlider: React.FC<IProps> = ({ images }: IProps): JSX.Element => {
             variants={sectionVariants}
         >
             <Carousel>
-                {images.map((img, index) => (
-                    <div key={index} className="img-fluid">
-                        <Image fluid={img.childImageSharp.fluid} />
-                    </div>
-                ))}
+                {images.map((img, index) => {
+                    const image = getImage(img);
+
+                    return (
+                        <div key={index} className="img-fluid">
+                            <GatsbyImage image={image} alt="Project" />
+                        </div>
+                    );
+                })}
             </Carousel>
         </ProjectSliderSection>
     );
