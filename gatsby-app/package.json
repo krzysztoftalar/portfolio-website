@@ -4,6 +4,9 @@
     "description": "A simplified bare-bones starter for Gatsby",
     "version": "0.1.0",
     "license": "0BSD",
+    "engines": {
+        "node": ">=18.9.0"
+    },
     "scripts": {
         "start": "npm run develop",
         "build": "gatsby build",
