@@ -14,8 +14,7 @@
         "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json}\"",
         "eslint": "eslint --ignore-path .gitignore . --ext ts --ext tsx --ext js --ext jsx",
         "eslint:fix": "eslint --fix \"**/*.{js,jsx,ts,tsx,json}\"",
-        "lint:css": "stylelint \"**/*.{js,jsx,ts,tsx}\"",
-        "build-ui-prod": "npm install --legacy-per-deps && gatsby build"
+        "lint:css": "stylelint \"**/*.{js,jsx,ts,tsx}\""
     },
     "dependencies": {
         "@loadable/component": "^5.15.2",
