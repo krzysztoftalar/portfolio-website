@@ -20,7 +20,11 @@ exports.onCreateNode = ({ node, getNode, actions: { createNodeField } }) => {
     }
 };
 
-exports.createPages = async ({ actions, graphql, reporter }) => {
+exports.createPages = async ({
+    actions: { createPage },
+    graphql,
+    reporter,
+}) => {
     const result = await graphql(`
         query {
             allMdx(
@@ -31,12 +35,18 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
                     fields {
                         slug
                     }
+                    internal {
+                        contentFilePath
+                    }
                     frontmatter {
                         title
                         subtitle
                         cover {
                             childImageSharp {
-                                gatsbyImageData(layout: CONSTRAINED)
+                                gatsbyImageData(
+                                    layout: CONSTRAINED
+                                    placeholder: BLURRED
+                                )
                             }
                         }
                     }
@@ -49,7 +59,6 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
         reporter.panicOnBuild('🚨 ERROR: Loading "createPages" query');
     }
 
-    const { createPage } = actions;
     const projectTemplate = path.resolve(`src/templates/project.tsx`);
 
     const projects = result.data.allMdx.nodes;
@@ -63,7 +72,7 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
 
         createPage({
             path: `${project.fields.slug}`,
-            component: projectTemplate,
+            component: `${projectTemplate}?__contentFilePath=${project.internal.contentFilePath}`,
             context: {
                 slug: `${project.fields.slug}`,
                 previousProject,

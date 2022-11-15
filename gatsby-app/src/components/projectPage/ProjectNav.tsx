@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'gatsby';
 import { observer } from 'mobx-react';
+import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 // Imports from src
 import { IProject } from '../../models/project';
 import {
@@ -16,7 +17,6 @@ import useWindowSize from '../../hooks/useWindowSize';
 import { useSectionAnimation } from '../../hooks/useSectionAnimation';
 import { Cursor } from '../../models/cursor';
 import { ease } from '../../styles/base/globalVariants';
-import { getImage } from 'gatsby-plugin-image';
 
 interface IProps {
     previousProject: IProject;
@@ -48,18 +48,18 @@ const ProjectNav: React.FC<IProps> = ({
             onMouseLeave={() => setCursor()}
         >
             <PrevProject
-                prev
+                $prev
                 ref={ref}
                 initial="initial"
                 animate={animation}
                 variants={prevProjectVariants}
             >
                 <Link
-                    to={`/${previousProject.fields.slug}`}
+                    to={`${previousProject.fields.slug}`}
                     className="project-link"
                 >
                     <ProjectTitle
-                        prev
+                        $prev
                         onHoverStart={() =>
                             setProject({
                                 show: true,
@@ -99,11 +99,13 @@ const ProjectNav: React.FC<IProps> = ({
                             ease: 'easeInOut',
                         }}
                     >
-                        <img
-                            className="img-fluid"
-                            src={previousProjectCover}
-                            alt=""
-                        />
+                        {previousProjectCover && (
+                            <GatsbyImage
+                                image={previousProjectCover}
+                                className="img-fluid"
+                                alt=""
+                            />
+                        )}
                     </ProjectImage>
                 </Link>
             </PrevProject>
@@ -115,7 +117,7 @@ const ProjectNav: React.FC<IProps> = ({
                 variants={nextProjectVariants}
             >
                 <Link
-                    to={`/${nextProject.fields.slug}`}
+                    to={`${nextProject.fields.slug}`}
                     className="project-link"
                 >
                     <ProjectTitle
@@ -157,11 +159,13 @@ const ProjectNav: React.FC<IProps> = ({
                             ease: 'easeInOut',
                         }}
                     >
-                        <img
-                            className="img-fluid"
-                            src={nextProjectCover}
-                            alt=""
-                        />
+                        {nextProjectCover && (
+                            <GatsbyImage
+                                image={nextProjectCover}
+                                className="img-fluid"
+                                alt=""
+                            />
+                        )}
                     </ProjectImage>
                 </Link>
             </NextProject>

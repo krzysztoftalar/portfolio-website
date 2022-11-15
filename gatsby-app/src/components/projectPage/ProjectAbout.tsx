@@ -1,6 +1,6 @@
 import React from 'react';
 import { observer } from 'mobx-react';
-// import { MDXRenderer } from 'gatsby-plugin-mdx';
+import { MDXProvider } from '@mdx-js/react';
 // Imports from src
 import {
     About,
@@ -17,6 +17,7 @@ import { Cursor } from '../../models/cursor';
 
 interface IProps {
     project: IProject;
+    children: React.ReactNode;
 }
 
 const ProjectAbout: React.FC<IProps> = ({ project, children }): JSX.Element => {
@@ -39,7 +40,7 @@ const ProjectAbout: React.FC<IProps> = ({ project, children }): JSX.Element => {
                     {title} <br /> {subtitle}
                 </h2>
 
-                {children}
+                <MDXProvider>{children}</MDXProvider>
 
                 <ProjectLinks>
                     <ProjectLink

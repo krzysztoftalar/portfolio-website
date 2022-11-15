@@ -1,4 +1,3 @@
-import { IImage } from './image';
 import { ImageDataLike } from 'gatsby-plugin-image';
 
 export interface IProject {

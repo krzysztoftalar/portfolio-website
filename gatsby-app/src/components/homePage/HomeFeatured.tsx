@@ -75,7 +75,7 @@ const HomeFeatured = (): JSX.Element => {
                             ease: ease,
                         }}
                     >
-                        {year}
+                        {year.toString()}
                     </motion.h4>
                 </Flex>
             </FeaturedSectionTitle>

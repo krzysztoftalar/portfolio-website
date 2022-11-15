@@ -26,7 +26,9 @@ const ProjectSlider: React.FC<IProps> = ({ images }: IProps): JSX.Element => {
 
                     return (
                         <div key={index} className="img-fluid">
-                            <GatsbyImage image={image} alt="Project" />
+                            {image && (
+                                <GatsbyImage image={image} alt="Project" />
+                            )}
                         </div>
                     );
                 })}

@@ -1,6 +1,6 @@
 module.exports = {
     siteMetadata: {
-        title: `Front-end & Back-end Developer`,
+        title: `Full-Stack Developer`,
         description: `Krzysztof is a Full-Stack Developer based in Poland.`,
         author: `Krzysztof Talar`,
         url: 'https://www.sivonte.com',
@@ -16,9 +16,17 @@ module.exports = {
         ],
     },
     plugins: [
-        `gatsby-plugin-image`,
-        `gatsby-plugin-sharp`,
-        `gatsby-transformer-sharp`,
+        {
+            resolve: `gatsby-plugin-sharp`,
+            options: {
+                defaults: {
+                    quality: 100,
+                },
+            },
+        },
+        'gatsby-transformer-sharp',
+        'gatsby-plugin-image',
+        'gatsby-plugin-mdx',
         {
             resolve: `gatsby-source-filesystem`,
             options: {
@@ -43,24 +51,20 @@ module.exports = {
         {
             resolve: `gatsby-source-filesystem`,
             options: {
-                name: `content`,
+                name: `data`,
                 path: `${__dirname}/src/data`,
+            },
+        },
+        {
+            resolve: `gatsby-source-filesystem`,
+            options: {
+                name: `pages`,
+                path: `${__dirname}/src/pages`,
             },
         },
         `gatsby-plugin-typescript`,
         `gatsby-plugin-styled-components`,
         `gatsby-plugin-react-helmet`,
-        {
-            resolve: `gatsby-plugin-mdx`,
-            options: {
-                extensions: [`.mdx`, `.md`],
-                gatsbyRemarkPlugins: [
-                    {
-                        resolve: `gatsby-remark-images`,
-                    },
-                ],
-            },
-        },
         {
             resolve: 'gatsby-plugin-web-font-loader',
             options: {

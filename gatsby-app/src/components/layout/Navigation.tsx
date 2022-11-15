@@ -45,7 +45,10 @@ const Navigation = (): JSX.Element => {
                         subtitle
                         cover {
                             childImageSharp {
-                                gatsbyImageData(layout: CONSTRAINED)
+                                gatsbyImageData(
+                                    layout: CONSTRAINED
+                                    placeholder: BLURRED
+                                )
                             }
                         }
                     }
@@ -61,7 +64,7 @@ const Navigation = (): JSX.Element => {
     const [isAnimationEnd, setIsAnimationEnd] = useState(false);
 
     const projects: IProject[] = allMdx.nodes;
-    const cover = getImage(projects[project.key].frontmatter.cover);
+    const projectCover = getImage(projects[project.key].frontmatter.cover);
 
     const store = useStore();
     const { toggleOpen, open, setCursor, setElementPosition } = store.uiStore;
@@ -139,13 +142,20 @@ const Navigation = (): JSX.Element => {
                                             }
                                             onMouseLeave={() => setCursor()}
                                             variants={linkItemVariants}
+                                            initial={linkItemVariants.initial}
+                                            animate={linkItemVariants.animate}
                                         >
                                             <Link
                                                 to={`${item.fields.slug}`}
                                                 onClick={() => toggleOpen()}
                                             >
                                                 <motion.div
-                                                    whileHover="whileHover"
+                                                    whileHover={
+                                                        arrowVariants.whileHover
+                                                    }
+                                                    initial={
+                                                        arrowVariants.initial
+                                                    }
                                                     variants={arrowVariants}
                                                     className="link"
                                                 >
@@ -187,9 +197,9 @@ const Navigation = (): JSX.Element => {
                                     exit={{ opacity: 0 }}
                                     key={project.key}
                                 >
-                                    {cover && (
+                                    {projectCover && (
                                         <GatsbyImage
-                                            image={cover}
+                                            image={projectCover}
                                             alt="Project"
                                             className="img-fluid"
                                         />
