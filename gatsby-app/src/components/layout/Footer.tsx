@@ -9,6 +9,7 @@ import {
     FooterWrapper,
 } from '../../styles/layout/footerStyles';
 import { Cursor } from '../../models/cursor';
+import { CONTACT_EMAIL, COPYRIGHT } from '../../utils/constants';
 
 const Footer = (): JSX.Element => {
     const store = useStore();
@@ -73,16 +74,16 @@ const Footer = (): JSX.Element => {
         >
             <FooterEmail navOpen={open}>
                 <a
-                    href="mailto:krzysztofTalar@protonmail.com"
+                    href={`mailto:${CONTACT_EMAIL}"`}
                     onMouseEnter={onEmailHover}
                     onMouseLeave={() => setCursor()}
                 >
-                    krzysztofTalar@protonmail.com
+                    {CONTACT_EMAIL}
                 </a>
             </FooterEmail>
 
             <FooterCopyrights>
-                <p>&copy; Sivonte {new Date().getFullYear()}</p>
+                <p>{COPYRIGHT}</p>
             </FooterCopyrights>
 
             <FooterSocial navOpen={open}>

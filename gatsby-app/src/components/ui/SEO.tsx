@@ -1,6 +1,7 @@
 import React from 'react';
 import { graphql, useStaticQuery } from 'gatsby';
 import { Helmet } from 'react-helmet';
+import { COMPANY_NAME, GITHUB_URL, LINKEDIN_URL } from '../../utils/constants';
 
 type Meta =
     | {
@@ -29,11 +30,14 @@ const SEO: React.FC<Props> = ({
 }): JSX.Element => {
     const { site } = useStaticQuery(detailsQuery);
 
-    const metaTitle = `Sivonte: ${title ? title : site.siteMetadata.title}`;
+    const metaTitle = `${COMPANY_NAME} | ${
+        title ? title : site.siteMetadata.title
+    }`;
     const metaDescription = description || site.siteMetadata.description;
     const metaKeywords = site.siteMetadata.keywords;
 
     return (
+        // TODO Replace Helmet with built-in solution in Gatsby
         <Helmet
             htmlAttributes={{
                 lang,
@@ -63,15 +67,15 @@ const SEO: React.FC<Props> = ({
                 },
                 {
                     property: 'og:site_name',
-                    content: 'Sivonte',
+                    content: { COMPANY_NAME },
                 },
                 {
                     property: 'og:see_also',
-                    content: 'https://www.linkedin.com/in/ktalar/',
+                    content: { LINKEDIN_URL },
                 },
                 {
                     property: 'og:see_also',
-                    content: 'https://github.com/krzysztoftalar',
+                    content: { GITHUB_URL },
                 },
                 {
                     property: 'og:locale',

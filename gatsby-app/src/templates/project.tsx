@@ -12,6 +12,7 @@ interface IProps {
     data: {
         mdx: IProject;
     };
+    children: React.ReactNode;
     pageContext: {
         slug: string;
         previousProject: IProject;
@@ -22,6 +23,7 @@ interface IProps {
 
 const Project: React.FC<IProps> = ({
     data,
+    children,
     pageContext,
     location,
 }: IProps): JSX.Element => {
@@ -36,7 +38,7 @@ const Project: React.FC<IProps> = ({
                 description={project.frontmatter.metaDescription}
             />
             <ProjectSlider images={project.frontmatter.images} />
-            <ProjectAbout project={project} />
+            <ProjectAbout project={project}>{children}</ProjectAbout>
             <ProjectNav
                 previousProject={previousProject}
                 nextProject={nextProject}
@@ -49,7 +51,7 @@ export default Project;
 
 export const query = graphql`
     query ProjectBySlug($slug: String!) {
-        mdx(slug: { eq: $slug }) {
+        mdx(fields: { slug: { eq: $slug } }) {
             body
             frontmatter {
                 title
@@ -59,9 +61,10 @@ export const query = graphql`
                 metaDescription
                 images {
                     childImageSharp {
-                        fluid(maxWidth: 1400, quality: 100) {
-                            ...GatsbyImageSharpFluid
-                        }
+                        gatsbyImageData(
+                            layout: CONSTRAINED
+                            placeholder: BLURRED
+                        )
                     }
                 }
             }

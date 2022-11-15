@@ -1,6 +1,6 @@
 import React from 'react';
 import { observer } from 'mobx-react';
-import { useSpring, useTransform, useViewportScroll } from 'framer-motion';
+import { useScroll, useSpring, useTransform } from 'framer-motion';
 import loadable from '@loadable/component';
 // Imports from src
 import { HomeBannerSection } from '../../../styles/pages/homeStyles';
@@ -12,7 +12,7 @@ const BannerTitle = loadable(() => import('./BannerTitle'));
 
 const HomeBanner = (): JSX.Element => {
     // Move video up on scroll
-    const { scrollYProgress } = useViewportScroll();
+    const { scrollYProgress } = useScroll();
     const yRange = useTransform(scrollYProgress, [0, 0.5], [0, -600]);
     const y = useSpring(yRange, {
         stiffness: 300,

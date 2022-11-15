@@ -9,34 +9,27 @@ import { useSectionAnimation } from '../../hooks/useSectionAnimation';
 import { Cursor } from '../../models/cursor';
 
 interface Skill {
-    node: {
-        frontmatter: {
-            title: string;
-            results: string[];
-        };
+    frontmatter: {
+        title: string;
+        results: string[];
     };
 }
 
 const HomeAbout = (): JSX.Element => {
     const { allMdx } = useStaticQuery(graphql`
         query {
-            allMdx(
-                filter: { frontmatter: { category: { eq: "skills" } } }
-                sort: { order: ASC, fields: fileAbsolutePath }
-            ) {
-                edges {
-                    node {
-                        frontmatter {
-                            results
-                            title
-                        }
+            allMdx(filter: { frontmatter: { category: { eq: "skills" } } }) {
+                nodes {
+                    frontmatter {
+                        results
+                        title
                     }
                 }
             }
         }
     `);
 
-    const skills: Skill[] = allMdx.edges;
+    const skills: Skill[] = allMdx.nodes;
 
     const store = useStore();
     const { setCursor } = store.uiStore;
@@ -77,7 +70,7 @@ const HomeAbout = (): JSX.Element => {
                     {skills.map((item, index) => (
                         <Accordion
                             key={index}
-                            details={item.node.frontmatter}
+                            details={item.frontmatter}
                             index={index}
                             expanded={expanded}
                             setExpanded={setExpanded}

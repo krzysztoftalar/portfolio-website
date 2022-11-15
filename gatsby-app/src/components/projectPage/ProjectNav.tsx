@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'gatsby';
 import { observer } from 'mobx-react';
+import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 // Imports from src
 import { IProject } from '../../models/project';
 import {
@@ -31,6 +32,9 @@ const ProjectNav: React.FC<IProps> = ({
         key: '',
     });
 
+    const previousProjectCover = getImage(previousProject.frontmatter.cover);
+    const nextProjectCover = getImage(nextProject.frontmatter.cover);
+
     const store = useStore();
     const { setCursor } = store.uiStore;
 
@@ -44,25 +48,28 @@ const ProjectNav: React.FC<IProps> = ({
             onMouseLeave={() => setCursor()}
         >
             <PrevProject
-                prev
+                $prev
                 ref={ref}
                 initial="initial"
                 animate={animation}
                 variants={prevProjectVariants}
             >
-                <Link to={`/${previousProject.slug}`} className="project-link">
+                <Link
+                    to={`${previousProject.fields.slug}`}
+                    className="project-link"
+                >
                     <ProjectTitle
-                        prev
+                        $prev
                         onHoverStart={() =>
                             setProject({
                                 show: true,
-                                key: previousProject.slug,
+                                key: previousProject.fields.slug,
                             })
                         }
                         onHoverEnd={() =>
                             setProject({
                                 show: false,
-                                key: previousProject.slug,
+                                key: previousProject.fields.slug,
                             })
                         }
                         onMouseEnter={() => setCursor(Cursor.Pointer)}
@@ -82,7 +89,8 @@ const ProjectNav: React.FC<IProps> = ({
                                 width < 1200
                                     ? 1
                                     : project.show &&
-                                      project.key === previousProject.slug
+                                      project.key ===
+                                          previousProject.fields.slug
                                     ? 1
                                     : 0,
                         }}
@@ -91,14 +99,13 @@ const ProjectNav: React.FC<IProps> = ({
                             ease: 'easeInOut',
                         }}
                     >
-                        <img
-                            className="img-fluid"
-                            src={
-                                previousProject.frontmatter.cover
-                                    .childImageSharp.fluid.originalImg
-                            }
-                            alt=""
-                        />
+                        {previousProjectCover && (
+                            <GatsbyImage
+                                image={previousProjectCover}
+                                className="img-fluid"
+                                alt=""
+                            />
+                        )}
                     </ProjectImage>
                 </Link>
             </PrevProject>
@@ -109,18 +116,21 @@ const ProjectNav: React.FC<IProps> = ({
                 animate={animation}
                 variants={nextProjectVariants}
             >
-                <Link to={`/${nextProject.slug}`} className="project-link">
+                <Link
+                    to={`${nextProject.fields.slug}`}
+                    className="project-link"
+                >
                     <ProjectTitle
                         onHoverStart={() =>
                             setProject({
                                 show: true,
-                                key: nextProject.slug,
+                                key: nextProject.fields.slug,
                             })
                         }
                         onHoverEnd={() =>
                             setProject({
                                 show: false,
-                                key: nextProject.slug,
+                                key: nextProject.fields.slug,
                             })
                         }
                         onMouseEnter={() => setCursor(Cursor.Pointer)}
@@ -140,7 +150,7 @@ const ProjectNav: React.FC<IProps> = ({
                                 width < 1200
                                     ? 1
                                     : project.show &&
-                                      project.key === nextProject.slug
+                                      project.key === nextProject.fields.slug
                                     ? 1
                                     : 0,
                         }}
@@ -149,14 +159,13 @@ const ProjectNav: React.FC<IProps> = ({
                             ease: 'easeInOut',
                         }}
                     >
-                        <img
-                            className="img-fluid"
-                            src={
-                                nextProject.frontmatter.cover.childImageSharp
-                                    .fluid.originalImg
-                            }
-                            alt=""
-                        />
+                        {nextProjectCover && (
+                            <GatsbyImage
+                                image={nextProjectCover}
+                                className="img-fluid"
+                                alt=""
+                            />
+                        )}
                     </ProjectImage>
                 </Link>
             </NextProject>

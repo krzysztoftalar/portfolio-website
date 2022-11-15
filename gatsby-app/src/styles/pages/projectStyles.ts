@@ -168,7 +168,7 @@ const projectWrapper = css`
     }
 `;
 
-export const PrevProject = styled(motion.div)<{ prev: boolean }>`
+export const PrevProject = styled(motion.div)<{ $prev: boolean }>`
     ${projectWrapper}
 
     grid-column: center-start / col-end 4;
@@ -176,7 +176,7 @@ export const PrevProject = styled(motion.div)<{ prev: boolean }>`
 
     .project-link {
         ${(props) =>
-            props.prev &&
+            props.$prev &&
             css`
                 justify-content: flex-end;
             `}
@@ -190,14 +190,14 @@ export const NextProject = styled(motion.div)`
     padding-left: 1rem;
 `;
 
-export const ProjectTitle = styled(motion.div)<{ prev?: boolean }>`
+export const ProjectTitle = styled(motion.div)<{ $prev?: boolean }>`
     position: absolute;
     z-index: 1;
     transform: translateY(-50%);
     top: 50%;
 
     ${(props) =>
-        props.prev
+        props.$prev
             ? css`
                   left: 0;
 

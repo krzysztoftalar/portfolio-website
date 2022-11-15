@@ -4,6 +4,7 @@ import { useElementPosition } from '../../hooks/useElementPosition';
 import { useStore } from '../../hooks/useStore';
 import SVG from './SVG';
 import { Cursor } from '../../models/cursor';
+import { GITHUB_URL, LINKEDIN_URL } from '../../utils/constants';
 
 interface IProps {
     isAnimationEnd: boolean;
@@ -36,7 +37,7 @@ const SocialLinks: React.FC<IProps> = ({
                     onLinkHover(linkedinPosition.x, linkedinPosition.y)
                 }
                 onMouseLeave={() => setCursor()}
-                href="https://www.linkedin.com/in/ktalar"
+                href={LINKEDIN_URL}
                 ref={linkedinRef}
                 target="_blank"
                 rel="noreferrer noopener"
@@ -49,7 +50,7 @@ const SocialLinks: React.FC<IProps> = ({
                     onLinkHover(githubPosition.x, githubPosition.y)
                 }
                 onMouseLeave={() => setCursor()}
-                href="https://github.com/krzysztoftalar"
+                href={GITHUB_URL}
                 ref={githubRef}
                 target="_blank"
                 rel="noreferrer noopener"
