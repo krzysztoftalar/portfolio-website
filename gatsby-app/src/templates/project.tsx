@@ -12,7 +12,7 @@ interface IProps {
     data: {
         mdx: IProject;
     };
-    children: any;
+    children: React.ReactNode;
     pageContext: {
         slug: string;
         previousProject: IProject;

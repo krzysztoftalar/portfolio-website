@@ -6,9 +6,9 @@ import { isBrowser, isMobile } from 'react-device-detect';
 import { useStore } from '../../../hooks/useStore';
 import useWindowSize from '../../../hooks/useWindowSize';
 import { CanvasWrapper } from '../../../styles/pages/homeStyles';
-import { black, white } from '../../../styles/base/variables';
 import { Drag } from '../../../styles/components/cursorStyles';
 import { Cursor } from '../../../models/cursor';
+import { darkTheme, lightTheme } from '../../../styles/base/themes';
 
 const midPointBtw = (
     p1: { x: number; y: number },
@@ -39,7 +39,7 @@ const Canvas: React.FC<Props> = ({ top }) => {
 
     // Render canvas
     const canvasRef = useCallback(
-        (node) => {
+        (node: any) => {
             if (node !== null) {
                 renderingElement = node;
                 drawingElement = renderingElement.cloneNode();
@@ -47,7 +47,10 @@ const Canvas: React.FC<Props> = ({ top }) => {
                 renderingCtx = renderingElement.getContext('2d');
 
                 renderingCtx.globalCompositeOperation = 'source-over';
-                renderingCtx.fillStyle = theme === 'dark' ? black : white;
+                renderingCtx.fillStyle =
+                    theme === 'dark'
+                        ? darkTheme.background
+                        : lightTheme.background;
                 renderingCtx.fillRect(0, 0, width, height);
 
                 drawingCtx.globalCompositeOperation = 'source-over';

@@ -27,6 +27,7 @@ import { Cursor } from '../../models/cursor';
 import useTimeOut from '../../hooks/useTimeout';
 import useBodyClass from '../../hooks/useBodyClass';
 import { ease } from '../../styles/base/globalVariants';
+import { CONTACT_EMAIL, COPYRIGHT } from '../../utils/constants';
 
 const Navigation = (): JSX.Element => {
     const { allMdx } = useStaticQuery(graphql`
@@ -211,18 +212,18 @@ const Navigation = (): JSX.Element => {
                         <NavFooterWrapper>
                             <FooterEmail navOpen={open}>
                                 <a
-                                    href="mailto:krzysztof.talar@protonmail.com"
+                                    href={`mailto:${CONTACT_EMAIL}`}
                                     onMouseEnter={() =>
                                         setCursor(Cursor.Pointer)
                                     }
                                     onMouseLeave={() => setCursor()}
                                 >
-                                    krzysztof.talar@protonmail.com
+                                    {CONTACT_EMAIL}
                                 </a>
                             </FooterEmail>
 
                             <FooterCopyrights>
-                                <p>&copy; Sivonte {new Date().getFullYear()}</p>
+                                <p>{COPYRIGHT}</p>
                             </FooterCopyrights>
 
                             <FooterSocial navOpen={open}>

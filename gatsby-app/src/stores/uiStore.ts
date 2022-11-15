@@ -2,6 +2,7 @@ import { reaction, makeAutoObservable } from 'mobx';
 // Imports from src
 import RootStore from './rootStore';
 import { Cursor } from '../models/cursor';
+import { THEME_KEY } from '../utils/constants';
 
 export default class UIStore {
     rootStore: RootStore;
@@ -15,7 +16,7 @@ export default class UIStore {
             () => this.theme,
             (theme) => {
                 if (theme) {
-                    window.localStorage.setItem('theme', theme);
+                    window.localStorage.setItem(THEME_KEY, theme);
                 }
             }
         );

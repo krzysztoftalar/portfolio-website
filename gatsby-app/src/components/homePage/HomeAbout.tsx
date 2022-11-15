@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { graphql, useStaticQuery, Script } from 'gatsby';
+import { graphql, useStaticQuery } from 'gatsby';
 // Imports from src
 import { About, HomeAboutSection, Skills } from '../../styles/pages/homeStyles';
 import Accordion from '../ui/Accordion';
@@ -18,9 +18,7 @@ interface Skill {
 const HomeAbout = (): JSX.Element => {
     const { allMdx } = useStaticQuery(graphql`
         query {
-            allMdx(
-                filter: { frontmatter: { category: { eq: "skills" } } } #                sort: { order: ASC, fields: fileAbsolutePath }
-            ) {
+            allMdx(filter: { frontmatter: { category: { eq: "skills" } } }) {
                 nodes {
                     frontmatter {
                         results

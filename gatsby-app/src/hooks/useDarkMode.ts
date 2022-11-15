@@ -3,6 +3,7 @@ import { DefaultTheme } from 'styled-components';
 // Imports from src
 import { useStore } from './useStore';
 import { darkTheme, lightTheme } from '../styles/base/themes';
+import { DARK_THEME_KEY, LIGHT_THEME_KEY, THEME_KEY } from '../utils/constants';
 
 export const useDarkMode = (): {
     toggleTheme: () => void;
@@ -12,25 +13,25 @@ export const useDarkMode = (): {
     const { theme, setTheme } = store.uiStore;
 
     const toggleTheme = () => {
-        if (theme === 'dark') {
-            setTheme('light');
+        if (theme === DARK_THEME_KEY) {
+            setTheme(LIGHT_THEME_KEY);
         } else {
-            setTheme('dark');
+            setTheme(DARK_THEME_KEY);
         }
     };
 
-    const themeMode = theme === 'dark' ? darkTheme : lightTheme;
+    const themeMode = theme === DARK_THEME_KEY ? darkTheme : lightTheme;
 
     useEffect(() => {
-        const theme = window.localStorage.getItem('theme');
+        const theme = window.localStorage.getItem(THEME_KEY);
 
         window.matchMedia &&
         window.matchMedia('(prefers-color-scheme: dark)').matches &&
         !theme
-            ? setTheme('dark')
+            ? setTheme(DARK_THEME_KEY)
             : theme
             ? setTheme(theme)
-            : setTheme('light');
+            : setTheme(LIGHT_THEME_KEY);
     }, [setTheme]);
 
     return { toggleTheme, themeMode };
