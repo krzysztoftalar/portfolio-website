@@ -30,6 +30,7 @@ jobs:
           app_location: "/gatsby-app" # App source code path
           api_location: "" # Api source code path - optional
           output_location: "public" # Built app content directory - optional
+          app_build_command: "npm run build-ui-prod"
           ###### End of Repository/Build Configurations ######
 
   close_pull_request_job:
