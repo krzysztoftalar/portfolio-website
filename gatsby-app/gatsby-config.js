@@ -64,6 +64,7 @@ module.exports = {
         },
         `gatsby-plugin-typescript`,
         `gatsby-plugin-styled-components`,
+        `gatsby-plugin-postcss`,
         `gatsby-plugin-react-helmet`,
         {
             resolve: 'gatsby-plugin-web-font-loader',
