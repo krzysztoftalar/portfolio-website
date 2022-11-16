@@ -4,11 +4,14 @@ import { useScroll, useSpring, useTransform } from 'framer-motion';
 import loadable from '@loadable/component';
 // Imports from src
 import { HomeBannerSection } from '../../../styles/pages/homeStyles';
+import Video from './Video';
+import Canvas from './Canvas';
+import BannerTitle from './BannerTitle';
 
 // Lazy imports
-const Video = loadable(() => import('./Video'));
+/*const Video = loadable(() => import('./Video'));
 const Canvas = loadable(() => import('./Canvas'));
-const BannerTitle = loadable(() => import('./BannerTitle'));
+const BannerTitle = loadable(() => import('./BannerTitle'));*/
 
 const HomeBanner = (): JSX.Element => {
     // Move video up on scroll

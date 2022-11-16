@@ -21,6 +21,7 @@ module.exports = {
             options: {
                 defaults: {
                     quality: 100,
+                    placeholder: `blurred`,
                 },
             },
         },
