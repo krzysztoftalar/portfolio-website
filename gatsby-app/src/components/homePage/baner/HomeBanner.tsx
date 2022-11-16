@@ -23,9 +23,7 @@ const HomeBanner = (): JSX.Element => {
     return (
         <HomeBannerSection>
             <Video y={y} />
-
             <Canvas top={y} />
-
             <BannerTitle />
         </HomeBannerSection>
     );
