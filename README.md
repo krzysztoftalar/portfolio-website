@@ -52,7 +52,7 @@ Also, like all my React projects, this one is built with TypeScript to write saf
 
 ### Prerequisites
 
-- Node.js v18
+- Node.js v18.
 
 ### Installation
 
