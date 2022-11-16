@@ -18,7 +18,10 @@ interface Skill {
 const HomeAbout = (): JSX.Element => {
     const { allMdx } = useStaticQuery(graphql`
         query {
-            allMdx(filter: { frontmatter: { category: { eq: "skills" } } }) {
+            allMdx(
+                filter: { frontmatter: { category: { eq: "skills" } } }
+                sort: { frontmatter: { displayOrder: ASC } }
+            ) {
                 nodes {
                     frontmatter {
                         results
