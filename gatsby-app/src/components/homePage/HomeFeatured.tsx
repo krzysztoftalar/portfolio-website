@@ -39,7 +39,10 @@ const HomeFeatured = (): JSX.Element => {
                         year(formatString: "YYYY")
                         cover {
                             childImageSharp {
-                                gatsbyImageData(layout: CONSTRAINED)
+                                gatsbyImageData(
+                                    layout: CONSTRAINED
+                                    placeholder: BLURRED
+                                )
                             }
                         }
                     }
