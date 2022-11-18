@@ -1,7 +1,7 @@
 output "name" {
-  value = azurerm_app_service.swa.name
+  value = azurerm_static_site.swa.name
 }
 
 output "endpoint" {
-  value = azurerm_app_service.as.default_site_hostname
+  value = azurerm_static_site.swa.default_host_name
 }
