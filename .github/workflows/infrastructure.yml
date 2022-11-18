@@ -17,7 +17,8 @@ jobs:
     name: 'Terraform'
     runs-on: ubuntu-latest
     environment: production
-    working-directory: infrastructure/azure
+    env:
+      working-directory: infrastructure/azure
 
     # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
     defaults:
