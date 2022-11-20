@@ -14,6 +14,10 @@ variable "location" {
   type = string
 }
 
+variable "dns_zone_name" {
+  type = string
+}
+
 variable "static_web_app_plan_sku" {
   type = object({
     tier = string

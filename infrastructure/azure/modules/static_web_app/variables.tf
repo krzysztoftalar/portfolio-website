@@ -5,6 +5,14 @@ variable "app_name" {
 variable "rg_name" {
   type = string
 }
+/*
+variable "domain_name" {
+  type = string
+}*/
+
+variable "dns_zone_name" {
+  type = string
+}
 
 variable "tags" {
   type = map(string)

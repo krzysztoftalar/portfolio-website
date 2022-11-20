@@ -1,4 +1,4 @@
 locals {
-  static_web_app_suffix = "as"
+  static_web_app_suffix = "swa"
   tags = var.tags
 }

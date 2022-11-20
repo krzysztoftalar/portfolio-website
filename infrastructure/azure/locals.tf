@@ -1,11 +1,10 @@
 locals {
-  resource_prefix = "${substr(var.owner, 0, 1)}${substr(var.environment, 0, 1)}"
-  resource_project_prefix = "${local.resource_prefix}-${var.project}"
+  resource_project_prefix = "${var.project}-${var.environment}"
 
   tags = tomap({
-    "Owner" = var.owner,
+    "Owner"       = var.owner,
     "Environment" = var.environment,
-    "Project" = var.project,
-    "Management" = "Terraform",
+    "Project"     = var.project,
+    "Management"  = "Terraform",
   })
 }
