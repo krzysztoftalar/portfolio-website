@@ -37,18 +37,18 @@ Also, like all my React projects, this one is built with TypeScript to write saf
 
 ## Built With
 
-| Client                                              |
-|-----------------------------------------------------|
-| [GatsbyJS v5](https://www.gatsbyjs.com/)            |
-| [MobX](https://mobx.js.org/README.html)             |
-| [TypeScript](https://www.typescriptlang.org/)       |
-| [GraphQL](https://graphql.org/)                     |
-| [Markdown](https://www.markdownguide.org/)          |
-| [Styled Components](https://styled-components.com/) |
-| [Framer Motion](https://www.framer.com/api/)        |
-| [IcoMoon](https://icomoon.io/)                      |
+| Application                                         | Infrastructure                                                    |
+|-----------------------------------------------------|-------------------------------------------------------------------|
+| [GatsbyJS v5](https://www.gatsbyjs.com/)            | [Azure](https://azure.microsoft.com/en-us/)                       |
+| [MobX](https://mobx.js.org/README.html)             | [GitHub](https://github.com/)                                     |
+| [TypeScript](https://www.typescriptlang.org/)       | [Terraform](https://developer.hashicorp.com/terraform)            |
+| [GraphQL](https://graphql.org/)                     | [Terraform Cloud](https://cloud.hashicorp.com/products/terraform) |
+| [Markdown](https://www.markdownguide.org/)          | [OVH](https://www.ovhcloud.com)                                   |
+| [Styled Components](https://styled-components.com/) | [diagrams.net](https://www.diagrams.net/)                         |
+| [Framer Motion](https://www.framer.com/api/)        |                                                                   |
+| [IcoMoon](https://icomoon.io/)                      |                                                                   |
 
-## Getting Started
+## Local launch
 
 ### Prerequisites
 
@@ -69,6 +69,10 @@ gatsby develop
 ```
 
 Your site is now running at `http://localhost:8000`.
+
+## Infrastructure Architecture
+
+![Infrastructure Architecture](./doc/infrastructure_architecture.svg)
 
 ## License
 
