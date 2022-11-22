@@ -1,4 +1,4 @@
-name: Deploy Infrastructure to Azure
+name: Deploy infrastructure to Azure
 
 on:
   push:
@@ -15,7 +15,7 @@ jobs:
   terraform_job:
     if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
     runs-on: ubuntu-latest
-    name: Terraform deployment
+    name: Infrastructure deployment
     environment: production
     env:
       working-directory: infrastructure/azure
@@ -58,5 +58,7 @@ jobs:
         working-directory: ${{ env.working-directory }}
 
   call_application_deployment_job:
+    name: Application deployment
+    needs: [ terraform_job ]
     uses: ./.github/workflows/application_deployment.yml
 
