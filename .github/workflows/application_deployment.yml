@@ -1,15 +1,10 @@
 name: Azure Static Web Apps CI/CD
 
 # Only trigger, when the infrastructure_deployment workflow succeeded
-on:
-  workflow_run:
-    workflows: [ Deploy Infrastructure to Azure ]
-    types:
-      - completed
+on: workflow_call
 
 jobs:
   build_and_deploy_job:
-    if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
     runs-on: ubuntu-latest
     name: Build and Deploy Job
     steps:
