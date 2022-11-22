@@ -30,7 +30,7 @@ resource "azurerm_dns_txt_record" "swa_txt_record" {
   resource_group_name = var.rg_name
   ttl                 = 3600
   record {
-    value = azurerm_static_site_custom_domain.swa_main_domain.validation_token
+    value = azurerm_static_site_custom_domain.swa_main_domain.validation_token == "" ? "validated" : azurerm_static_site_custom_domain.swa_main_domain.validation_token
   }
 }
 
