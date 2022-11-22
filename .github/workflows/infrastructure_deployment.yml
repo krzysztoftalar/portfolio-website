@@ -58,5 +58,5 @@ jobs:
         working-directory: ${{ env.working-directory }}
 
   call_application_deployment_job:
-    uses: krzysztoftalar/portfolio-gatsby/.github/workflows/application_deployment.yml@main
+    uses: ./.github/workflows/application_deployment.yml
 
