@@ -44,9 +44,11 @@ Also, like all my React projects, this one is built with TypeScript to write saf
 | [TypeScript](https://www.typescriptlang.org/)       | [Terraform](https://developer.hashicorp.com/terraform)            |
 | [GraphQL](https://graphql.org/)                     | [Terraform Cloud](https://cloud.hashicorp.com/products/terraform) |
 | [Markdown](https://www.markdownguide.org/)          | [OVH](https://www.ovhcloud.com)                                   |
-| [Styled Components](https://styled-components.com/) | [diagrams.net](https://www.diagrams.net/)                         |
-| [Framer Motion](https://www.framer.com/api/)        |                                                                   |
+| [Styled Components](https://styled-components.com/) | [Github Actions](https://docs.github.com/en/actions)              |
+| [Framer Motion](https://www.framer.com/api/)        | [diagrams.net](https://www.diagrams.net/)                         |
 | [IcoMoon](https://icomoon.io/)                      |                                                                   |
+| [Eslint](https://eslint.org/)                       |                                                                   |
+| [Prettier](https://prettier.io/)                    |                                                                   |
 
 ## Local launch
 
