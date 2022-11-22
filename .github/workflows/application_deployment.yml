@@ -1,4 +1,4 @@
-name: Deploy application to Azure
+name: Deploy Application to Azure
 
 # Only trigger, when the infrastructure_deployment workflow succeeded
 on: workflow_call
