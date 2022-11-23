@@ -52,7 +52,7 @@ const HomeAbout = (): JSX.Element => {
                 <h2>
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                     Aliquid architecto blanditiis commodi culpa illo odit
-                    officia quaerat ratione ullam ut!
+                    officia quaerat ratione ullam ut.
                 </h2>
                 <p>
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit.
