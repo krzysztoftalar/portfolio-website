@@ -41,10 +41,10 @@ Also, like all my React projects, this one is built with TypeScript to write saf
 |-----------------------------------------------------|-------------------------------------------------------------------|
 | [GatsbyJS v5](https://www.gatsbyjs.com/)            | [Azure](https://azure.microsoft.com/en-us/)                       |
 | [MobX](https://mobx.js.org/README.html)             | [GitHub](https://github.com/)                                     |
-| [TypeScript](https://www.typescriptlang.org/)       | [Terraform](https://developer.hashicorp.com/terraform)            |
-| [GraphQL](https://graphql.org/)                     | [Terraform Cloud](https://cloud.hashicorp.com/products/terraform) |
-| [Markdown](https://www.markdownguide.org/)          | [OVH](https://www.ovhcloud.com)                                   |
-| [Styled Components](https://styled-components.com/) | [Github Actions](https://docs.github.com/en/actions)              |
+| [TypeScript](https://www.typescriptlang.org/)       | [GitHub Actions](https://docs.github.com/en/actions)              |
+| [GraphQL](https://graphql.org/)                     | [Terraform](https://developer.hashicorp.com/terraform)            |
+| [Markdown](https://www.markdownguide.org/)          | [Terraform Cloud](https://cloud.hashicorp.com/products/terraform) |
+| [Styled Components](https://styled-components.com/) | [OVH](https://www.ovhcloud.com)                                   |
 | [Framer Motion](https://www.framer.com/api/)        | [diagrams.net](https://www.diagrams.net/)                         |
 | [IcoMoon](https://icomoon.io/)                      |                                                                   |
 | [Eslint](https://eslint.org/)                       |                                                                   |
