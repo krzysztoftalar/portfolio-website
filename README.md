@@ -16,11 +16,11 @@
 
 ## About The Project
 
-_I built this website in Gatsby.js.
+I built this website in Gatsby.js.
 The MobX library was used to manage the state of the application,
 while Styled Components and Framer Motion were used for page styling and animations.
 Application pages are dynamically created by GraphQL queries that retrieve data from markdown files.
-Also, like all my React projects, this one is built with TypeScript to write safer and better code._
+Also, like all my React projects, this one is built with TypeScript to write safer and better code.
 
 <br/>
 
