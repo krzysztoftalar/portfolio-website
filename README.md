@@ -76,6 +76,10 @@ Your site is now running at `http://localhost:8000`.
 
 ![Infrastructure Architecture](./doc/infrastructure_architecture.svg)
 
+## Deployment Architecture
+
+![Deployment Architecture](./doc/deployment_architecture.svg)
+
 ## License
 
 This project is licensed under the MIT License.
