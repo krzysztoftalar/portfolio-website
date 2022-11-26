@@ -81,7 +81,7 @@ Your site is now running at `http://localhost:8000`.
 - Azure Service Principal - Terraform Cloud to Azure authentication,
 - Azure Resource Group - a container for Azure resources,
 - Azure DNS Zones - domain hosting and management,
-- Azure Static Web App - web hosting for static site `gatsby-app`,
+- Azure Static Web App - web hosting for static site `.\gatsby-app`,
 - Terraform Cloud - remote state management of infrastructure,
 - OVH - domain registration,
 - GitHub / GitHub Actions - git repository and CI/CD tool.
@@ -112,15 +112,17 @@ Your site is now running at `http://localhost:8000`.
     - create API token in Terraform Cloud,
     - in your repository create a secret named TERRAFORM_CLOUD_API_TOKEN, setting the Terraform Cloud API.
 3. Buy a domain e.g. at OVH.
-4. In `.\infrastructure\azure\env\prod.tfvars` set your domain name
+4. In `.\infrastructure\azure\env\prod.tfvars` set your domain name.
    ```terraform
       dns_zone_name = "sivonte.com"
    ```
 5. Run `Deploy Infrastructure to Azure` workflow in GitHub Actions.
-6. The first run will fail because you need
-   to [delegate your domain to Azure](https://learn.microsoft.com/en-us/azure/dns/dns-delegate-domain-azure-dns)
-    - On the DNS management page of your existing registrar provider, replace the DNS server records
-      with name servers that you created in the previous step in the Azure DNS Zones.
+6. The first run will fail because you need to
+    - [delegate your domain to Azure](https://learn.microsoft.com/en-us/azure/dns/dns-delegate-domain-azure-dns) - on
+      the DNS management page of your existing registrar provider, replace the DNS server records
+      with name servers that you created in the previous step in the Azure DNS Zones,
+    - in your repository create a secret named AZURE_STATIC_WEB_APPS_API_TOKEN, setting the Static Web App (created in
+      the previous step) `Deployment token`.
 7. Run `Deploy Infrastructure to Azure` again.
 
 ## License
