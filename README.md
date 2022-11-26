@@ -95,12 +95,10 @@ Your site is now running at `http://localhost:8000`.
 ### Application Deployment
 
 1. Connect Terraform Cloud to Azure using a [Azure Service
-   Principal with a Client Secret](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/guides/service_principal_client_secret)
-   .
+   Principal with a Client Secret](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/guides/service_principal_client_secret).
     - register an application with Azure AD and create a Service Principal using
       the [Azure Portal](https://learn.microsoft.com/en-us/azure/active-directory/develop/howto-create-service-principal-portal)
-      or [Azure PowerShell](https://learn.microsoft.com/en-us/azure/active-directory/develop/howto-authenticate-service-principal-powershell)
-      ,
+      or [Azure PowerShell](https://learn.microsoft.com/en-us/azure/active-directory/develop/howto-authenticate-service-principal-powershell),
     - assign a `Contributor` role to the application,
     - create an application secret and copy it,
     - create a workspace in Terraform Cloud with `API-driven workflow`,
