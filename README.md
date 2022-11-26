@@ -110,7 +110,7 @@ Your site is now running at `http://localhost:8000`.
 2. Connect Terraform Cloud
    to [GitHub Actions](https://developer.hashicorp.com/terraform/tutorials/automation/github-actions).
     - create API token in Terraform Cloud,
-    - in your repository create a secret named TERRAFORM_CLOUD_API_TOKEN, setting the Terraform Cloud API.
+    - in your repository create a secret named **TERRAFORM_CLOUD_API_TOKEN**, setting the Terraform Cloud API.
 3. Buy a domain e.g. at OVH.
 4. In `.\infrastructure\azure\env\prod.tfvars` set your domain name.
    ```terraform
@@ -121,7 +121,7 @@ Your site is now running at `http://localhost:8000`.
     - [delegate your domain to Azure](https://learn.microsoft.com/en-us/azure/dns/dns-delegate-domain-azure-dns) - on
       the DNS management page of your existing registrar provider, replace the DNS server records
       with name servers that you created in the previous step in the Azure DNS Zones,
-    - in your repository create a secret named AZURE_STATIC_WEB_APPS_API_TOKEN, setting the Static Web App (created in
+    - in your repository create a secret named **AZURE_STATIC_WEB_APPS_API_TOKEN**, setting the Static Web App (created in
       the previous step) `Deployment token`.
 7. Run `Deploy Infrastructure to Azure` again.
 
