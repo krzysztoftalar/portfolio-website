@@ -76,9 +76,52 @@ Your site is now running at `http://localhost:8000`.
 
 ![Infrastructure Architecture](./doc/infrastructure_architecture.svg)
 
+### Infrastructure Resources
+
+- Azure Service Principal - Terraform Cloud to Azure authentication,
+- Azure Resource Group - a container for Azure resources,
+- Azure DNS Zones - domain hosting and management,
+- Azure Static Web App - web hosting for static site `gatsby-app`,
+- Terraform Cloud - remote state management of infrastructure,
+- OVH - domain registration,
+- GitHub / GitHub Actions - git repository and CI/CD tool.
+
 ## Deployment Architecture
 
 ![Deployment Architecture](./doc/deployment_architecture.svg)
+
+### Application Deployment
+
+1. Connect Terraform Cloud to Azure using a [Azure Service
+   Principal with a Client Secret](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/guides/service_principal_client_secret)
+   .
+    - register an application with Azure AD and create a Service Principal using
+      the [Azure Portal](https://learn.microsoft.com/en-us/azure/active-directory/develop/howto-create-service-principal-portal)
+      or [Azure PowerShell](https://learn.microsoft.com/en-us/azure/active-directory/develop/howto-authenticate-service-principal-powershell)
+      ,
+    - assign a `Contributor` role to the application,
+    - create a application secret and copy it,
+    - create a workspace in Terraform Cloud with `API-driven workflow`,
+    - create variables in workspace:
+        - `ARM_SUBSCRIPTION_ID` - the ID of the Azure Subscription where resources will be created,
+        - `ARM_TENANT_ID` - this is the Azure Directory (tenant) ID of the Service Principal,
+        - `ARM_CLIENT_ID` - this is the Application (client) ID of the Service Principal,
+        - `ARM_CLIENT_SECRET` - mark as sensitive, this is the secret password for the Service Principal.
+2. Connect Terraform Cloud
+   to [GitHub Actions](https://developer.hashicorp.com/terraform/tutorials/automation/github-actions).
+    - create API token in Terraform Cloud,
+    - in your repository create a secret named TERRAFORM_CLOUD_API_TOKEN, setting the Terraform Cloud API.
+3. Buy a domain e.g. at OVH.
+4. In `.\infrastructure\azure\env\prod.tfvars` set your domain name
+   ```terraform
+      dns_zone_name = "sivonte.com"
+   ```
+5. Run `Deploy Infrastructure to Azure` workflow in GitHub Actions.
+6. The first run will fail because you need
+   to [delegate your domain to Azure](https://learn.microsoft.com/en-us/azure/dns/dns-delegate-domain-azure-dns)
+    - On the DNS management page of your existing registrar provider, replace the DNS server records
+      with name servers that you created in the previous step in the Azure DNS Zones.
+7. Run `Deploy Infrastructure to Azure` again.
 
 ## License
 

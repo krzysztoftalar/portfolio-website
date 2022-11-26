@@ -1,29 +1,21 @@
-variable "app_name" {
-  type = string
-}
-
 variable "rg_name" {
-  type = string
+  type        = string
+  description = "(Required) The Resource Group where the resource exists."
 }
-/*
-variable "domain_name" {
-  type = string
-}*/
 
 variable "dns_zone_name" {
-  type = string
-}
-
-variable "tags" {
-  type = map(string)
+  type        = string
+  description = "(Required) The name of the DNS Zone."
 }
 
 variable "location" {
-  type = string
+  type        = string
+  description = "(Required) The Azure Region where the resources should exist."
 }
 
 variable "resource_project_prefix" {
-  type = string
+  type        = string
+  description = "(Required) A prefix of the Static Web App name."
 }
 
 variable "static_web_app_plan_sku" {
@@ -31,4 +23,10 @@ variable "static_web_app_plan_sku" {
     tier = string
     size = string
   })
+  description = "(Required) SKU size and tier of the Static Web App."
+}
+
+variable "tags" {
+  type        = map(string)
+  description = "(Required) A mapping of tags to assign to the resource."
 }
