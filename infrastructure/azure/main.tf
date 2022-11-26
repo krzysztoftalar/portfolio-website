@@ -43,9 +43,9 @@ module "swa" {
 
 # DNS Zone
 module "dns_zone" {
-  source                  = "./modules/dns_zone"
-  dns_zone_name           = var.dns_zone_name
-  rg_name                 = module.rg.name
-  swa_id                  = module.swa.id
-  tags                    = local.tags
+  source        = "./modules/dns_zone"
+  dns_zone_name = var.dns_zone_name
+  rg_name       = module.rg.name
+  swa_id        = module.swa.id
+  tags          = local.tags
 }
