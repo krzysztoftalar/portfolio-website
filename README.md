@@ -1,15 +1,17 @@
 <h1 align="center">Portfolio</h1>
 
 <p align="center">
-<img src="https://img.shields.io/badge/made%20by-krzysztoftalar-blue.svg" alt="Icon"/>
-
 <img src="https://img.shields.io/badge/-GatsbyJS-blueviolet?logo=gatsby" alt="Icon"/>
 
-<img src="https://img.shields.io/badge/-TypeScript-blue?logo=typescript" alt="Icon"/>
+<img src="https://img.shields.io/badge/-TypeScript-%233178C6" alt="Icon"/>
 
 <img src="https://img.shields.io/badge/-GraphQL-%23e535ab%20?logo=graphql" alt="Icon"/>
 
 <img src="https://img.shields.io/badge/-MobX-orange" alt="Icon"/>
+
+<img src="https://img.shields.io/badge/-Azure-%230078D4?logo=Microsoft%20Azure" alt="Icon"/>
+
+<img src="https://img.shields.io/badge/-Terraform-%237B42BC?logo=terraform" alt="Icon"/>
 
 <img src="https://img.shields.io/badge/license-MIT-green" alt="Icon"/>
 </p>
@@ -100,7 +102,7 @@ Your site is now running at `http://localhost:8000`.
       or [Azure PowerShell](https://learn.microsoft.com/en-us/azure/active-directory/develop/howto-authenticate-service-principal-powershell)
       ,
     - assign a `Contributor` role to the application,
-    - create a application secret and copy it,
+    - create an application secret and copy it,
     - create a workspace in Terraform Cloud with `API-driven workflow`,
     - create variables in workspace:
         - `ARM_SUBSCRIPTION_ID` - the ID of the Azure Subscription where resources will be created,
@@ -111,19 +113,19 @@ Your site is now running at `http://localhost:8000`.
    to [GitHub Actions](https://developer.hashicorp.com/terraform/tutorials/automation/github-actions).
     - create API token in Terraform Cloud,
     - in your repository create a secret named **TERRAFORM_CLOUD_API_TOKEN**, setting the Terraform Cloud API.
-3. Buy a domain e.g. at OVH.
-4. In `.\infrastructure\azure\env\prod.tfvars` set your domain name.
+3. In `.\infrastructure\azure\env\prod.tfvars` set your domain name.
    ```terraform
       dns_zone_name = "sivonte.com"
    ```
-5. Run `Deploy Infrastructure to Azure` workflow in GitHub Actions.
-6. The first run will fail because you need to
+4. Run `Deploy Infrastructure to Azure` workflow in GitHub Actions.
+5. The first run will fail because you need to
     - [delegate your domain to Azure](https://learn.microsoft.com/en-us/azure/dns/dns-delegate-domain-azure-dns) - on
       the DNS management page of your existing registrar provider, replace the DNS server records
       with name servers that you created in the previous step in the Azure DNS Zones,
-    - in your repository create a secret named **AZURE_STATIC_WEB_APPS_API_TOKEN**, setting the Static Web App (created in
+    - in your repository create a secret named **AZURE_STATIC_WEB_APPS_API_TOKEN**, setting the Static Web App (created
+      in
       the previous step) `Deployment token`.
-7. Run `Deploy Infrastructure to Azure` again.
+6. Run `Deploy Infrastructure to Azure` again.
 
 ## License
 
