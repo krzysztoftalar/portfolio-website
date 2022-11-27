@@ -74,9 +74,7 @@ gatsby develop
 
 Your site is now running at `http://localhost:8000`.
 
-## Infrastructure Architecture
-
-![Infrastructure Architecture](./doc/infrastructure_architecture.svg)
+## Infrastructure
 
 ### Infrastructure Resources
 
@@ -88,9 +86,11 @@ Your site is now running at `http://localhost:8000`.
 - OVH - domain registration,
 - GitHub / GitHub Actions - git repository and CI/CD tool.
 
-## Deployment Architecture
+### Infrastructure Architecture
 
-![Deployment Architecture](./doc/deployment_architecture.svg)
+![Infrastructure Architecture](docs/infrastructure_architecture.svg)
+
+## Deployment
 
 ### Application Deployment
 
@@ -121,9 +121,12 @@ Your site is now running at `http://localhost:8000`.
       the DNS management page of your existing registrar provider, replace the DNS server records
       with name servers that you created in the previous step in the Azure DNS Zones,
     - in your repository create a secret named **AZURE_STATIC_WEB_APPS_API_TOKEN**, setting the Static Web App (created
-      in
-      the previous step) `Deployment token`.
+      in the previous step) `Deployment token`.
 6. Run `Deploy Infrastructure to Azure` again.
+
+### Deployment Architecture
+
+![Deployment Architecture](docs/deployment_architecture.svg)
 
 ## License
 
