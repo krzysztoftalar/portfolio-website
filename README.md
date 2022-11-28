@@ -103,10 +103,10 @@ Your site is now running at `http://localhost:8000`.
     - create an application secret and copy it,
     - create a workspace in Terraform Cloud with `API-driven workflow`,
     - create variables in workspace:
-        - `ARM_SUBSCRIPTION_ID` - the ID of the Azure Subscription where resources will be created,
-        - `ARM_TENANT_ID` - this is the Azure Directory (tenant) ID of the Service Principal,
-        - `ARM_CLIENT_ID` - this is the Application (client) ID of the Service Principal,
-        - `ARM_CLIENT_SECRET` - mark as sensitive, this is the secret password for the Service Principal.
+        - **ARM_SUBSCRIPTION_ID** - the ID of the Azure Subscription where resources will be created,
+        - **ARM_TENANT_ID** - this is the Azure Directory (tenant) ID of the Service Principal,
+        - **ARM_CLIENT_ID** - this is the Application (client) ID of the Service Principal,
+        - **ARM_CLIENT_SECRET** - mark as sensitive, this is the secret password for the Service Principal.
 2. Connect Terraform Cloud
    to [GitHub Actions](https://developer.hashicorp.com/terraform/tutorials/automation/github-actions).
     - create API token in Terraform Cloud,
