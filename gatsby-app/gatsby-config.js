@@ -1,3 +1,7 @@
+require('dotenv').config({
+    path: `.env.${process.env.NODE_ENV}`,
+});
+
 module.exports = {
     siteMetadata: {
         title: `Full-Stack Developer`,
@@ -72,6 +76,15 @@ module.exports = {
             options: {
                 google: {
                     families: ['Montserrat:500,600,700,800,900&display=swap'],
+                },
+            },
+        },
+        {
+            resolve: `gatsby-plugin-google-gtag`,
+            options: {
+                trackingIds: [`${process.env.GOOGLE_ANALYTICS_TRACKING_ID}`],
+                pluginConfig: {
+                    head: true, // Puts tracking script in the head instead of the body
                 },
             },
         },
