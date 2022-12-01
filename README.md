@@ -60,13 +60,13 @@ Also, like all my React projects, this one is built with TypeScript to write saf
 
 ### Installation
 
-1. **Navigate into your project root directory and run the following command to download packages:**
+1. Navigate into `.\gatsby-app` directory and run the following command to download packages:
 
 ```shell
 npm install
 ```
 
-2. **Start the development environment:**
+1. Start the development environment:
 
 ```shell
 gatsby develop
@@ -110,7 +110,7 @@ Your site is now running at `http://localhost:8000`.
 2. Connect Terraform Cloud
    to [GitHub Actions](https://developer.hashicorp.com/terraform/tutorials/automation/github-actions).
     - create API token in Terraform Cloud,
-    - in your repository create a secret named **TERRAFORM_CLOUD_API_TOKEN**, setting the Terraform Cloud API.
+    - in your repository create a secret named **TERRAFORM_CLOUD_API_TOKEN**, setting the Terraform Cloud API token.
 3. In `.\infrastructure\azure\env\prod.tfvars` set your domain name.
    ```terraform
       dns_zone_name = "sivonte.com"
