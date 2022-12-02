@@ -39,19 +39,19 @@ Also, like all my React projects, this one is built with TypeScript to write saf
 
 ## Built With
 
-| Application                                                     | Infrastructure                                                    |
-|-----------------------------------------------------------------|-------------------------------------------------------------------|
-| [GatsbyJS v5](https://www.gatsbyjs.com/)                        | [Azure](https://azure.microsoft.com/en-us/)                       |
-| [MobX](https://mobx.js.org/README.html)                         | [GitHub](https://github.com/)                                     |
-| [TypeScript](https://www.typescriptlang.org/)                   | [GitHub Actions](https://docs.github.com/en/actions)              |
-| [GraphQL](https://graphql.org/)                                 | [Terraform](https://developer.hashicorp.com/terraform)            |
-| [Markdown](https://www.markdownguide.org/)                      | [Terraform Cloud](https://cloud.hashicorp.com/products/terraform) |
-| [Styled Components](https://styled-components.com/)             | [OVH](https://www.ovhcloud.com)                                   |
-| [Framer Motion](https://www.framer.com/api/)                    | [diagrams.net](https://www.diagrams.net/)                         |
-| [IcoMoon](https://icomoon.io/)                                  |                                                                   |
-| [Eslint](https://eslint.org/)                                   |                                                                   |
-| [Prettier](https://prettier.io/)                                |                                                                   |
-| [Google Analytics](https://analytics.google.com/analytics/web/) |                                                                   |
+| Application                                         | Infrastructure                                                    |
+|-----------------------------------------------------|-------------------------------------------------------------------|
+| [GatsbyJS v5](https://www.gatsbyjs.com/)            | [Azure](https://azure.microsoft.com/en-us/)                       |
+| [MobX](https://mobx.js.org/README.html)             | [GitHub](https://github.com/)                                     |
+| [TypeScript](https://www.typescriptlang.org/)       | [GitHub Actions](https://docs.github.com/en/actions)              |
+| [GraphQL](https://graphql.org/)                     | [Terraform](https://developer.hashicorp.com/terraform)            |
+| [Markdown](https://www.markdownguide.org/)          | [Terraform Cloud](https://cloud.hashicorp.com/products/terraform) |
+| [Styled Components](https://styled-components.com/) | [OVH](https://www.ovhcloud.com)                                   |
+| [Framer Motion](https://www.framer.com/api/)        | [Google Analytics](https://analytics.google.com/analytics/web/)   |
+| [IcoMoon](https://icomoon.io/)                      | [diagrams.net](https://www.diagrams.net/)                         |
+| [Eslint](https://eslint.org/)                       |                                                                   |
+| [Prettier](https://prettier.io/)                    |                                                                   |
+
 
 ## Local launch
 
