@@ -66,7 +66,7 @@ Also, like all my React projects, this one is built with TypeScript to write saf
 npm install
 ```
 
-2. If you want to track page data while debugging your app locally then set the property 
+2. If you want to track page traffic while debugging your app locally then set the property
    **GOOGLE_ANALYTICS_TRACKING_ID** in **.\gatsby-app\\.env.development**:
 
 ```dotenv
@@ -118,7 +118,17 @@ Your site is now running at `http://localhost:8000`.
         - **ARM_SUBSCRIPTION_ID** - the ID of the Azure Subscription where resources will be created,
         - **ARM_TENANT_ID** - this is the Azure Directory (tenant) ID of the Service Principal,
         - **ARM_CLIENT_ID** - this is the Application (client) ID of the Service Principal,
-        - **ARM_CLIENT_SECRET** - mark as sensitive, this is the Application Secret for the Service Principal.
+        - **ARM_CLIENT_SECRET** - mark as sensitive, this is the Application Secret for the Service Principal,
+    - in **\infrastructure\azure\main.tf** set your organization and workspace name.
+    ```terraform
+       # Terraform Cloud setup
+       cloud {
+         organization = "your_organization_name"
+
+       workspaces {
+         name = "your_workspace_name"
+       }
+    ```
 3. Connect Terraform Cloud
    to [GitHub Actions](https://developer.hashicorp.com/terraform/tutorials/automation/github-actions):
     - create API token in Terraform Cloud,
