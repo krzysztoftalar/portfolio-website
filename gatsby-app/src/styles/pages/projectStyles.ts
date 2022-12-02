@@ -78,9 +78,9 @@ export const ProjectLinks = styled.div`
     width: fit-content;
 `;
 
-export const ProjectLink = styled.a<{ disabled: boolean }>`
-    &:link,
-    &:visited {
+export const ProjectLink = styled.div<{ disabled: boolean }>`
+    a:link,
+    a:visited {
         display: flex;
         align-items: center;
         width: 20rem;
@@ -97,7 +97,7 @@ export const ProjectLink = styled.a<{ disabled: boolean }>`
         }
     }
 
-    &:hover {
+    a:hover {
         color: ${(props) => props.theme.text};
 
         & svg {
@@ -116,8 +116,8 @@ export const ProjectLink = styled.a<{ disabled: boolean }>`
     ${(props) =>
         props.disabled &&
         css`
-            &:link,
-            &:visited {
+            a:link,
+            a:visited {
                 color: ${(props) => props.theme.disabledText};
                 pointer-events: none;
             }

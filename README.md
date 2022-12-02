@@ -39,18 +39,19 @@ Also, like all my React projects, this one is built with TypeScript to write saf
 
 ## Built With
 
-| Application                                         | Infrastructure                                                    |
-|-----------------------------------------------------|-------------------------------------------------------------------|
-| [GatsbyJS v5](https://www.gatsbyjs.com/)            | [Azure](https://azure.microsoft.com/en-us/)                       |
-| [MobX](https://mobx.js.org/README.html)             | [GitHub](https://github.com/)                                     |
-| [TypeScript](https://www.typescriptlang.org/)       | [GitHub Actions](https://docs.github.com/en/actions)              |
-| [GraphQL](https://graphql.org/)                     | [Terraform](https://developer.hashicorp.com/terraform)            |
-| [Markdown](https://www.markdownguide.org/)          | [Terraform Cloud](https://cloud.hashicorp.com/products/terraform) |
-| [Styled Components](https://styled-components.com/) | [OVH](https://www.ovhcloud.com)                                   |
-| [Framer Motion](https://www.framer.com/api/)        | [diagrams.net](https://www.diagrams.net/)                         |
-| [IcoMoon](https://icomoon.io/)                      |                                                                   |
-| [Eslint](https://eslint.org/)                       |                                                                   |
-| [Prettier](https://prettier.io/)                    |                                                                   |
+| Application                                                     | Infrastructure                                                    |
+|-----------------------------------------------------------------|-------------------------------------------------------------------|
+| [GatsbyJS v5](https://www.gatsbyjs.com/)                        | [Azure](https://azure.microsoft.com/en-us/)                       |
+| [MobX](https://mobx.js.org/README.html)                         | [GitHub](https://github.com/)                                     |
+| [TypeScript](https://www.typescriptlang.org/)                   | [GitHub Actions](https://docs.github.com/en/actions)              |
+| [GraphQL](https://graphql.org/)                                 | [Terraform](https://developer.hashicorp.com/terraform)            |
+| [Markdown](https://www.markdownguide.org/)                      | [Terraform Cloud](https://cloud.hashicorp.com/products/terraform) |
+| [Styled Components](https://styled-components.com/)             | [OVH](https://www.ovhcloud.com)                                   |
+| [Framer Motion](https://www.framer.com/api/)                    | [diagrams.net](https://www.diagrams.net/)                         |
+| [IcoMoon](https://icomoon.io/)                                  |                                                                   |
+| [Eslint](https://eslint.org/)                                   |                                                                   |
+| [Prettier](https://prettier.io/)                                |                                                                   |
+| [Google Analytics](https://analytics.google.com/analytics/web/) |                                                                   |
 
 ## Local launch
 
@@ -84,7 +85,8 @@ Your site is now running at `http://localhost:8000`.
 - Azure Static Web App - web hosting for static site `.\gatsby-app`,
 - Terraform Cloud - remote state management of infrastructure,
 - OVH - domain registration,
-- GitHub / GitHub Actions - git repository and CI/CD tool.
+- GitHub / GitHub Actions - git repository and CI/CD tool,
+- Google Analytics - website traffic.
 
 ### Infrastructure Architecture
 
@@ -94,8 +96,17 @@ Your site is now running at `http://localhost:8000`.
 
 ### Application Deployment
 
-1. Connect Terraform Cloud to Azure using a [Azure Service
-   Principal with a Client Secret](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/guides/service_principal_client_secret).
+1. Connect Google Analytics to Gatsby application:
+    - create an `Account` and a `Property` in Google Analytics,
+    - create a `Web` as a data stream for the Property set above and copy the `Measurement Id`,
+    - in your repository create a secret named **GOOGLE_ANALYTICS_TRACKING_ID**, setting the Measurement Id,
+    - if you want to track page data while debugging your app locally then set the property **GOOGLE_ANALYTICS_TRACKING_ID**
+      in **.\gatsby-app\.env.development**.
+    ```dotenv
+      GOOGLE_ANALYTICS_TRACKING_ID=YOUR_GOOGLE_ANALYTICS_MEASUREMENT_ID
+    ```
+2. Connect Terraform Cloud to Azure using a [Azure Service
+   Principal with a Client Secret](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/guides/service_principal_client_secret):
     - register an application with Azure AD and create a Service Principal using
       the [Azure Portal](https://learn.microsoft.com/en-us/azure/active-directory/develop/howto-create-service-principal-portal)
       or [Azure PowerShell](https://learn.microsoft.com/en-us/azure/active-directory/develop/howto-authenticate-service-principal-powershell),
@@ -106,23 +117,23 @@ Your site is now running at `http://localhost:8000`.
         - **ARM_SUBSCRIPTION_ID** - the ID of the Azure Subscription where resources will be created,
         - **ARM_TENANT_ID** - this is the Azure Directory (tenant) ID of the Service Principal,
         - **ARM_CLIENT_ID** - this is the Application (client) ID of the Service Principal,
-        - **ARM_CLIENT_SECRET** - mark as sensitive, this is the secret password for the Service Principal.
-2. Connect Terraform Cloud
-   to [GitHub Actions](https://developer.hashicorp.com/terraform/tutorials/automation/github-actions).
+        - **ARM_CLIENT_SECRET** - mark as sensitive, this is the Application Secret for the Service Principal.
+3. Connect Terraform Cloud
+   to [GitHub Actions](https://developer.hashicorp.com/terraform/tutorials/automation/github-actions):
     - create API token in Terraform Cloud,
     - in your repository create a secret named **TERRAFORM_CLOUD_API_TOKEN**, setting the Terraform Cloud API token.
-3. In `.\infrastructure\azure\env\prod.tfvars` set your domain name.
+4. In **.\infrastructure\azure\env\prod.tfvars** set your domain name.
    ```terraform
-      dns_zone_name = "sivonte.com"
+      dns_zone_name = "your_domain_name"
    ```
-4. Run `Deploy Infrastructure to Azure` workflow in GitHub Actions.
-5. The first run will fail because you need to
+5. Run `Deploy Infrastructure to Azure` workflow in GitHub Actions.
+6. The first run will fail because you need to:
     - [delegate your domain to Azure](https://learn.microsoft.com/en-us/azure/dns/dns-delegate-domain-azure-dns) - on
       the DNS management page of your existing registrar provider, replace the DNS server records
       with name servers that you created in the previous step in the Azure DNS Zones,
     - in your repository create a secret named **AZURE_STATIC_WEB_APPS_API_TOKEN**, setting the Static Web App (created
       in the previous step) `Deployment token`.
-6. Run `Deploy Infrastructure to Azure` again.
+7. Run `Deploy Infrastructure to Azure` again.
 
 ### Deployment Architecture
 

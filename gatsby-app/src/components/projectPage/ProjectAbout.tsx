@@ -14,6 +14,7 @@ import { sectionVariants } from '../../styles/base/globalVariants';
 import { IProject } from '../../models/project';
 import { useSectionAnimation } from '../../hooks/useSectionAnimation';
 import { Cursor } from '../../models/cursor';
+import { OutboundLink } from 'gatsby-plugin-google-gtag';
 
 interface IProps {
     project: IProject;
@@ -43,29 +44,31 @@ const ProjectAbout: React.FC<IProps> = ({ project, children }): JSX.Element => {
                 <MDXProvider>{children}</MDXProvider>
 
                 <ProjectLinks>
-                    <ProjectLink
-                        href={repoLink}
-                        disabled={repoLink === ''}
-                        target="_blank"
-                        rel="noreferrer noopener"
-                        onMouseEnter={() => setCursor(Cursor.Hovered)}
-                        onMouseLeave={() => setCursor()}
-                    >
-                        <SVG icon="embed" />
-                        Source Code
-                    </ProjectLink>
-
-                    {liveLink && (
-                        <ProjectLink
-                            href={liveLink}
-                            disabled={liveLink === ''}
+                    <ProjectLink disabled={repoLink === ''}>
+                        <OutboundLink
+                            href={repoLink}
                             target="_blank"
                             rel="noreferrer noopener"
                             onMouseEnter={() => setCursor(Cursor.Hovered)}
                             onMouseLeave={() => setCursor()}
                         >
-                            <SVG icon="link" />
-                            Live
+                            <SVG icon="embed" />
+                            Source Code
+                        </OutboundLink>
+                    </ProjectLink>
+
+                    {liveLink && (
+                        <ProjectLink disabled={liveLink === ''}>
+                            <OutboundLink
+                                href={liveLink}
+                                target="_blank"
+                                rel="noreferrer noopener"
+                                onMouseEnter={() => setCursor(Cursor.Hovered)}
+                                onMouseLeave={() => setCursor()}
+                            >
+                                <SVG icon="link" />
+                                Live
+                            </OutboundLink>
                         </ProjectLink>
                     )}
                 </ProjectLinks>
