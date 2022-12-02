@@ -52,7 +52,6 @@ Also, like all my React projects, this one is built with TypeScript to write saf
 | [Eslint](https://eslint.org/)                       |                                                                   |
 | [Prettier](https://prettier.io/)                    |                                                                   |
 
-
 ## Local launch
 
 ### Prerequisites
@@ -61,13 +60,20 @@ Also, like all my React projects, this one is built with TypeScript to write saf
 
 ### Installation
 
-1. Navigate into `.\gatsby-app` directory and run the following command to download packages:
+1. Navigate into **.\gatsby-app** directory and run the following command to download packages:
 
 ```shell
 npm install
 ```
 
-1. Start the development environment:
+2. If you want to track page data while debugging your app locally then set the property 
+   **GOOGLE_ANALYTICS_TRACKING_ID** in **.\gatsby-app\\.env.development**:
+
+```dotenv
+ GOOGLE_ANALYTICS_TRACKING_ID=YOUR_GOOGLE_ANALYTICS_MEASUREMENT_ID
+```
+
+3. Start the development environment:
 
 ```shell
 gatsby develop
@@ -99,12 +105,7 @@ Your site is now running at `http://localhost:8000`.
 1. Connect Google Analytics to Gatsby application:
     - create an `Account` and a `Property` in Google Analytics,
     - create a `Web` as a data stream for the Property set above and copy the `Measurement Id`,
-    - in your repository create a secret named **GOOGLE_ANALYTICS_TRACKING_ID**, setting the Measurement Id,
-    - if you want to track page data while debugging your app locally then set the property **GOOGLE_ANALYTICS_TRACKING_ID**
-      in **.\gatsby-app\.env.development**.
-    ```dotenv
-      GOOGLE_ANALYTICS_TRACKING_ID=YOUR_GOOGLE_ANALYTICS_MEASUREMENT_ID
-    ```
+    - in your repository create a secret named **GOOGLE_ANALYTICS_TRACKING_ID**, setting the Measurement Id.
 2. Connect Terraform Cloud to Azure using a [Azure Service
    Principal with a Client Secret](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/guides/service_principal_client_secret):
     - register an application with Azure AD and create a Service Principal using
