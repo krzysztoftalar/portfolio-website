@@ -37,7 +37,7 @@ Also, like all my React projects, this one is built with TypeScript to write saf
 - Custom cursor,
 - Markdown files as a source content.
 
-## Built With
+## Built with
 
 | Application                                         | Infrastructure                                                    |
 |-----------------------------------------------------|-------------------------------------------------------------------|
@@ -83,6 +83,13 @@ Your site is now running at `http://localhost:8000`.
 
 ## Infrastructure
 
+### Overview
+
+The Application Infrastructure consists of one environment - production. Gatsby SPA is deployed to an Azure Static Web
+App which can have multiple preview environments. Therefore, each pull request deploys
+a [preview version](https://learn.microsoft.com/en-us/azure/static-web-apps/preview-environments) of the site available
+through a temporary URL.
+
 ### Infrastructure Resources
 
 - Azure Service Principal - Terraform Cloud to Azure authentication,
@@ -100,7 +107,21 @@ Your site is now running at `http://localhost:8000`.
 
 ## Deployment
 
-### Application Deployment
+### Overview
+
+The Deployment consists of two parts. First, the Application Infrastructure is deployed, and then the SPA
+application itself. The developer creates a pull request to the master branch that starts the deployment process as
+shown in the [Deployment Architecture](#deployment-architecture) figure.
+Two rules have been created for the master branch:
+
+- require a pull request before merging,
+- require status checks to pass before merging: Infrastructure Deployment and Application Deployment.
+
+After successfully deploying the SPA application to the preview environment, the developer can test the website and
+approve the pull request, which triggers the same deployment process as before, but this time to the production
+environment.
+
+### Application Deployment configuration
 
 1. Connect Google Analytics to Gatsby application:
     - create an `Account` and a `Property` in Google Analytics,
