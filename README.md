@@ -37,7 +37,7 @@ Also, like all my React projects, this one is built with TypeScript to write saf
 - Custom cursor,
 - Markdown files as a source content.
 
-## Built With
+## Built with
 
 | Application                                         | Infrastructure                                                    |
 |-----------------------------------------------------|-------------------------------------------------------------------|
@@ -66,7 +66,7 @@ Also, like all my React projects, this one is built with TypeScript to write saf
 npm install
 ```
 
-2. If you want to track page data while debugging your app locally then set the property 
+2. If you want to track page traffic while debugging your app locally then set the property
    **GOOGLE_ANALYTICS_TRACKING_ID** in **.\gatsby-app\\.env.development**:
 
 ```dotenv
@@ -82,6 +82,13 @@ gatsby develop
 Your site is now running at `http://localhost:8000`.
 
 ## Infrastructure
+
+### Overview
+
+The Application Infrastructure consists of one environment - production. Gatsby SPA is deployed to an Azure Static Web
+App which can have multiple preview environments. Therefore, each pull request deploys
+a [preview version](https://learn.microsoft.com/en-us/azure/static-web-apps/preview-environments) of the site available
+through a temporary URL.
 
 ### Infrastructure Resources
 
@@ -100,7 +107,21 @@ Your site is now running at `http://localhost:8000`.
 
 ## Deployment
 
-### Application Deployment
+### Overview
+
+The Deployment consists of two parts. First, the Application Infrastructure is deployed, and then the SPA
+application itself. The developer creates a pull request to the master branch that starts the deployment process as
+shown in the [Deployment Architecture](#deployment-architecture) figure.
+Two rules have been created for the master branch:
+
+- require a pull request before merging,
+- require status checks to pass before merging: Infrastructure Deployment and Application Deployment.
+
+After successfully deploying the SPA application to the preview environment, the developer can test the website and
+approve the pull request, which triggers the same deployment process as before, but this time to the production
+environment.
+
+### Application Deployment configuration
 
 1. Connect Google Analytics to Gatsby application:
     - create an `Account` and a `Property` in Google Analytics,
@@ -118,7 +139,17 @@ Your site is now running at `http://localhost:8000`.
         - **ARM_SUBSCRIPTION_ID** - the ID of the Azure Subscription where resources will be created,
         - **ARM_TENANT_ID** - this is the Azure Directory (tenant) ID of the Service Principal,
         - **ARM_CLIENT_ID** - this is the Application (client) ID of the Service Principal,
-        - **ARM_CLIENT_SECRET** - mark as sensitive, this is the Application Secret for the Service Principal.
+        - **ARM_CLIENT_SECRET** - mark as sensitive, this is the Application Secret for the Service Principal,
+    - in **\infrastructure\azure\main.tf** set your organization and workspace name.
+    ```terraform
+       # Terraform Cloud setup
+       cloud {
+         organization = "your_organization_name"
+
+       workspaces {
+         name = "your_workspace_name"
+       }
+    ```
 3. Connect Terraform Cloud
    to [GitHub Actions](https://developer.hashicorp.com/terraform/tutorials/automation/github-actions):
     - create API token in Terraform Cloud,
