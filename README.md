@@ -66,14 +66,7 @@ Also, like all my React projects, this one is built with TypeScript to write saf
 npm install
 ```
 
-2. If you want to track page traffic while debugging your app locally then set the property
-   **GOOGLE_ANALYTICS_TRACKING_ID** in **.\gatsby-app\\.env.development**:
-
-```dotenv
- GOOGLE_ANALYTICS_TRACKING_ID=YOUR_GOOGLE_ANALYTICS_MEASUREMENT_ID
-```
-
-3. Start the development environment:
+2. Start the development environment:
 
 ```shell
 gatsby develop
