@@ -15,6 +15,7 @@ import { IProject } from '../../models/project';
 import { useSectionAnimation } from '../../hooks/useSectionAnimation';
 import { Cursor } from '../../models/cursor';
 import { OutboundLink } from 'gatsby-plugin-google-gtag';
+import { useTrackEvent } from '../../hooks/useTrackEvent';
 
 interface IProps {
     project: IProject;
@@ -28,6 +29,26 @@ const ProjectAbout: React.FC<IProps> = ({ project, children }): JSX.Element => {
     const { setCursor } = store.uiStore;
 
     const { ref, animation } = useSectionAnimation();
+
+    const fullProjectName = `${title} ${subtitle}`;
+
+    // Track project repository link click
+    const trackGithub = useTrackEvent('GitHub Click', {
+        project: fullProjectName,
+        repoLink: repoLink,
+    });
+    const handleRepoLink = () => {
+        trackGithub({ project: fullProjectName, repoLink: repoLink });
+    };
+
+    // Track project live link click
+    const trackLiveProject = useTrackEvent('Live Project Click', {
+        project: fullProjectName,
+        liveLink: liveLink,
+    });
+    const handleLiveLink = () => {
+        trackLiveProject({ project: fullProjectName, liveLink: liveLink });
+    };
 
     return (
         <ProjectAboutSection
@@ -49,6 +70,7 @@ const ProjectAbout: React.FC<IProps> = ({ project, children }): JSX.Element => {
                             href={repoLink}
                             target="_blank"
                             rel="noreferrer noopener"
+                            onClick={() => handleRepoLink()}
                             onMouseEnter={() => setCursor(Cursor.Hovered)}
                             onMouseLeave={() => setCursor()}
                         >
@@ -63,6 +85,7 @@ const ProjectAbout: React.FC<IProps> = ({ project, children }): JSX.Element => {
                                 href={liveLink}
                                 target="_blank"
                                 rel="noreferrer noopener"
+                                onClick={() => handleLiveLink()}
                                 onMouseEnter={() => setCursor(Cursor.Hovered)}
                                 onMouseLeave={() => setCursor()}
                             >

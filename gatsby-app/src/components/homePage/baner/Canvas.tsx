@@ -8,7 +8,7 @@ import useWindowSize from '../../../hooks/useWindowSize';
 import { CanvasWrapper } from '../../../styles/pages/homeStyles';
 import { Drag } from '../../../styles/components/cursorStyles';
 import { Cursor } from '../../../models/cursor';
-import { darkTheme, lightTheme } from '../../../styles/base/themes';
+import { useDarkMode } from '../../../hooks/useDarkMode';
 
 const midPointBtw = (
     p1: { x: number; y: number },
@@ -28,6 +28,7 @@ const Canvas: React.FC<Props> = ({ top }) => {
     const store = useStore();
     const { theme, setCursor } = store.uiStore;
     const { width, height } = useWindowSize();
+    const { themeMode } = useDarkMode();
 
     let renderingElement: any;
     let drawingElement: any;
@@ -47,10 +48,7 @@ const Canvas: React.FC<Props> = ({ top }) => {
                 renderingCtx = renderingElement.getContext('2d');
 
                 renderingCtx.globalCompositeOperation = 'source-over';
-                renderingCtx.fillStyle =
-                    theme === 'dark'
-                        ? darkTheme.background
-                        : lightTheme.background;
+                renderingCtx.fillStyle = themeMode.background;
                 renderingCtx.fillRect(0, 0, width, height);
 
                 drawingCtx.globalCompositeOperation = 'source-over';
