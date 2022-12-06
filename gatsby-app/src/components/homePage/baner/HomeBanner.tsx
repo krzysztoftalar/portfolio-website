@@ -1,8 +1,8 @@
-import React from 'react';
-import { observer } from 'mobx-react';
-import { useScroll, useSpring, useTransform } from 'framer-motion';
 import loadable from '@loadable/component';
-// Imports from src
+import { useScroll, useSpring, useTransform } from 'framer-motion';
+import { observer } from 'mobx-react';
+import React from 'react';
+
 import { HomeBannerSection } from '../../../styles/pages/homeStyles';
 
 // Lazy imports

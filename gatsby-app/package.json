@@ -64,6 +64,8 @@
         "dotenv": "^16.0.3",
         "eslint": "^8.27.0",
         "eslint-config-prettier": "^8.5.0",
+        "eslint-import-resolver-typescript": "^3.5.2",
+        "eslint-plugin-import": "^2.26.0",
         "eslint-plugin-prettier": "^4.2.1",
         "eslint-plugin-react": "^7.31.10",
         "postcss": "^8.4.19",

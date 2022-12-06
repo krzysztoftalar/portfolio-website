@@ -1,12 +1,12 @@
-import React from 'react';
 import { graphql } from 'gatsby';
-// Imports from src
-import ProjectSlider from '../components/projectPage/ProjectSlider';
+import React from 'react';
+
+import PageLayout from '../components/layout/PageLayout';
 import ProjectAbout from '../components/projectPage/ProjectAbout';
 import ProjectNav from '../components/projectPage/ProjectNav';
-import { IProject } from '../models/project';
-import PageLayout from '../components/layout/PageLayout';
+import ProjectSlider from '../components/projectPage/ProjectSlider';
 import SEO from '../components/ui/SEO';
+import { IProject } from '../models/project';
 
 interface IProps {
     data: {

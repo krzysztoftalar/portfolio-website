@@ -1,8 +1,8 @@
-import styled from 'styled-components';
-// Imports from src
 import { motion } from 'framer-motion';
-import { primaryColor } from '../base/variables';
+import styled from 'styled-components';
+
 import { respondTo } from '../base/responsive';
+import { primaryColor } from '../base/variables';
 
 export const HeaderNav = styled(motion.div)`
     position: fixed;

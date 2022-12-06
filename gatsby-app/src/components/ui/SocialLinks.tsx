@@ -1,8 +1,9 @@
 import React, { useRef } from 'react';
-// Imports from src
+
+import SVG from './SVG';
+
 import { useElementPosition } from '../../hooks/useElementPosition';
 import { useStore } from '../../hooks/useStore';
-import SVG from './SVG';
 import { Cursor } from '../../models/cursor';
 import { GITHUB_URL, LINKEDIN_URL } from '../../utils/constants';
 

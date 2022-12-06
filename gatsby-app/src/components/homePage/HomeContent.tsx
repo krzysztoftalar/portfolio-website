@@ -1,8 +1,8 @@
 import React from 'react';
-// Imports from src
-import { Content, HomeContentSection } from '../../styles/pages/homeStyles';
-import { sectionVariants } from '../../styles/base/globalVariants';
+
 import { useSectionAnimation } from '../../hooks/useSectionAnimation';
+import { sectionVariants } from '../../styles/base/globalVariants';
+import { Content, HomeContentSection } from '../../styles/pages/homeStyles';
 
 const HomeContent = (): JSX.Element => {
     const { ref, animation } = useSectionAnimation();

@@ -1,9 +1,9 @@
 import React from 'react';
-// Imports from src
-import { useStore } from '../../hooks/useStore';
+
 import { useMousePosition } from '../../hooks/useMousePosition';
-import { CursorWrapper } from '../../styles/components/cursorStyles';
+import { useStore } from '../../hooks/useStore';
 import { Cursor } from '../../models/cursor';
+import { CursorWrapper } from '../../styles/components/cursorStyles';
 
 const CustomCursor = (): JSX.Element => {
     const store = useStore();

@@ -1,10 +1,10 @@
-import React from 'react';
 import { observer } from 'mobx-react';
-// Imports from src
+import React from 'react';
+
 import HomeBanner from '../components/homePage/baner/HomeBanner';
+import HomeAbout from '../components/homePage/HomeAbout';
 import HomeContent from '../components/homePage/HomeContent';
 import HomeFeatured from '../components/homePage/HomeFeatured';
-import HomeAbout from '../components/homePage/HomeAbout';
 import Footer from '../components/layout/Footer';
 import PageLayout from '../components/layout/PageLayout';
 import SEO from '../components/ui/SEO';

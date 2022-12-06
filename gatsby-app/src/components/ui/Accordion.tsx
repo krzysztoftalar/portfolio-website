@@ -1,15 +1,15 @@
-import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-// Imports from src
+import React, { useState } from 'react';
+
+import { useStore } from '../../hooks/useStore';
+import { Cursor } from '../../models/cursor';
+import { ease } from '../../styles/base/globalVariants';
+import { black, primaryColor, white } from '../../styles/base/variables';
 import {
     AccordionContent,
     AccordionHeader,
     AccordionIcon,
 } from '../../styles/components/accordionStyles';
-import { useStore } from '../../hooks/useStore';
-import { black, primaryColor, white } from '../../styles/base/variables';
-import { Cursor } from '../../models/cursor';
-import { ease } from '../../styles/base/globalVariants';
 
 interface IProps {
     details: {

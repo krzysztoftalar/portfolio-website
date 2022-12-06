@@ -1,6 +1,7 @@
-import React from 'react';
 import { graphql, useStaticQuery } from 'gatsby';
+import React from 'react';
 import { Helmet } from 'react-helmet';
+
 import { COMPANY_NAME, GITHUB_URL, LINKEDIN_URL } from '../../utils/constants';
 
 type Meta =

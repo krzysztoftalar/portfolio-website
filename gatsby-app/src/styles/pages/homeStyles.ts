@@ -1,6 +1,6 @@
-import styled from 'styled-components';
 import { motion } from 'framer-motion';
-// Imports from src
+import styled from 'styled-components';
+
 import { respondTo } from '../base/responsive';
 import { greyLightColor, primaryColor } from '../base/variables';
 
