@@ -1,8 +1,8 @@
-import styled, { css } from 'styled-components';
 import { motion } from 'framer-motion';
-// Imports from src
-import { primaryColor } from '../base/variables';
+import styled, { css } from 'styled-components';
+
 import { respondTo } from '../base/responsive';
+import { primaryColor } from '../base/variables';
 
 // Slider section
 export const ProjectSliderSection = styled(motion.div)`

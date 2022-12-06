@@ -1,8 +1,14 @@
-import React, { useState } from 'react';
+import { motion } from 'framer-motion';
 import { graphql, Link, useStaticQuery } from 'gatsby';
 import { GatsbyImage, getImage } from 'gatsby-plugin-image';
-import { motion } from 'framer-motion';
-// Imports from src
+import React, { useState } from 'react';
+
+import { useSectionAnimation } from '../../hooks/useSectionAnimation';
+import { useStore } from '../../hooks/useStore';
+import { Cursor } from '../../models/cursor';
+import { IProject } from '../../models/project';
+import { Flex } from '../../styles/base/globalStyles';
+import { ease, sectionVariants } from '../../styles/base/globalVariants';
 import {
     FeaturedButton,
     FeaturedImage,
@@ -10,13 +16,7 @@ import {
     FeaturedSectionTitle,
     HomeFeaturedSection,
 } from '../../styles/pages/homeStyles';
-import { Flex } from '../../styles/base/globalStyles';
 import SVG from '../ui/SVG';
-import { useStore } from '../../hooks/useStore';
-import { ease, sectionVariants } from '../../styles/base/globalVariants';
-import { IProject } from '../../models/project';
-import { useSectionAnimation } from '../../hooks/useSectionAnimation';
-import { Cursor } from '../../models/cursor';
 
 const HomeFeatured = (): JSX.Element => {
     const { allMdx } = useStaticQuery(graphql`

@@ -1,8 +1,9 @@
 import React from 'react';
-// Imports from src
-import CustomCursor from '../ui/CustomCursor';
+
 import Header from './Header';
+
 import { LayoutContainer } from '../../styles/base/globalStyles';
+import CustomCursor from '../ui/CustomCursor';
 
 interface Props {
     children: React.ReactNode;

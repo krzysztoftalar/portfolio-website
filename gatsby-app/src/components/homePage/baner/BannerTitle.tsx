@@ -1,7 +1,7 @@
 import React from 'react';
-// Imports from src
-import { Headline, Title } from '../../../styles/pages/homeStyles';
+
 import { ease } from '../../../styles/base/globalVariants';
+import { Headline, Title } from '../../../styles/pages/homeStyles';
 
 const BannerTitle = (): JSX.Element => {
     return (

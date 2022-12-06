@@ -1,13 +1,13 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { observer } from 'mobx-react';
 import { Link } from 'gatsby';
-// Imports from src
-import { HeaderNav, Logo, Menu } from '../../styles/layout/headerStyles';
-import { useStore } from '../../hooks/useStore';
-import { Flex } from '../../styles/base/globalStyles';
-import { useElementPosition } from '../../hooks/useElementPosition';
-import { Cursor } from '../../models/cursor';
+import { observer } from 'mobx-react';
+import React, { useEffect, useRef, useState } from 'react';
+
 import { useDarkMode } from '../../hooks/useDarkMode';
+import { useElementPosition } from '../../hooks/useElementPosition';
+import { useStore } from '../../hooks/useStore';
+import { Cursor } from '../../models/cursor';
+import { Flex } from '../../styles/base/globalStyles';
+import { HeaderNav, Logo, Menu } from '../../styles/layout/headerStyles';
 
 const Header = (): JSX.Element => {
     const store = useStore();

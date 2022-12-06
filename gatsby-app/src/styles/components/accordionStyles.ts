@@ -1,6 +1,6 @@
-import styled from 'styled-components';
 import { motion } from 'framer-motion';
-// Imports from src
+import styled from 'styled-components';
+
 import { primaryColor } from '../base/variables';
 
 export const AccordionHeader = styled(motion.div)`

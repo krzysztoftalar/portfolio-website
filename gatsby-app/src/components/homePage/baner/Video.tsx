@@ -1,7 +1,7 @@
-import React from 'react';
-import { graphql, useStaticQuery } from 'gatsby';
 import { MotionValue } from 'framer-motion';
-// Imports from src
+import { graphql, useStaticQuery } from 'gatsby';
+import React from 'react';
+
 import { VideoWrapper } from '../../../styles/pages/homeStyles';
 
 interface Props {

@@ -1,8 +1,8 @@
-import styled from 'styled-components';
 import { motion } from 'framer-motion';
-// Imports from src
-import { primaryColor } from '../base/variables';
+import styled from 'styled-components';
+
 import { respondTo } from '../base/responsive';
+import { primaryColor } from '../base/variables';
 
 // Container
 export const Nav = styled(motion.div)`

@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react';
-// Imports from src
-import SocialLinks from '../ui/SocialLinks';
+
 import { useStore } from '../../hooks/useStore';
+import { Cursor } from '../../models/cursor';
 import {
     FooterCopyrights,
     FooterEmail,
     FooterSocial,
     FooterWrapper,
 } from '../../styles/layout/footerStyles';
-import { Cursor } from '../../models/cursor';
 import { CONTACT_EMAIL, COPYRIGHT } from '../../utils/constants';
+import SocialLinks from '../ui/SocialLinks';
 
 const Footer = (): JSX.Element => {
     const store = useStore();

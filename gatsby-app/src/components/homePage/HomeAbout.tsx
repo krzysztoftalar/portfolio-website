@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
 import { graphql, useStaticQuery } from 'gatsby';
-// Imports from src
+import React, { useState } from 'react';
+
+import { useSectionAnimation } from '../../hooks/useSectionAnimation';
+import { useStore } from '../../hooks/useStore';
+import { Cursor } from '../../models/cursor';
+import { sectionVariants } from '../../styles/base/globalVariants';
 import { About, HomeAboutSection, Skills } from '../../styles/pages/homeStyles';
 import Accordion from '../ui/Accordion';
-import { useStore } from '../../hooks/useStore';
-import { sectionVariants } from '../../styles/base/globalVariants';
-import { useSectionAnimation } from '../../hooks/useSectionAnimation';
-import { Cursor } from '../../models/cursor';
 
 interface Skill {
     frontmatter: {
