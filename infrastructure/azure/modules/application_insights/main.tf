@@ -1,7 +1,7 @@
 # Application Insights
 resource "azurerm_application_insights" "ai" {
   name                = "${var.resource_project_prefix}-${local.application_insights_suffix}"
-  application_type    = "Node.JS"
+  application_type    = "other"
   location            = var.location
   resource_group_name = var.rg_name
   workspace_id        = azurerm_log_analytics_workspace.law.id
