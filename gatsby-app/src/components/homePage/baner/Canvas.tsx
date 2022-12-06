@@ -1,14 +1,15 @@
-import React, { useCallback } from 'react';
-import { observer } from 'mobx-react';
 import { MotionValue } from 'framer-motion';
+import { observer } from 'mobx-react';
+import React, { useCallback } from 'react';
 import { isBrowser, isMobile } from 'react-device-detect';
+
 // Imports from src
+import { useDarkMode } from '../../../hooks/useDarkMode';
 import { useStore } from '../../../hooks/useStore';
 import useWindowSize from '../../../hooks/useWindowSize';
-import { CanvasWrapper } from '../../../styles/pages/homeStyles';
-import { Drag } from '../../../styles/components/cursorStyles';
 import { Cursor } from '../../../models/cursor';
-import { useDarkMode } from '../../../hooks/useDarkMode';
+import { Drag } from '../../../styles/components/cursorStyles';
+import { CanvasWrapper } from '../../../styles/pages/homeStyles';
 
 const midPointBtw = (
     p1: { x: number; y: number },

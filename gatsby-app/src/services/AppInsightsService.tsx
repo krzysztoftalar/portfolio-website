@@ -18,6 +18,7 @@ const appInsights = new ApplicationInsights({
         enableResponseHeaderTracking: true,
     },
 });
+
 appInsights.loadAppInsights();
 
 export { reactPlugin, appInsights };

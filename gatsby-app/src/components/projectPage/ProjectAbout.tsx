@@ -5,6 +5,7 @@ import React from 'react';
 
 import { useSectionAnimation } from '../../hooks/useSectionAnimation';
 import { useStore } from '../../hooks/useStore';
+import { useTrackEvent } from '../../hooks/useTrackEvent';
 import { Cursor } from '../../models/cursor';
 import { IProject } from '../../models/project';
 import { sectionVariants } from '../../styles/base/globalVariants';
@@ -15,13 +16,6 @@ import {
     ProjectLinks,
 } from '../../styles/pages/projectStyles';
 import SVG from '../ui/SVG';
-import { useStore } from '../../hooks/useStore';
-import { sectionVariants } from '../../styles/base/globalVariants';
-import { IProject } from '../../models/project';
-import { useSectionAnimation } from '../../hooks/useSectionAnimation';
-import { Cursor } from '../../models/cursor';
-import { OutboundLink } from 'gatsby-plugin-google-gtag';
-import { useTrackEvent } from '../../hooks/useTrackEvent';
 
 interface IProps {
     project: IProject;
