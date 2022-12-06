@@ -49,3 +49,12 @@ module "dns_zone" {
   swa_id        = module.swa.id
   tags          = local.tags
 }
+
+# Application Insights with Log Analytics Workspace
+module "application_insights" {
+  source                  = "./modules/application_insights"
+  location                = var.location
+  rg_name                 = module.rg.name
+  resource_project_prefix = local.resource_project_prefix
+  tags                    = local.tags
+}

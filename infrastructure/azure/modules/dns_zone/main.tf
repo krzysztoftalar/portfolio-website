@@ -6,7 +6,7 @@ resource "azurerm_dns_zone" "dz" {
 }
 
 # A (alias) record for Static Web App
-resource "azurerm_dns_a_record" "example" {
+resource "azurerm_dns_a_record" "swa_alias_record" {
   name                = "@"
   zone_name           = azurerm_dns_zone.dz.name
   resource_group_name = var.rg_name
