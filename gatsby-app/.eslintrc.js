@@ -2,13 +2,25 @@ module.exports = {
     parser: '@typescript-eslint/parser',
     extends: [
         'eslint:recommended',
-        'plugin:react/recommended',
         'plugin:@typescript-eslint/recommended',
+        'plugin:react/recommended',
         'plugin:prettier/recommended',
+        'plugin:import/errors',
+        'plugin:import/warnings',
+        'plugin:import/typescript',
     ],
     settings: {
         react: {
             version: 'detect',
+        },
+        'import/resolver': {
+            node: {
+                extensions: ['.js', '.jsx', '.ts', '.tsx'],
+                moduleDirectory: ['node_modules', 'src'],
+            },
+            typescript: {
+                alwaysTryTypes: true,
+            },
         },
     },
     env: {
@@ -16,7 +28,7 @@ module.exports = {
         node: true,
         es6: true,
     },
-    plugins: ['@typescript-eslint', 'react'],
+    plugins: ['@typescript-eslint', 'react', 'import'],
     parserOptions: {
         ecmaFeatures: {
             jsx: true,
@@ -40,6 +52,24 @@ module.exports = {
                 singleQuote: true,
                 printWidth: 80,
                 semi: true,
+            },
+        ],
+        'import/order': [
+            'error',
+            {
+                groups: [
+                    'external',
+                    'builtin',
+                    'internal',
+                    'sibling',
+                    'parent',
+                    'index',
+                ],
+                'newlines-between': 'always',
+                alphabetize: {
+                    order: 'asc',
+                    caseInsensitive: true,
+                },
             },
         ],
     },

@@ -1,7 +1,13 @@
-import React from 'react';
-import { observer } from 'mobx-react';
 import { MDXProvider } from '@mdx-js/react';
-// Imports from src
+import { OutboundLink } from 'gatsby-plugin-google-gtag';
+import { observer } from 'mobx-react';
+import React from 'react';
+
+import { useSectionAnimation } from '../../hooks/useSectionAnimation';
+import { useStore } from '../../hooks/useStore';
+import { Cursor } from '../../models/cursor';
+import { IProject } from '../../models/project';
+import { sectionVariants } from '../../styles/base/globalVariants';
 import {
     About,
     ProjectAboutSection,
@@ -9,12 +15,6 @@ import {
     ProjectLinks,
 } from '../../styles/pages/projectStyles';
 import SVG from '../ui/SVG';
-import { useStore } from '../../hooks/useStore';
-import { sectionVariants } from '../../styles/base/globalVariants';
-import { IProject } from '../../models/project';
-import { useSectionAnimation } from '../../hooks/useSectionAnimation';
-import { Cursor } from '../../models/cursor';
-import { OutboundLink } from 'gatsby-plugin-google-gtag';
 
 interface IProps {
     project: IProject;

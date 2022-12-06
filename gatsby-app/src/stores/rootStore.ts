@@ -1,6 +1,6 @@
-import { createContext } from 'react';
 import { configure, runInAction } from 'mobx';
-// Imports from src
+import { createContext } from 'react';
+
 import UIStore from './uiStore';
 
 configure({ enforceActions: 'always' });

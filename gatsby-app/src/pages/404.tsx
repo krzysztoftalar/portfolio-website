@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-// Imports from src
-import { NotFoundWrapper } from '../styles/pages/notFoundStyles';
+
 import SEO from '../components/ui/SEO';
+import { NotFoundWrapper } from '../styles/pages/notFoundStyles';
 
 const NotFound = (): JSX.Element => {
     const [mousePosition, setMousePosition] = useState({

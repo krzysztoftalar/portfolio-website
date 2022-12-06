@@ -1,7 +1,7 @@
+import { AnimatePresence } from 'framer-motion';
 import React from 'react';
 import { isIE } from 'react-device-detect';
-import { AnimatePresence } from 'framer-motion';
-// Imports from src
+
 import Layout from './src/components/layout/Layout';
 
 export const wrapPageElement = ({ element, props }) => {

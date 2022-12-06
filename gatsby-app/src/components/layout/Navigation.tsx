@@ -1,10 +1,23 @@
-import React, { useRef, useState } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
 import { graphql, Link, useStaticQuery } from 'gatsby';
 import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 import { observer } from 'mobx-react';
-import { AnimatePresence, motion } from 'framer-motion';
-// Imports from src
+import React, { useRef, useState } from 'react';
+
+import useBodyClass from '../../hooks/useBodyClass';
+import { useElementPosition } from '../../hooks/useElementPosition';
+import { useStore } from '../../hooks/useStore';
+import useTimeOut from '../../hooks/useTimeout';
+import { Cursor } from '../../models/cursor';
+import { IProject } from '../../models/project';
 import { Flex } from '../../styles/base/globalStyles';
+import { ease } from '../../styles/base/globalVariants';
+import {
+    FooterCopyrights,
+    FooterEmail,
+    FooterSocial,
+    NavFooterWrapper,
+} from '../../styles/layout/footerStyles';
 import {
     CloseNav,
     Nav,
@@ -12,22 +25,9 @@ import {
     NavImages,
     NavList,
 } from '../../styles/layout/navigationStyles';
-import { useStore } from '../../hooks/useStore';
-import { useElementPosition } from '../../hooks/useElementPosition';
-import SVG from '../ui/SVG';
-import SocialLinks from '../ui/SocialLinks';
-import {
-    FooterCopyrights,
-    FooterEmail,
-    FooterSocial,
-    NavFooterWrapper,
-} from '../../styles/layout/footerStyles';
-import { IProject } from '../../models/project';
-import { Cursor } from '../../models/cursor';
-import useTimeOut from '../../hooks/useTimeout';
-import useBodyClass from '../../hooks/useBodyClass';
-import { ease } from '../../styles/base/globalVariants';
 import { CONTACT_EMAIL, COPYRIGHT } from '../../utils/constants';
+import SocialLinks from '../ui/SocialLinks';
+import SVG from '../ui/SVG';
 
 const Navigation = (): JSX.Element => {
     const { allMdx } = useStaticQuery(graphql`

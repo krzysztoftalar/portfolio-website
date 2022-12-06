@@ -1,7 +1,8 @@
 import { useEffect } from 'react';
 import { DefaultTheme } from 'styled-components';
-// Imports from src
+
 import { useStore } from './useStore';
+
 import { darkTheme, lightTheme } from '../styles/base/themes';
 import { DARK_THEME_KEY, LIGHT_THEME_KEY, THEME_KEY } from '../utils/constants';
 

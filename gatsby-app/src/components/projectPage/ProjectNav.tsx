@@ -1,9 +1,14 @@
-import React, { useState } from 'react';
 import { Link } from 'gatsby';
-import { observer } from 'mobx-react';
 import { GatsbyImage, getImage } from 'gatsby-plugin-image';
-// Imports from src
+import { observer } from 'mobx-react';
+import React, { useState } from 'react';
+
+import { useSectionAnimation } from '../../hooks/useSectionAnimation';
+import { useStore } from '../../hooks/useStore';
+import useWindowSize from '../../hooks/useWindowSize';
+import { Cursor } from '../../models/cursor';
 import { IProject } from '../../models/project';
+import { ease } from '../../styles/base/globalVariants';
 import {
     NextProject,
     PrevProject,
@@ -12,11 +17,6 @@ import {
     ProjectTitle,
 } from '../../styles/pages/projectStyles';
 import SVG from '../ui/SVG';
-import { useStore } from '../../hooks/useStore';
-import useWindowSize from '../../hooks/useWindowSize';
-import { useSectionAnimation } from '../../hooks/useSectionAnimation';
-import { Cursor } from '../../models/cursor';
-import { ease } from '../../styles/base/globalVariants';
 
 interface IProps {
     previousProject: IProject;

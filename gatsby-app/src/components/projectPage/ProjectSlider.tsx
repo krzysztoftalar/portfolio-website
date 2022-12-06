@@ -1,9 +1,9 @@
-import React from 'react';
 import { GatsbyImage, ImageDataLike, getImage } from 'gatsby-plugin-image';
-// Imports from src
-import { ProjectSliderSection } from '../../styles/pages/projectStyles';
-import { sectionVariants } from '../../styles/base/globalVariants';
+import React from 'react';
+
 import { useSectionAnimation } from '../../hooks/useSectionAnimation';
+import { sectionVariants } from '../../styles/base/globalVariants';
+import { ProjectSliderSection } from '../../styles/pages/projectStyles';
 import Carousel from '../ui/Carousel';
 
 interface IProps {
