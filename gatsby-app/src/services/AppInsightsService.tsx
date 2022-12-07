@@ -1,6 +1,6 @@
 import { ReactPlugin } from '@microsoft/applicationinsights-react-js';
 import { ApplicationInsights } from '@microsoft/applicationinsights-web';
-import { globalHistory } from 'reach__router';
+import { globalHistory } from '@reach/router';
 
 const reactPlugin = new ReactPlugin();
 const appInsights = new ApplicationInsights({

@@ -86,13 +86,17 @@ through a temporary URL.
 ### Infrastructure Resources
 
 - Azure Service Principal - Terraform Cloud to Azure authentication,
-- Azure Resource Group - a container for Azure resources,
-- Azure DNS Zones - domain hosting and management,
-- Azure Static Web App - web hosting for static site `.\gatsby-app`,
+- Azure Resource Group[^1]  - a container for Azure resources,
+- Azure DNS Zones[^1] - domain hosting and management,
+- Azure Static Web App[^1] - web hosting for static site `.\gatsby-app`,
+- Azure Application Insights[^1] - website monitoring,
+- Azure Log Analytics Workspace[^1] - analysis of log data collected from Application Insights,
 - Terraform Cloud - remote state management of infrastructure,
 - OVH - domain registration,
 - GitHub / GitHub Actions - git repository and CI/CD tool,
 - Google Analytics - website traffic.
+
+[^1]: Managed by Terraform.
 
 ### Infrastructure Architecture
 

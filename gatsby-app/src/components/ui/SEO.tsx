@@ -14,7 +14,7 @@ type Meta =
           content: any;
       };
 
-interface Props {
+interface IProps {
     title?: string;
     description?: string;
     lang?: string;
@@ -22,7 +22,7 @@ interface Props {
     pathname?: string;
 }
 
-const SEO: React.FC<Props> = ({
+const SEO: React.FC<IProps> = ({
     title,
     description,
     lang,

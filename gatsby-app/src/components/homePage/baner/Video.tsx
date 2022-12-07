@@ -2,16 +2,17 @@ import { MotionValue } from 'framer-motion';
 import { graphql, useStaticQuery } from 'gatsby';
 import React from 'react';
 
+import { IFile } from '../../../models/file';
 import { VideoWrapper } from '../../../styles/pages/homeStyles';
 
-interface Props {
+interface IProps {
     y: MotionValue;
 }
 
-const Video: React.FC<Props> = ({ y }) => {
-    const data = useStaticQuery(graphql`
+const Video: React.FC<IProps> = ({ y }) => {
+    const { file }: IFile = useStaticQuery(graphql`
         query {
-            video: file(relativePath: { eq: "banner.mp4" }) {
+            file(relativePath: { eq: "banner.mp4" }) {
                 publicURL
             }
         }
@@ -19,7 +20,7 @@ const Video: React.FC<Props> = ({ y }) => {
 
     return (
         <VideoWrapper style={{ y }}>
-            <video src={data.video.publicURL} autoPlay muted loop>
+            <video src={file.publicURL} autoPlay muted loop>
                 Your browser is not supported!
             </video>
         </VideoWrapper>

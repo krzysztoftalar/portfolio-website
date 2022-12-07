@@ -21,11 +21,11 @@ const midPointBtw = (
     };
 };
 
-interface Props {
+interface IProps {
     top: MotionValue;
 }
 
-const Canvas: React.FC<Props> = ({ top }) => {
+const Canvas: React.FC<IProps> = ({ top }) => {
     const store = useStore();
     const { theme, setCursor } = store.uiStore;
     const { width, height } = useWindowSize();

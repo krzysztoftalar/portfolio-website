@@ -5,11 +5,11 @@ import Header from './Header';
 import { LayoutContainer } from '../../styles/base/globalStyles';
 import CustomCursor from '../ui/CustomCursor';
 
-interface Props {
+interface IProps {
     children: React.ReactNode;
 }
 
-const PageLayout: React.FC<Props> = ({ children }): JSX.Element => {
+const PageLayout: React.FC<IProps> = ({ children }): JSX.Element => {
     return (
         <>
             <CustomCursor />
