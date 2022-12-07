@@ -6,7 +6,7 @@ const reactPlugin = new ReactPlugin();
 const appInsights = new ApplicationInsights({
     config: {
         connectionString:
-            process.env.GATSBY_AZURE_APPLICATION_INSIGHTS_CONNECTION_STRING,
+            process.env.AZURE_APPLICATION_INSIGHTS_CONNECTION_STRING,
         extensions: [reactPlugin],
         extensionConfig: {
             [reactPlugin.identifier]: { history: globalHistory },
