@@ -1,3 +1,4 @@
+import { AppInsightsContext } from '@microsoft/applicationinsights-react-js';
 import { PageProps } from 'gatsby';
 import { observer } from 'mobx-react';
 import React, { useEffect } from 'react';
@@ -8,6 +9,7 @@ import '../../styles/base/base.css';
 
 import { useDarkMode } from '../../hooks/useDarkMode';
 import { useStore } from '../../hooks/useStore';
+import { reactPlugin } from '../../services/AppInsightsService';
 import { GlobalStyle } from '../../styles/base/globalStyles';
 
 const Layout = (props: PageProps): JSX.Element => {
@@ -21,13 +23,15 @@ const Layout = (props: PageProps): JSX.Element => {
     }, [props.location.pathname]);
 
     return (
-        <ThemeProvider theme={themeMode}>
-            <GlobalStyle />
+        <AppInsightsContext.Provider value={reactPlugin}>
+            <ThemeProvider theme={themeMode}>
+                <GlobalStyle />
 
-            <Navigation />
+                <Navigation />
 
-            {props.children}
-        </ThemeProvider>
+                {props.children}
+            </ThemeProvider>
+        </AppInsightsContext.Provider>
     );
 };
 
