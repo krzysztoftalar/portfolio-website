@@ -14,11 +14,11 @@ const settings = {
     slidesToScroll: 1,
 };
 
-interface Props {
+interface IProps {
     children: React.ReactNode;
 }
 
-const Carousel: React.FC<Props> = ({ children }) => {
+const Carousel: React.FC<IProps> = ({ children }) => {
     return (
         <>
             <Helmet>

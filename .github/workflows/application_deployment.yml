@@ -30,6 +30,7 @@ jobs:
           output_location: "public" # Built app content directory - optional
         env:
           GOOGLE_ANALYTICS_TRACKING_ID: ${{ secrets.GOOGLE_ANALYTICS_TRACKING_ID }}
+          GATSBY_AZURE_APPLICATION_INSIGHTS_CONNECTION_STRING: ${{ secrets.AZURE_APPLICATION_INSIGHTS_CONNECTION_STRING }}
           ###### End of Repository/Build Configurations ######
 
   close_pull_request_job:

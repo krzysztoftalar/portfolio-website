@@ -86,13 +86,17 @@ through a temporary URL.
 ### Infrastructure Resources
 
 - Azure Service Principal - Terraform Cloud to Azure authentication,
-- Azure Resource Group - a container for Azure resources,
-- Azure DNS Zones - domain hosting and management,
-- Azure Static Web App - web hosting for static site `.\gatsby-app`,
+- Azure Resource Group[^1]  - a container for Azure resources,
+- Azure DNS Zones[^1] - domain hosting and management,
+- Azure Static Web App[^1] - web hosting for static site `.\gatsby-app`,
+- Azure Application Insights[^1] - website monitoring,
+- Azure Log Analytics Workspace[^1] - analysis of log data collected from Application Insights,
 - Terraform Cloud - remote state management of infrastructure,
 - OVH - domain registration,
 - GitHub / GitHub Actions - git repository and CI/CD tool,
 - Google Analytics - website traffic.
+
+[^1]: Managed by Terraform.
 
 ### Infrastructure Architecture
 
@@ -147,7 +151,7 @@ environment.
    to [GitHub Actions](https://developer.hashicorp.com/terraform/tutorials/automation/github-actions):
     - create API token in Terraform Cloud,
     - in your repository create a secret named **TERRAFORM_CLOUD_API_TOKEN**, setting the Terraform Cloud API token.
-4. In **.\infrastructure\azure\env\prod.tfvars** set your domain name.
+4. In **.\infrastructure\azure\prod\prod.tfvars** set your domain name.
    ```terraform
       dns_zone_name = "your_domain_name"
    ```

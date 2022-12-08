@@ -3,10 +3,11 @@ import { observer } from 'mobx-react';
 import React, { useCallback } from 'react';
 import { isBrowser, isMobile } from 'react-device-detect';
 
+// Imports from src
+import { useDarkMode } from '../../../hooks/useDarkMode';
 import { useStore } from '../../../hooks/useStore';
 import useWindowSize from '../../../hooks/useWindowSize';
 import { Cursor } from '../../../models/cursor';
-import { darkTheme, lightTheme } from '../../../styles/base/themes';
 import { Drag } from '../../../styles/components/cursorStyles';
 import { CanvasWrapper } from '../../../styles/pages/homeStyles';
 
@@ -20,14 +21,15 @@ const midPointBtw = (
     };
 };
 
-interface Props {
+interface IProps {
     top: MotionValue;
 }
 
-const Canvas: React.FC<Props> = ({ top }) => {
+const Canvas: React.FC<IProps> = ({ top }) => {
     const store = useStore();
     const { theme, setCursor } = store.uiStore;
     const { width, height } = useWindowSize();
+    const { themeMode } = useDarkMode();
 
     let renderingElement: any;
     let drawingElement: any;
@@ -47,10 +49,7 @@ const Canvas: React.FC<Props> = ({ top }) => {
                 renderingCtx = renderingElement.getContext('2d');
 
                 renderingCtx.globalCompositeOperation = 'source-over';
-                renderingCtx.fillStyle =
-                    theme === 'dark'
-                        ? darkTheme.background
-                        : lightTheme.background;
+                renderingCtx.fillStyle = themeMode.background;
                 renderingCtx.fillRect(0, 0, width, height);
 
                 drawingCtx.globalCompositeOperation = 'source-over';

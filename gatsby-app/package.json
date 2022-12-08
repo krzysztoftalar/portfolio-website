@@ -23,6 +23,8 @@
         "@loadable/component": "^5.15.2",
         "@mdx-js/mdx": "^2.1.5",
         "@mdx-js/react": "^2.1.5",
+        "@microsoft/applicationinsights-react-js": "^3.4.0",
+        "@microsoft/applicationinsights-web": "^2.8.9",
         "@types/loadable__component": "^5.13.4",
         "@types/react-helmet": "^6.1.5",
         "@types/react-slick": "^0.23.10",

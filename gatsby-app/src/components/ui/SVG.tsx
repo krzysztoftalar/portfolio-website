@@ -1,14 +1,16 @@
 import { graphql, useStaticQuery } from 'gatsby';
 import React from 'react';
 
+import { IFile } from '../../models/file';
+
 interface IProps {
     icon: string;
 }
 
 const SVG: React.FC<IProps> = ({ icon }): JSX.Element => {
-    const { svg } = useStaticQuery(graphql`
+    const { file }: IFile = useStaticQuery(graphql`
         query {
-            svg: file(relativePath: { eq: "sprite.svg" }) {
+            file(relativePath: { eq: "sprite.svg" }) {
                 publicURL
             }
         }
@@ -16,7 +18,7 @@ const SVG: React.FC<IProps> = ({ icon }): JSX.Element => {
 
     return (
         <svg>
-            <use xlinkHref={`${svg.publicURL}#icon-${icon}`} />
+            <use xlinkHref={`${file.publicURL}#icon-${icon}`} />
         </svg>
     );
 };

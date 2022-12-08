@@ -13,7 +13,7 @@ export const useSectionAnimation = (
 } => {
     const { width } = useWindowSize();
 
-    const rootMargin = () => {
+    const rootMargin = (): string => {
         if (width > 1200) {
             return margin;
         } else {

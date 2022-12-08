@@ -1,6 +1,6 @@
-owner = "sivonte"
+owner       = "sivonte"
 environment = "prod"
-project = "portfolio"
+project     = "portfolio"
 
 location = "West Europe"
 
