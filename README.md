@@ -62,15 +62,26 @@ Also, like all my React projects, this one is built with TypeScript to write saf
 
 1. Navigate into **.\gatsby-app** directory and run the following command to download packages:
 
-```shell
-npm install
-```
+   ```shell
+   npm install
+   ```
 
-2. Start the development environment:
+2. Optionally you can create **.env.development** and **.env.production** files in the **.\gatsby-app** folder by
+   setting the following environment variables:
+    - **GOOGLE_ANALYTICS_TRACKING_ID** - this is the Google Analytics Measurement Id. Plugin `gatsby-plugin-google-gtag`
+      only works in production mode. To test your Global Site Tag is installed and firing events correctly
+      run:
+      ```shell
+      gatsby build && gatsby serve
+      ```
+    - **GATSBY_AZURE_APPLICATION_INSIGHTS_CONNECTION_STRING** - this is the Azure Application Insights Connection
+      String.
 
-```shell
-gatsby develop
-```
+3. Start the development environment:
+
+   ```shell
+   gatsby develop
+   ```
 
 Your site is now running at `http://localhost:8000`.
 
@@ -86,17 +97,19 @@ through a temporary URL.
 ### Infrastructure Resources
 
 - Azure Service Principal - Terraform Cloud to Azure authentication,
-- Azure Resource Group[^1]  - a container for Azure resources,
+- Azure Resource Group[^1] - a container for Azure resources,
 - Azure DNS Zones[^1] - domain hosting and management,
 - Azure Static Web App[^1] - web hosting for static site `.\gatsby-app`,
 - Azure Application Insights[^1] - website monitoring,
 - Azure Log Analytics Workspace[^1] - analysis of log data collected from Application Insights,
+- Azure Monitor Action Groups[^1] - collection of notification preferences,
+- Azure Monitor Alerts[^1] - alerts that there may be an infrastructure or application problem,
 - Terraform Cloud - remote state management of infrastructure,
 - OVH - domain registration,
 - GitHub / GitHub Actions - git repository and CI/CD tool,
 - Google Analytics - website traffic.
 
-[^1]: Managed by Terraform.
+[^1]: Managed by Terraform (Infrastructure as Code).
 
 ### Infrastructure Architecture
 
@@ -128,7 +141,8 @@ environment.
    Principal with a Client Secret](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/guides/service_principal_client_secret):
     - register an application with Azure AD and create a Service Principal using
       the [Azure Portal](https://learn.microsoft.com/en-us/azure/active-directory/develop/howto-create-service-principal-portal)
-      or [Azure PowerShell](https://learn.microsoft.com/en-us/azure/active-directory/develop/howto-authenticate-service-principal-powershell),
+      or [Azure PowerShell](https://learn.microsoft.com/en-us/azure/active-directory/develop/howto-authenticate-service-principal-powershell)
+      ,
     - assign a **Contributor** role to the application,
     - create an application secret and copy it,
     - create a workspace in Terraform Cloud with `API-driven workflow`,
@@ -137,7 +151,8 @@ environment.
         - **ARM_TENANT_ID** - this is the Azure Directory (tenant) ID of the Service Principal,
         - **ARM_CLIENT_ID** - this is the Application (client) ID of the Service Principal,
         - **ARM_CLIENT_SECRET** - mark as sensitive, this is the Application Secret for the Service Principal,
-    - in **\infrastructure\azure\main.tf** set your organization and workspace name.
+    - in `Workspace Settings` set `Terraform Working Directory` to **infrastructure/azure/prod**,
+    - in repository in **\infrastructure\azure\prod\main.tf** set your organization and workspace name.
     ```terraform
        # Terraform Cloud setup
        cloud {
@@ -151,7 +166,7 @@ environment.
    to [GitHub Actions](https://developer.hashicorp.com/terraform/tutorials/automation/github-actions):
     - create API token in Terraform Cloud,
     - in your repository create a secret named **TERRAFORM_CLOUD_API_TOKEN**, setting the Terraform Cloud API token.
-4. In **.\infrastructure\azure\prod\prod.tfvars** set your domain name.
+4. In **.\infrastructure\azure\prod\terraform.tfvars** set your domain name.
    ```terraform
       dns_zone_name = "your_domain_name"
    ```
@@ -160,8 +175,9 @@ environment.
     - [delegate your domain to Azure](https://learn.microsoft.com/en-us/azure/dns/dns-delegate-domain-azure-dns) - on
       the DNS management page of your existing registrar provider, replace the DNS server records
       with name servers that you created in the previous step in the Azure DNS Zones,
-    - in your repository create a secret named **AZURE_STATIC_WEB_APPS_API_TOKEN**, setting the Static Web App (created
-      in the previous step) `Deployment token`.
+    - in your repository create secrets:
+        - **AZURE_STATIC_WEB_APPS_API_TOKEN** setting the Static Web App Deployment Token,
+        - **AZURE_APPLICATION_INSIGHTS_CONNECTION_STRING** setting the Application Insights Connection String.
 7. Run `Deploy Infrastructure to Azure` again.
 
 ### Deployment Architecture
