@@ -151,7 +151,7 @@ environment.
    to [GitHub Actions](https://developer.hashicorp.com/terraform/tutorials/automation/github-actions):
     - create API token in Terraform Cloud,
     - in your repository create a secret named **TERRAFORM_CLOUD_API_TOKEN**, setting the Terraform Cloud API token.
-4. In **.\infrastructure\azure\env\prod.tfvars** set your domain name.
+4. In **.\infrastructure\azure\prod\prod.tfvars** set your domain name.
    ```terraform
       dns_zone_name = "your_domain_name"
    ```
