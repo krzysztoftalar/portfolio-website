@@ -176,7 +176,7 @@ environment.
       the DNS management page of your existing registrar provider, replace the DNS server records
       with name servers that you created in the previous step in the Azure DNS Zones,
     - in your repository create secrets:
-        - **AZURE_STATIC_WEB_APPS_API_TOKEN** setting the Static Web App Deployment Token.
+        - **AZURE_STATIC_WEB_APPS_API_TOKEN** setting the Static Web App Deployment Token,
         - **AZURE_APPLICATION_INSIGHTS_CONNECTION_STRING** setting the Application Insights Connection String.
 7. Run `Deploy Infrastructure to Azure` again.
 
