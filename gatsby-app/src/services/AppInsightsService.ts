@@ -19,6 +19,8 @@ const appInsights = new ApplicationInsights({
     },
 });
 
-appInsights.loadAppInsights();
+if (process.env.GATSBY_AZURE_APPLICATION_INSIGHTS_CONNECTION_STRING) {
+    appInsights.loadAppInsights();
+}
 
 export { reactPlugin, appInsights };
