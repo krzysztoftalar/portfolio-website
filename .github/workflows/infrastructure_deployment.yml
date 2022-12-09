@@ -46,7 +46,7 @@ jobs:
         run: terraform fmt -check
 
       # Validates the configuration
-      - name: Terraform validate
+      - name: Terraform Validate
         run: terraform validate -no-color
 
       # Generates an execution plan for Terraform
@@ -116,6 +116,10 @@ jobs:
       - name: Terraform Plan Status
         if: steps.plan.outcome == 'failure'
         run: exit 1
+
+      # Build or change infrastructure according to Terraform configuration files
+      - name: Terraform Apply
+        run: terraform apply
 
   call_application_deployment_job:
     name: Application Deployment
