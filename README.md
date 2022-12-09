@@ -125,11 +125,12 @@ shown in the [Deployment Architecture](#deployment-architecture) figure.
 Two rules have been created for the master branch:
 
 - require a pull request before merging,
-- require status checks to pass before merging: Infrastructure Deployment and Application Deployment.
+- require status checks to pass before merging: `Infrastructure Deployment` and `Application Deployment / Build and Deploy`.
 
 After successfully deploying the SPA application to the preview environment, the developer can test the website and
-approve the pull request, which triggers the same deployment process as before, but this time to the production
-environment.
+merge the pull request, which triggers:
+- the same deployment process as before, but this time to the production environment,
+- remove the temporary (preview) environment.
 
 ### Application Deployment configuration
 
