@@ -59,7 +59,8 @@ jobs:
         continue-on-error: true
 
       # Update Pull Request adds a comment to the pull request with the results of the format, init and plan steps
-      - uses: actions/github-script@v6
+      - name: Update Pull Request
+        uses: actions/github-script@v6
         if: github.event_name == 'pull_request'
         env:
           PLAN: "terraform\n${{ steps.plan.outputs.stdout }}"
@@ -98,7 +99,7 @@ jobs:
             
             </details>
             
-            *Pusher: @${{ github.actor }}, Action: \`${{ github.event_name }}\`, Working Directory: \`${{ env.tf_actions_working_dir }}\`, Workflow: \`${{ github.workflow }}\`*`;
+            *Pusher: @${{ github.actor }}, Action: \`${{ github.event_name }}\`, Working Directory: \`${{ env.working-directory }}\`, Workflow: \`${{ github.workflow }}\`*`;
             
             // 3. If we have a comment, update it, otherwise create a new one
             if (botComment) {
@@ -117,6 +118,7 @@ jobs:
               })
             }
 
+      # Returns whether a plan was successfully generated or not
       - name: Terraform Plan Status
         if: steps.plan.outcome == 'failure'
         run: exit 1
