@@ -119,18 +119,20 @@ through a temporary URL.
 
 ### Overview
 
-The Deployment consists of two parts. First, the Application Infrastructure is deployed, and then the SPA
-application itself. The developer creates a pull request to the master branch that starts the deployment process as
-shown in the [Deployment Architecture](#deployment-architecture) figure.
-Two rules have been created for the master branch:
+The Deployment consists of two parts: **infrastructure_deployment.yml** and **application_deployment.yml**. First, the
+Application Infrastructure is deployed, and then the SPA application itself. The developer creates a pull request to the
+master branch that starts the deployment process as shown in the [Deployment Architecture](#deployment-architecture)
+figure. Two rules have been created for the master branch:
 
 - require a pull request before merging,
-- require status checks to pass before merging: `Infrastructure Deployment` and `Application Deployment / Build and Deploy`.
+- require status checks to pass before merging: `Infrastructure Deployment`
+  and `Application Deployment / Build and Deploy`.
 
 After successfully deploying the SPA application to the preview environment, the developer can test the website and
 merge the pull request, which triggers:
+
 - the same deployment process as before, but this time to the production environment,
-- remove the temporary (preview) environment.
+- remove the temporary (preview) environment: **close_pull_request.yml**.
 
 ### Application Deployment configuration
 
