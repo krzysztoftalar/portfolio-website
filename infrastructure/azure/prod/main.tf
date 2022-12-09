@@ -33,8 +33,8 @@ module "resource_group" {
 # Static Web App
 module "static_web_app" {
   source                  = "../modules/static_web_app"
-  resource_group_name     = module.resource_group.resource_group_name
-  dns_zone_name           = module.dns_zone.dns_zone_name
+  resource_group_name     = module.resource_group.name
+  dns_zone_name           = module.dns_zone.name
   location                = var.location
   static_web_app_plan_sku = var.static_web_app_plan_sku
   resource_project_prefix = local.resource_project_prefix
@@ -45,8 +45,8 @@ module "static_web_app" {
 module "dns_zone" {
   source              = "../modules/dns_zone"
   dns_zone_name       = var.dns_zone_name
-  resource_group_name = module.resource_group.resource_group_name
-  static_web_app_id   = module.static_web_app.static_web_app_id
+  resource_group_name = module.resource_group.name
+  static_web_app_id   = module.static_web_app.id
   tags                = local.tags
 }
 
@@ -54,7 +54,7 @@ module "dns_zone" {
 module "application_insights" {
   source                  = "../modules/application_insights"
   location                = var.location
-  resource_group_name     = module.resource_group.resource_group_name
+  resource_group_name     = module.resource_group.name
   resource_project_prefix = local.resource_project_prefix
   tags                    = local.tags
 }
@@ -62,7 +62,7 @@ module "application_insights" {
 # Monitor Alerts and Monitor Action Groups
 module "monitor" {
   source                  = "../modules/monitor"
-  resource_group_name     = module.resource_group.resource_group_name
-  application_insights_id = module.application_insights.application_insights_id
+  resource_group_name     = module.resource_group.name
+  application_insights_id = module.application_insights.id
   resource_project_prefix = local.resource_project_prefix
 }
