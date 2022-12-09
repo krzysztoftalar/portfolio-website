@@ -151,7 +151,7 @@ environment.
         - **ARM_TENANT_ID** - this is the Azure Directory (tenant) ID of the Service Principal,
         - **ARM_CLIENT_ID** - this is the Application (client) ID of the Service Principal,
         - **ARM_CLIENT_SECRET** - mark as sensitive, this is the Application Secret for the Service Principal,
-    - in `Workspace Settings` set `Terraform Working Directory` to **infrastructure/azure/prod**,
+    - in Workspace Settings set `Terraform Working Directory` to **infrastructure/azure/prod**,
     - in repository in **\infrastructure\azure\prod\main.tf** set your organization and workspace name.
     ```terraform
        # Terraform Cloud setup
