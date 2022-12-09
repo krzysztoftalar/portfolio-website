@@ -18,13 +18,15 @@ jobs:
     runs-on: ubuntu-latest
     name: Infrastructure Deployment
     environment: production
+    env:
+      working-directory: infrastructure/azure/prod
 
     defaults:
       run:
         # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
         shell: bash
         # Set directory for terraform code
-        working-directory: infrastructure/azure/prod
+        working-directory: ${{ env.working-directory }}
 
     steps:
       # Checkout the repository to the GitHub Actions runner
@@ -99,7 +101,7 @@ jobs:
             
             </details>
             
-            *Pusher: @${{ github.actor }}, Action: \`${{ github.event_name }}\`, Working Directory: \`${{ defaults.run.working-directory }}\`, Workflow: \`${{ github.workflow }}\`*`;
+            *Pusher: @${{ github.actor }}, Action: \`${{ github.event_name }}\`, Working Directory: \`${{ env.working-directory }}\`, Workflow: \`${{ github.workflow }}\`*`;
             
             // 3. If we have a comment, update it, otherwise create a new one
             if (botComment) {
