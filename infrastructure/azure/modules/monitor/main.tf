@@ -3,7 +3,7 @@
 # ----------------------------------------------
 resource "azurerm_monitor_action_group" "developers_group" {
   name                = "${local.action_group_prefix}-developers-${var.resource_project_suffix}"
-  short_name          = "${local.action_group_prefix}-developers-${var.resource_project_suffix}"
+  short_name          = "developers"
   resource_group_name = var.resource_group_name
 
   email_receiver {
