@@ -1,4 +1,4 @@
 locals {
-  application_insights_suffix = "ai"
-  log_analytics_workspace_suffix = "law"
+  application_insights_prefix = "appi"
+  log_analytics_workspace_prefix = "log"
 }

@@ -1,5 +1,5 @@
-variable "resource_project_prefix" {
-  description = "(Required) A prefix of the Application Insights name."
+variable "resource_project_suffix" {
+  description = "(Required) A suffix of the Application Insights name."
   type        = string
 }
 
@@ -11,5 +11,10 @@ variable "resource_group_name" {
 variable "application_insights_id" {
   description = "(Required) The ID of the Application Insights."
   type        = string
+}
+
+variable "tags" {
+  description = "(Required) A mapping of tags to assign to the resource."
+  type        = map(string)
 }
 

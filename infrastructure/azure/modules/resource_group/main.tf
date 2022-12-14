@@ -1,6 +1,8 @@
+# ----------------------------------------------
 # Resource Group
+# ----------------------------------------------
 resource "azurerm_resource_group" "this" {
-  name     = "${var.resource_project_prefix}-${local.resource_group_suffix}"
+  name     = "${local.resource_group_prefix}-${var.resource_project_suffix}"
   location = var.location
   tags     = var.tags
 }

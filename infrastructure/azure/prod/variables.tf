@@ -1,32 +1,32 @@
 variable "owner" {
-  type        = string
   description = "(Required) Company to which the projects belong."
+  type        = string
 }
 
 variable "environment" {
-  type        = string
   description = "(Required) The name of the environment."
+  type        = string
 }
 
 variable "project" {
-  type        = string
   description = "(Required) The name of the project."
+  type        = string
 }
 
 variable "location" {
-  type        = string
   description = "(Required) The Azure Region where the resources should exist."
+  type        = string
 }
 
 variable "dns_zone_name" {
-  type        = string
   description = "(Required) The name of the DNS Zone."
+  type        = string
 }
 
 variable "static_web_app_plan_sku" {
+  description = "(Required) SKU size and tier of the Static Web App."
   type = object({
     tier = string
     size = string
   })
-  description = "(Required) SKU size and tier of the Static Web App."
 }
