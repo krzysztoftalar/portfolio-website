@@ -48,7 +48,7 @@ export const NavFooterWrapper = styled.div`
 export const FooterEmail = styled.div<{ navOpen: boolean }>`
     a:link,
     a:visited {
-        transition: fill 0.2s cubic-bezier(0.6, 0.05, -0.01, 0.9);
+        transition: fill 0.2s cubic-bezier(0.6, 0.05, 0.01, 0.9);
         color: ${(props) =>
             props.navOpen ? props.theme.background : primaryColor};
         font-size: 2rem;
@@ -116,7 +116,7 @@ export const FooterSocial = styled.div<{ navOpen: boolean }>`
         svg {
             width: 2.5rem;
             height: 2.5rem;
-            transition: fill 0.2s cubic-bezier(0.6, 0.05, -0.01, 0.9);
+            transition: fill 0.2s cubic-bezier(0.6, 0.05, 0.01, 0.9);
             fill: ${(props) =>
                 props.navOpen ? props.theme.background : primaryColor};
         }
