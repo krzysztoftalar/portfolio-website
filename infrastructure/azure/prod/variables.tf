@@ -25,7 +25,7 @@ variable "dns_zone_name" {
 
 variable "static_web_app_plan_sku" {
   description = "(Required) SKU size and tier of the Static Web App."
-  type        = object({
+  type = object({
     tier = string
     size = string
   })
