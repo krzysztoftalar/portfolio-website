@@ -96,20 +96,24 @@ through a temporary URL.
 
 ### Infrastructure Resources
 
-- Azure Service Principal - Terraform Cloud to Azure authentication,
-- Azure Resource Group[^1] - a container for Azure resources,
-- Azure DNS Zones[^1] - domain hosting and management,
-- Azure Static Web App[^1] - web hosting for static site `.\gatsby-app`,
-- Azure Application Insights[^1] - website monitoring,
-- Azure Log Analytics Workspace[^1] - analysis of log data collected from Application Insights,
-- Azure Monitor Action Groups[^1] - collection of notification preferences,
-- Azure Monitor Alerts[^1] - alerts that there may be an infrastructure or application problem,
-- Terraform Cloud - remote state management of infrastructure,
-- OVH - domain registration,
-- GitHub / GitHub Actions - git repository and CI/CD tool,
-- Google Analytics - website traffic.
+| Resource                          | Purpose                                                                                    | Name                                |
+|-----------------------------------|--------------------------------------------------------------------------------------------|-------------------------------------|
+| Azure Service Principal[^1]       | application (service principal) for authenticating sivonte organization to Terraform Cloud | sp-terraform-cloud-sivonte          |
+| Azure Resource Group[^2]          | a container for Azure resources                                                            | rg-portfolio-prod                   |
+| Azure DNS Zones[^2]               | domain hosting and management                                                              | sivonte.com                         |
+| Azure Static Web App[^2]          | web hosting for static site `.\gatsby-app`                                                 | appi-portfolio-prod                 |
+| Azure Application Insights[^2]    | website monitoring                                                                         | stapp-portfolio-prod                |
+| Azure Log Analytics Workspace[^2] | analysis of log data collected from Application Insights                                   | log-portfolio-prod                  |
+| Azure Monitor Action Groups[^2]   | collection of notification preferences                                                     | ag-developers-portfolio-prod        |                     
+| Azure Monitor Alerts[^2]          | alerts that there may be an infrastructure or application problem                          | ar-failure-anomalies-portfolio-prod |
+| Terraform Cloud                   | remote state management of infrastructure                                                  | portfolio-prod                      |
+| OVH                               | domain registration                                                                        | sivonte.com                         |
+| GitHub / GitHub Actions           | git repository and CI/CD tool                                                              | portfolio-website                   |                                  
+| Google Analytics                  | website traffic                                                                            | portfolio-prod                      |
 
-[^1]: Managed by Terraform (Infrastructure as Code).
+[^1]: resource Managed by Terraform Cloud in [sivonte-azure](https://github.com/krzysztoftalar/sivonte-azure)
+repository.
+[^2]: resource Managed by Terraform Cloud in this repository **infrastructure/azure**.
 
 ### Infrastructure Architecture
 
@@ -154,8 +158,10 @@ merge the pull request, which triggers:
         - **ARM_TENANT_ID** - this is the Azure Directory (tenant) ID of the Service Principal,
         - **ARM_CLIENT_ID** - this is the Application (client) ID of the Service Principal,
         - **ARM_CLIENT_SECRET** - mark as sensitive, this is the Application Secret for the Service Principal,
-    - in Workspace Settings set `Terraform Working Directory` to **infrastructure/azure/prod**,
-    - in repository in **\infrastructure\azure\prod\main.tf** set your organization and workspace name.
+    - in Workspace Settings set:
+        - `Execution Mode` to `Remote`,
+        - `Terraform Working Directory` to **infrastructure/azure/prod**,
+    - in repository in **\infrastructure\azure\prod\config.tf** set your organization and workspace name.
     ```terraform
        # Terraform Cloud setup
        cloud {

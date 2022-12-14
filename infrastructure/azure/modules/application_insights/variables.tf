@@ -8,8 +8,8 @@ variable "location" {
   type        = string
 }
 
-variable "resource_project_prefix" {
-  description = "(Required) A prefix of the Application Insights name."
+variable "resource_project_suffix" {
+  description = "(Required) A suffix of the Application Insights name."
   type        = string
 }
 

@@ -1,6 +1,8 @@
+# ----------------------------------------------
 # Application Insights
+# ----------------------------------------------
 resource "azurerm_application_insights" "this" {
-  name                = "${var.resource_project_prefix}-${local.application_insights_suffix}"
+  name                = "${local.application_insights_prefix}-${var.resource_project_suffix}"
   application_type    = "web"
   location            = var.location
   resource_group_name = var.resource_group_name
@@ -8,9 +10,11 @@ resource "azurerm_application_insights" "this" {
   tags                = var.tags
 }
 
+# ----------------------------------------------
 # Log Analytics Workspace
+# ----------------------------------------------
 resource "azurerm_log_analytics_workspace" "this" {
-  name                = "${var.resource_project_prefix}-${local.log_analytics_workspace_suffix}"
+  name                = "${local.log_analytics_workspace_prefix}-${var.resource_project_suffix}"
   location            = var.location
   resource_group_name = var.resource_group_name
   retention_in_days   = 90

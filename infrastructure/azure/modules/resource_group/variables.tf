@@ -3,8 +3,8 @@ variable "location" {
   type        = string
 }
 
-variable "resource_project_prefix" {
-  description = "(Required) A prefix of the Resource Group name."
+variable "resource_project_suffix" {
+  description = "(Required) A suffix of the Resource Group name."
   type        = string
 }
 

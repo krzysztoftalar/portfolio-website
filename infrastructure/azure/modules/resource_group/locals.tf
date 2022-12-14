@@ -1,3 +1,3 @@
 locals {
-  resource_group_suffix = "rg"
+  resource_group_prefix = "rg"
 }

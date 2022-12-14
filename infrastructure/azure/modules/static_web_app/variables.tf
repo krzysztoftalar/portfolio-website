@@ -13,8 +13,8 @@ variable "location" {
   type        = string
 }
 
-variable "resource_project_prefix" {
-  description = "(Required) A prefix of the Static Web App name."
+variable "resource_project_suffix" {
+  description = "(Required) A suffix of the Static Web App name."
   type        = string
 }
 
@@ -27,6 +27,6 @@ variable "static_web_app_plan_sku" {
 }
 
 variable "tags" {
-  type        = map(string)
   description = "(Required) A mapping of tags to assign to the resource."
+  type        = map(string)
 }
