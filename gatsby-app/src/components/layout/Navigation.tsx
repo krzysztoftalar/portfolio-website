@@ -11,7 +11,7 @@ import useTimeOut from '../../hooks/useTimeout';
 import { Cursor } from '../../models/cursor';
 import { IProject } from '../../models/project';
 import { Flex } from '../../styles/base/globalStyles';
-import { ease } from '../../styles/base/globalVariants';
+import { customEase, easeInOut } from '../../styles/base/globalVariants';
 import {
     FooterCopyrights,
     FooterEmail,
@@ -180,7 +180,7 @@ const Navigation = (): JSX.Element => {
                                 animate={{
                                     width: project.show ? 0 : '100%',
                                     transition: {
-                                        ease: [0.6, 0.05, -0.01, 0.9],
+                                        ease: customEase,
                                     },
                                 }}
                                 className="reveal"
@@ -193,7 +193,7 @@ const Navigation = (): JSX.Element => {
                                     animate={{ opacity: 1 }}
                                     transition={{
                                         duration: 0.2,
-                                        ease: 'easeInOut',
+                                        ease: easeInOut,
                                     }}
                                     exit={{ opacity: 0 }}
                                     key={project.key}
@@ -247,7 +247,7 @@ const navVariants = {
         x: 0,
         transition: {
             duration: 0.8,
-            ease: ease,
+            ease: customEase,
             staggerChildren: 0.07,
             delayChildren: 0.4,
         },
@@ -256,7 +256,7 @@ const navVariants = {
         x: '-100%',
         transition: {
             duration: 0.8,
-            ease: ease,
+            ease: customEase,
         },
     },
 };
@@ -273,7 +273,7 @@ const linkItemVariants = {
         opacity: 1,
         transition: {
             duration: 0.8,
-            ease: ease,
+            ease: customEase,
         },
     },
 };
@@ -286,7 +286,7 @@ const arrowVariants = {
         x: '-0.8rem',
         transition: {
             duration: 0.4,
-            ease: ease,
+            ease: customEase,
         },
     },
 };

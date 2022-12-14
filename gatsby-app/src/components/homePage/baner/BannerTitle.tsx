@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { ease } from '../../../styles/base/globalVariants';
+import { customEase } from '../../../styles/base/globalVariants';
 import { Headline, Title } from '../../../styles/pages/homeStyles';
 
 const BannerTitle = (): JSX.Element => {
@@ -48,7 +48,7 @@ const headlineVariants = {
         y: 0,
         transition: {
             duration: 1,
-            ease: ease,
+            ease: customEase,
             delay: custom * 0.2,
         },
     }),
