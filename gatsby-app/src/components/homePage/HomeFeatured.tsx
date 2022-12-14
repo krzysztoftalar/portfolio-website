@@ -8,7 +8,7 @@ import { useStore } from '../../hooks/useStore';
 import { Cursor } from '../../models/cursor';
 import { IProject } from '../../models/project';
 import { Flex } from '../../styles/base/globalStyles';
-import { ease, sectionVariants } from '../../styles/base/globalVariants';
+import { customEase, sectionVariants } from '../../styles/base/globalVariants';
 import {
     FeaturedButton,
     FeaturedImage,
@@ -75,7 +75,7 @@ const HomeFeatured = (): JSX.Element => {
                         animate={{ opacity: hovered ? 1 : 0 }}
                         transition={{
                             duration: 0.6,
-                            ease: ease,
+                            ease: customEase,
                         }}
                     >
                         {year.toString()}
@@ -108,7 +108,7 @@ const HomeFeatured = (): JSX.Element => {
                                 animate={{ x: hovered ? 40 : 0 }}
                                 transition={{
                                     duration: 0.6,
-                                    ease: ease,
+                                    ease: customEase,
                                 }}
                             >
                                 <SVG icon="arrow-right" />

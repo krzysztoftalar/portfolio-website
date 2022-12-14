@@ -8,7 +8,7 @@ import { useStore } from '../../hooks/useStore';
 import useWindowSize from '../../hooks/useWindowSize';
 import { Cursor } from '../../models/cursor';
 import { IProject } from '../../models/project';
-import { ease } from '../../styles/base/globalVariants';
+import { customEase, easeInOut } from '../../styles/base/globalVariants';
 import {
     NextProject,
     PrevProject,
@@ -96,7 +96,7 @@ const ProjectNav: React.FC<IProps> = ({
                         }}
                         transition={{
                             duration: 0.3,
-                            ease: 'easeInOut',
+                            ease: easeInOut,
                         }}
                     >
                         {previousProjectCover && (
@@ -156,7 +156,7 @@ const ProjectNav: React.FC<IProps> = ({
                         }}
                         transition={{
                             duration: 0.3,
-                            ease: 'easeInOut',
+                            ease: easeInOut,
                         }}
                     >
                         {nextProjectCover && (
@@ -185,7 +185,7 @@ const prevProjectVariants = {
         x: 0,
         transition: {
             duration: 0.8,
-            ease: ease,
+            ease: customEase,
         },
     },
 };
@@ -200,7 +200,7 @@ const nextProjectVariants = {
         x: 0,
         transition: {
             duration: 0.8,
-            ease: ease,
+            ease: customEase,
         },
     },
 };

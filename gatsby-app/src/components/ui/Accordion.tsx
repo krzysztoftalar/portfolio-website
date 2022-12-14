@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 
 import { useStore } from '../../hooks/useStore';
 import { Cursor } from '../../models/cursor';
-import { ease } from '../../styles/base/globalVariants';
+import { customEase } from '../../styles/base/globalVariants';
 import { black, primaryColor, white } from '../../styles/base/variables';
 import {
     AccordionContent,
@@ -49,7 +49,7 @@ const Accordion: React.FC<IProps> = ({
                         ? white
                         : black,
                 }}
-                transition={{ duration: 0.2, ease: ease }}
+                transition={{ duration: 0.2, ease: customEase }}
                 onHoverStart={() => setHovered(!hovered)}
                 onHoverEnd={() => setHovered(!hovered)}
             >
@@ -61,7 +61,7 @@ const Accordion: React.FC<IProps> = ({
                         }}
                         transition={{
                             duration: 0.2,
-                            ease: ease,
+                            ease: customEase,
                         }}
                     />
                     <motion.span
@@ -71,7 +71,7 @@ const Accordion: React.FC<IProps> = ({
                         }}
                         transition={{
                             duration: 0.2,
-                            ease: ease,
+                            ease: customEase,
                         }}
                     />
                 </AccordionIcon>
@@ -81,7 +81,7 @@ const Accordion: React.FC<IProps> = ({
 
             <AccordionContent
                 animate={{ height: isOpen ? 'auto' : '0' }}
-                transition={{ duration: 0.6, ease: ease }}
+                transition={{ duration: 0.6, ease: customEase }}
             >
                 {details.results.map((item, index) => (
                     <span key={index}>{item}</span>
