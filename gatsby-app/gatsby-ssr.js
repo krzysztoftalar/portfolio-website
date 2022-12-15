@@ -22,3 +22,22 @@ export const wrapPageElement = ({ element, props }) => {
         </AnimatePresence>
     );
 };
+
+const HeadComponents = [
+    <link
+        key="slick.min.css"
+        rel="stylesheet"
+        type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css"
+    />,
+    <link
+        key="slick-theme.min.css"
+        rel="stylesheet"
+        type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css"
+    />,
+];
+
+export const onRenderBody = ({ setHeadComponents }) => {
+    setHeadComponents(HeadComponents);
+};
