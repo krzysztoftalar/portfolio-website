@@ -4,19 +4,21 @@ require('dotenv').config({
 
 module.exports = {
     siteMetadata: {
-        title: `Full-Stack Developer`,
+        title: `Full-Stack .NET Developer | Azure Cloud & DevOps Engineer`,
         description: `Krzysztof is a Full-Stack Developer based in Poland.`,
         author: `Krzysztof Talar`,
         url: 'https://www.sivonte.com',
         keywords: [
-            `Developer`,
-            `Front-end Development`,
-            `Back-end Development`,
+            `Software Engineer`,
+            `Software Developer`,
+            `Frontend Development`,
+            `Backend Development`,
             `React`,
             `C#`,
             `.NET`,
             `Azure`,
             `Portfolio`,
+            `DevOps`,
         ],
     },
     plugins: [
